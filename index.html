@@ -16,7 +16,7 @@
     }
 
     header {
-      background-color: #0a1f44; /* bleu navy */
+      background-color: #0a1f44;
       height: 6px;
       width: 100%;
     }
@@ -59,31 +59,43 @@
       font-weight: normal;
       color: #0a1f44;
       margin: 0;
-      white-space: nowrap; /* empêche le sous-titre de casser */
+      white-space: nowrap;
     }
 
-    /* Punchline avec lignes décoratives */
+    /* Punchline avec vraies lignes horizontales */
     .quote-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 40px auto;
       max-width: 800px;
+      margin: 40px auto;
+      position: relative;
     }
 
     .quote-container blockquote {
-      margin: 0 15px;
+      position: relative;
       font-style: italic;
       font-size: 1.2em;
       line-height: 1.6;
       text-align: center;
-      flex-shrink: 0;
+      margin: 0 20px;
+      padding: 0;
     }
 
-    .quote-container .line-left, .quote-container .line-right {
+    .quote-container::before,
+    .quote-container::after {
+      content: "";
+      flex: 1;
       height: 2px;
       background-color: #0a1f44;
-      flex: 1;
+    }
+
+    .quote-container::before {
+      margin-right: 15px;
+    }
+
+    .quote-container::after {
+      margin-left: 15px;
     }
 
     /* Photo optionnelle */
@@ -124,20 +136,18 @@
     <!-- Sous-titre avec lignes bleu navy -->
     <div class="subtitle-container">
       <div class="line-left"></div>
-      <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
+      <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
       <div class="line-right"></div>
     </div>
 
     <!-- Photo optionnelle -->
     <!-- <img src="your-photo.jpg" alt="Hamza Bendahmane" class="profile-photo"> -->
 
-    <!-- Punchline avec lignes décoratives -->
+    <!-- Punchline avec vraies lignes décoratives -->
     <div class="quote-container">
-      <div class="line-left"></div>
       <blockquote>
         “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
       </blockquote>
-      <div class="line-right"></div>
     </div>
 
     <!-- Menu -->
@@ -145,7 +155,7 @@
       <a href="about.html">About</a>
       <a href="education.html">Education</a>
       <a href="projects.html">Projects</a>
-      <a href="code.html">Code</a>
+      <a href="code.html">Code and Software</a>
       <a href="publications.html">Publications</a>
       <a href="skills.html">Skills</a>
     </nav>
@@ -153,3 +163,4 @@
 
 </body>
 </html>
+
