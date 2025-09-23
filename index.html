@@ -21,28 +21,9 @@ header {
   width: 100vw;
 }
 
-/* Ligne graphique pleine largeur */
-.line-top, .line-bottom {
-  height: 4px;
-  width: 100vw;
-  border-radius: 2px;
-}
-
-.line-top {
-  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
-  transform: skewX(-10deg);
-  margin-bottom: 40px;
-}
-
-.line-bottom {
-  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
-  transform: skewX(10deg);
-  margin-top: 40px;
-}
-
 main {
   max-width: 900px;
-  margin: 50px auto; /* centré horizontalement, mais lignes restent pleine largeur */
+  margin: 80px auto;
   position: relative;
 }
 
@@ -54,17 +35,36 @@ h1 {
 h2 {
   font-size: 1.2em;
   color: #0a1f44;
-  margin: 0 0 60px 0;
+  margin-bottom: 40px;
 }
 
 blockquote {
   font-style: italic;
   font-size: 1.3em;
-  margin: 0 0 60px 0;
+  margin: 40px 0;
+}
+
+/* Lignes pleine largeur */
+.line {
+  height: 4px;
+  width: 100vw;
+  border-radius: 2px;
+}
+
+.line-top {
+  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
+  transform: skewX(-10deg);
+  margin: 20px 0 40px 0; /* espace autour */
+}
+
+.line-bottom {
+  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
+  transform: skewX(10deg);
+  margin: 40px 0 60px 0; /* espace autour */
 }
 
 nav {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 nav a {
@@ -84,29 +84,29 @@ nav a:hover {
 
 <header></header>
 
-<!-- Ligne supérieure pleine largeur -->
-<div class="line-top"></div>
-
 <main>
   <h1>Hamza Bendahmane</h1>
-  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc </h2>
+  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
+
+  <!-- Ligne supérieure entre sous-titre et punchline -->
+  <div class="line line-top"></div>
 
   <blockquote>
-    “Excellence, combativeness and tenacity for engineering in service of global challenges.”
+    “Excellence, fighting spirit, and tenacity in engineering to tackle global challenges.”
   </blockquote>
+
+  <!-- Ligne inférieure entre punchline et menu -->
+  <div class="line line-bottom"></div>
+
+  <nav>
+    <a href="about.html">About</a>
+    <a href="education.html">Education</a>
+    <a href="projects.html">Projects</a>
+    <a href="code.html">Code</a>
+    <a href="publications.html">Publications</a>
+    <a href="skills.html">Skills</a>
+  </nav>
 </main>
-
-<!-- Ligne inférieure pleine largeur -->
-<div class="line-bottom"></div>
-
-<nav>
-  <a href="about.html">About</a>
-  <a href="education.html">Education</a>
-  <a href="projects.html">Projects</a>
-  <a href="code.html">Code</a>
-  <a href="publications.html">Publications</a>
-  <a href="skills.html">Skills</a>
-</nav>
 
 </body>
 </html>
