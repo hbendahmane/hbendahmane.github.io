@@ -22,7 +22,7 @@
     }
 
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 100px auto;
       padding: 0 20px;
     }
@@ -32,79 +32,35 @@
       margin-bottom: 20px;
     }
 
-    /* Sous-titre avec lignes bleu navy */
-    .subtitle-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    .line-left, .line-right {
-      height: 2px;
-      background-color: #0a1f44;
-      flex: 1;
-    }
-
-    .line-left {
-      margin-right: 10px;
-    }
-
-    .line-right {
-      margin-left: 10px;
-    }
-
-    .subtitle-container h2 {
+    h2 {
       font-size: 1.2em;
       font-weight: normal;
       color: #0a1f44;
       margin: 0;
-      white-space: nowrap;
+      margin-bottom: 40px;
     }
 
-    /* Punchline avec vraies lignes horizontales */
-    .quote-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      max-width: 800px;
-      margin: 40px auto;
-      position: relative;
-    }
-
-    .quote-container blockquote {
-      position: relative;
+    blockquote {
       font-style: italic;
       font-size: 1.2em;
       line-height: 1.6;
-      text-align: center;
-      margin: 0 20px;
-      padding: 0;
+      margin: 0;
+      margin-bottom: 40px;
     }
 
-    .quote-container::before,
-    .quote-container::after {
-      content: "";
-      flex: 1;
+    /* Lignes décoratives */
+    .line-left-to-center {
+      width: 50%; /* part du bord gauche jusqu’au centre */
       height: 2px;
       background-color: #0a1f44;
+      margin: 0 auto 20px 0;
     }
 
-    .quote-container::before {
-      margin-right: 15px;
-    }
-
-    .quote-container::after {
-      margin-left: 15px;
-    }
-
-    /* Photo optionnelle */
-    img.profile-photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin-top: 20px;
-      object-fit: cover;
+    .line-center-to-right {
+      width: 50%; /* part du centre jusqu’au bord droit */
+      height: 2px;
+      background-color: #0a1f44;
+      margin: 20px 0 20px auto;
     }
 
     /* Menu */
@@ -117,7 +73,7 @@
       text-decoration: none;
       color: #0a1f44;
       font-weight: bold;
-      white-space: nowrap; /* empêche le menu de casser sur plusieurs lignes */
+      white-space: nowrap;
     }
 
     nav a:hover {
@@ -130,25 +86,20 @@
   <header></header>
 
   <main>
-    <!-- Nom -->
+    <!-- Nom et sous-titre -->
     <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
 
-    <!-- Sous-titre avec lignes bleu navy -->
-    <div class="subtitle-container">
-      <div class="line-left"></div>
-      <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
-      <div class="line-right"></div>
-    </div>
+    <!-- Ligne gauche jusqu'au milieu du saut -->
+    <div class="line-left-to-center"></div>
 
-    <!-- Photo optionnelle -->
-    <!-- <img src="your-photo.jpg" alt="Hamza Bendahmane" class="profile-photo"> -->
+    <!-- Punchline -->
+    <blockquote>
+      “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
+    </blockquote>
 
-    <!-- Punchline avec vraies lignes décoratives -->
-    <div class="quote-container">
-      <blockquote>
-        “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
-      </blockquote>
-    </div>
+    <!-- Ligne milieu jusqu'à droite avant menu -->
+    <div class="line-center-to-right"></div>
 
     <!-- Menu -->
     <nav>
@@ -163,4 +114,5 @@
 
 </body>
 </html>
+
 
