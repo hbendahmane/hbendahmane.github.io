@@ -47,20 +47,20 @@ blockquote {
 /* Lignes pleine largeur */
 .line {
   height: 4px;
-  width: 100vw;
+  width: 100vw; /* toute la largeur */
   border-radius: 2px;
 }
 
 .line-top {
   background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
   transform: skewX(-10deg);
-  margin: 20px 0 40px 0; /* espace autour */
+  margin: 20px 0 40px 0;
 }
 
 .line-bottom {
   background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
   transform: skewX(10deg);
-  margin: 40px 0 60px 0; /* espace autour */
+  margin: 40px 0 60px 0;
 }
 
 nav {
@@ -87,17 +87,21 @@ nav a:hover {
 <main>
   <h1>Hamza Bendahmane</h1>
   <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
+</main>
 
-  <!-- Ligne supérieure entre sous-titre et punchline -->
-  <div class="line line-top"></div>
+<!-- Ligne supérieure entre sous-titre et punchline -->
+<div class="line line-top"></div>
 
+<main>
   <blockquote>
     “Excellence, fighting spirit, and tenacity in engineering to tackle global challenges.”
   </blockquote>
+</main>
 
-  <!-- Ligne inférieure entre punchline et menu -->
-  <div class="line line-bottom"></div>
+<!-- Ligne inférieure entre punchline et menu -->
+<div class="line line-bottom"></div>
 
+<main>
   <nav>
     <a href="about.html">About</a>
     <a href="education.html">Education</a>
