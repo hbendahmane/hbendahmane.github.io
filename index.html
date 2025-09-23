@@ -23,7 +23,7 @@ header {
 
 main {
   max-width: 900px;
-  margin: 80px auto;
+  margin: 60px auto;
   position: relative;
 }
 
@@ -35,30 +35,42 @@ h1 {
 h2 {
   font-size: 1.2em;
   color: #0a1f44;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 blockquote {
   font-style: italic;
   font-size: 1.3em;
-  margin: 40px 0;
+  margin: 30px 0;
 }
 
-.wave {
-  display: block;
+/* Lignes larges type presse */
+.line {
+  height: 8px; /* plus épais */
   width: 100vw;
-  height: 60px;
+  border-radius: 4px;
+}
+
+.line-top {
+  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.6) 50%, rgba(10,31,68,0) 100%);
+  margin: 20px 0 30px 0;
+}
+
+.line-bottom {
+  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.6) 50%, rgba(10,31,68,0) 100%);
+  margin: 30px 0 20px 0;
 }
 
 nav {
-  margin-top: 20px;
+  margin-top: 10px; /* rapproché de la quote */
 }
 
 nav a {
-  margin: 0 10px;
+  margin: 0 12px;
   text-decoration: none;
   color: #0a1f44;
   font-weight: bold;
+  font-size: 1.05em;
   white-space: nowrap;
 }
 
@@ -76,10 +88,8 @@ nav a:hover {
   <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
 </main>
 
-<!-- Onde du haut -->
-<svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
-  <path fill="#0a1f44" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"></path>
-</svg>
+<!-- Ligne supérieure -->
+<div class="line line-top"></div>
 
 <main>
   <blockquote>
@@ -87,11 +97,10 @@ nav a:hover {
   </blockquote>
 </main>
 
-<!-- Onde du bas -->
-<svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none">
-  <path fill="#0a1f44" d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z"></path>
-</svg>
+<!-- Ligne inférieure -->
+<div class="line line-bottom"></div>
 
+<!-- Navigation rapprochée -->
 <main>
   <nav>
     <a href="about.html">About</a>
