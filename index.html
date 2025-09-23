@@ -12,17 +12,37 @@ body {
   background: #fff;
   color: #222;
   text-align: center;
+  overflow-x: hidden;
 }
 
 header {
   background-color: #0a1f44;
   height: 6px;
-  width: 100vw; /* toute la largeur */
+  width: 100vw;
+}
+
+/* Ligne graphique pleine largeur */
+.line-top, .line-bottom {
+  height: 4px;
+  width: 100vw;
+  border-radius: 2px;
+}
+
+.line-top {
+  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
+  transform: skewX(-10deg);
+  margin-bottom: 40px;
+}
+
+.line-bottom {
+  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
+  transform: skewX(10deg);
+  margin-top: 40px;
 }
 
 main {
   max-width: 900px;
-  margin: 150px auto; /* plus d'espace haut */
+  margin: 50px auto; /* centré horizontalement, mais lignes restent pleine largeur */
   position: relative;
 }
 
@@ -34,32 +54,13 @@ h1 {
 h2 {
   font-size: 1.2em;
   color: #0a1f44;
-  margin: 0 0 80px 0; /* plus d'espace sous-titre */
+  margin: 0 0 60px 0;
 }
 
 blockquote {
   font-style: italic;
   font-size: 1.3em;
-  margin: 0 0 80px 0; /* plus d'espace autour de la punchline */
-}
-
-/* Ligne graphique supérieure sur toute la largeur */
-.line-top {
-  height: 3px;
-  width: 100vw; /* toute la largeur */
-  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
-  border-radius: 3px;
-  transform: skewX(-15deg); /* légère diagonale */
-}
-
-/* Ligne graphique inférieure sur toute la largeur */
-.line-bottom {
-  height: 3px;
-  width: 100vw; /* toute la largeur */
-  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
-  border-radius: 3px;
-  transform: skewX(15deg); /* légère diagonale */
-  margin-bottom: 80px; /* espace avant le menu */
+  margin: 0 0 60px 0;
 }
 
 nav {
@@ -83,29 +84,29 @@ nav a:hover {
 
 <header></header>
 
-<!-- Ligne supérieure sur toute la page -->
+<!-- Ligne supérieure pleine largeur -->
 <div class="line-top"></div>
 
 <main>
   <h1>Hamza Bendahmane</h1>
-  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
+  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc </h2>
 
   <blockquote>
-    “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
+    “Excellence, combativeness and tenacity for engineering in service of global challenges.”
   </blockquote>
-
-  <!-- Ligne inférieure sur toute la page -->
-  <div class="line-bottom"></div>
-
-  <nav>
-    <a href="about.html">About</a>
-    <a href="education.html">Education</a>
-    <a href="projects.html">Projects</a>
-    <a href="code.html">Code</a>
-    <a href="publications.html">Publications</a>
-    <a href="skills.html">Skills</a>
-  </nav>
 </main>
+
+<!-- Ligne inférieure pleine largeur -->
+<div class="line-bottom"></div>
+
+<nav>
+  <a href="about.html">About</a>
+  <a href="education.html">Education</a>
+  <a href="projects.html">Projects</a>
+  <a href="code.html">Code</a>
+  <a href="publications.html">Publications</a>
+  <a href="skills.html">Skills</a>
+</nav>
 
 </body>
 </html>
