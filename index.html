@@ -32,7 +32,7 @@
       margin-bottom: 20px;
     }
 
-    /* Sous-titre avec lignes */
+    /* Sous-titre avec lignes bleu navy */
     .subtitle-container {
       display: flex;
       align-items: center;
@@ -59,18 +59,31 @@
       font-weight: normal;
       color: #0a1f44;
       margin: 0;
-      white-space: nowrap;
+      white-space: nowrap; /* empêche le sous-titre de casser */
     }
 
-    /* Punchline */
-    blockquote {
+    /* Punchline avec lignes décoratives */
+    .quote-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px auto;
+      max-width: 800px;
+    }
+
+    .quote-container blockquote {
+      margin: 0 15px;
       font-style: italic;
-      color: #333;
-      padding-left: 0;
-      margin: 30px auto;
-      max-width: 700px;
       font-size: 1.2em;
       line-height: 1.6;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .quote-container .line-left, .quote-container .line-right {
+      height: 2px;
+      background-color: #0a1f44;
+      flex: 1;
     }
 
     /* Photo optionnelle */
@@ -92,6 +105,7 @@
       text-decoration: none;
       color: #0a1f44;
       font-weight: bold;
+      white-space: nowrap; /* empêche le menu de casser sur plusieurs lignes */
     }
 
     nav a:hover {
@@ -117,23 +131,25 @@
     <!-- Photo optionnelle -->
     <!-- <img src="your-photo.jpg" alt="Hamza Bendahmane" class="profile-photo"> -->
 
-    <!-- Punchline -->
-    <blockquote>
-      “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
-    </blockquote>
+    <!-- Punchline avec lignes décoratives -->
+    <div class="quote-container">
+      <div class="line-left"></div>
+      <blockquote>
+        “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
+      </blockquote>
+      <div class="line-right"></div>
+    </div>
 
     <!-- Menu -->
     <nav>
-      <a href="about.html">About Me</a>
+      <a href="about.html">About</a>
       <a href="education.html">Education</a>
       <a href="projects.html">Projects</a>
-      <a href="code.html">Code and Software Demonstration</a>
-      <a href="publications.html">Publications and Media</a>
+      <a href="code.html">Code</a>
+      <a href="publications.html">Publications</a>
       <a href="skills.html">Skills</a>
     </nav>
   </main>
 
 </body>
 </html>
-
-
