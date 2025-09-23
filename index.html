@@ -43,20 +43,24 @@ blockquote {
   margin: 0 0 60px 0;
 }
 
-/* Ligne gauche → milieu avec dégradé */
-.line-left {
+/* Ligne graphique supérieure */
+.line-top {
   height: 3px;
-  width: 50%;
-  margin: 0 auto 40px 0; /* aligne à gauche */
-  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0) 100%);
+  width: 100%;
+  margin-bottom: 40px;
+  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
+  border-radius: 3px;
+  transform: skewX(-15deg); /* légère diagonale */
 }
 
-/* Ligne milieu → droite avec dégradé */
-.line-right {
+/* Ligne graphique inférieure */
+.line-bottom {
   height: 3px;
-  width: 50%;
-  margin: 40px 0 0 auto; /* aligne à droite */
-  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0) 100%);
+  width: 100%;
+  margin-top: 40px;
+  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
+  border-radius: 3px;
+  transform: skewX(15deg); /* légère diagonale */
 }
 
 nav {
@@ -84,15 +88,15 @@ nav a:hover {
   <h1>Hamza Bendahmane</h1>
   <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
 
-  <!-- Ligne gauche → milieu -->
-  <div class="line-left"></div>
+  <!-- Ligne graphique supérieure -->
+  <div class="line-top"></div>
 
   <blockquote>
     “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
   </blockquote>
 
-  <!-- Ligne milieu → droite -->
-  <div class="line-right"></div>
+  <!-- Ligne graphique inférieure -->
+  <div class="line-bottom"></div>
 
   <nav>
     <a href="about.html">About</a>
