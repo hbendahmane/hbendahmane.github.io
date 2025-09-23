@@ -17,12 +17,12 @@ body {
 header {
   background-color: #0a1f44;
   height: 6px;
-  width: 100%;
+  width: 100vw; /* toute la largeur */
 }
 
 main {
   max-width: 900px;
-  margin: 100px auto;
+  margin: 150px auto; /* plus d'espace haut */
   position: relative;
 }
 
@@ -34,33 +34,32 @@ h1 {
 h2 {
   font-size: 1.2em;
   color: #0a1f44;
-  margin: 0 0 60px 0;
+  margin: 0 0 80px 0; /* plus d'espace sous-titre */
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1.2em;
-  margin: 0 0 60px 0;
+  font-size: 1.3em;
+  margin: 0 0 80px 0; /* plus d'espace autour de la punchline */
 }
 
-/* Ligne graphique supérieure */
+/* Ligne graphique supérieure sur toute la largeur */
 .line-top {
   height: 3px;
-  width: 100%;
-  margin-bottom: 40px;
+  width: 100vw; /* toute la largeur */
   background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
   border-radius: 3px;
   transform: skewX(-15deg); /* légère diagonale */
 }
 
-/* Ligne graphique inférieure */
+/* Ligne graphique inférieure sur toute la largeur */
 .line-bottom {
   height: 3px;
-  width: 100%;
-  margin-top: 40px;
+  width: 100vw; /* toute la largeur */
   background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.5) 50%, rgba(10,31,68,0) 100%);
   border-radius: 3px;
   transform: skewX(15deg); /* légère diagonale */
+  margin-bottom: 80px; /* espace avant le menu */
 }
 
 nav {
@@ -84,18 +83,18 @@ nav a:hover {
 
 <header></header>
 
+<!-- Ligne supérieure sur toute la page -->
+<div class="line-top"></div>
+
 <main>
   <h1>Hamza Bendahmane</h1>
   <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
-
-  <!-- Ligne graphique supérieure -->
-  <div class="line-top"></div>
 
   <blockquote>
     “Excellence, combativeness, and tenacity for engineering in service of global challenges.”
   </blockquote>
 
-  <!-- Ligne graphique inférieure -->
+  <!-- Ligne inférieure sur toute la page -->
   <div class="line-bottom"></div>
 
   <nav>
@@ -110,3 +109,4 @@ nav a:hover {
 
 </body>
 </html>
+
