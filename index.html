@@ -9,15 +9,25 @@ body {
   font-family: 'Merriweather', serif;
   margin: 0;
   padding: 0;
-  background: #fff;
   color: #222;
   text-align: center;
   overflow-x: hidden;
+  background: url("background-globe.png") no-repeat center center fixed; /* ton image */
+  background-size: cover;
+}
+
+/* fond blanc semi-transparent pour garder la lisibilité du texte */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.9);
+  z-index: -1;
 }
 
 header {
   background-color: #0a1f44;
-  height: 6px;
+  height: 4px;
   width: 100vw;
 }
 
@@ -29,40 +39,41 @@ main {
 
 h1 {
   font-size: 3em;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 h2 {
   font-size: 1.2em;
   color: #0a1f44;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1.3em;
-  margin: 30px 0;
+  font-size: 1.6em;
+  line-height: 1.6;
+  margin: 40px 0;
 }
 
-/* Lignes larges type presse */
+/* Lignes élégantes */
 .line {
-  height: 8px; /* plus épais */
+  height: 4px;
   width: 100vw;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .line-top {
-  background: linear-gradient(to right, #0a1f44 0%, rgba(10,31,68,0.6) 50%, rgba(10,31,68,0) 100%);
+  background: linear-gradient(to right, #0a1f44, rgba(10,31,68,0.2));
   margin: 20px 0 30px 0;
 }
 
 .line-bottom {
-  background: linear-gradient(to left, #0a1f44 0%, rgba(10,31,68,0.6) 50%, rgba(10,31,68,0) 100%);
+  background: linear-gradient(to left, #0a1f44, rgba(10,31,68,0.2));
   margin: 30px 0 20px 0;
 }
 
 nav {
-  margin-top: 10px; /* rapproché de la quote */
+  margin-top: 5px;
 }
 
 nav a {
@@ -93,14 +104,15 @@ nav a:hover {
 
 <main>
   <blockquote>
-    “Excellence, fighting spirit, and tenacity in engineering to tackle global challenges.”
+    “Excellence, fighting spirit, and tenacity<br>
+    in engineering to tackle global challenges.”
   </blockquote>
 </main>
 
 <!-- Ligne inférieure -->
 <div class="line line-bottom"></div>
 
-<!-- Navigation rapprochée -->
+<!-- Navigation -->
 <main>
   <nav>
     <a href="about.html">About</a>
@@ -114,4 +126,5 @@ nav a:hover {
 
 </body>
 </html>
+
 
