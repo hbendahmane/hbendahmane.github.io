@@ -11,7 +11,6 @@ body {
   padding: 0;
   overflow-x: hidden;
   color: #ffffff;
-  background-color: #0a1f44;
 }
 
 /* Container pour sidebar + contenu */
@@ -22,20 +21,21 @@ body {
 
 /* Sidebar mini-home */
 .sidebar {
-  width: 30%;
-  min-width: 250px;
+  width: 25%; /* un peu plus étroite pour que tout tienne */
+  min-width: 220px;
   background: url("earth-11595(1).jpg") no-repeat center center;
   background-size: cover;
   position: fixed;
   top: 0;
-  right: -30%; /* commence hors écran à droite */
+  right: -25%; /* commence hors écran à droite */
   height: 100%;
-  padding: 40px 20px;
+  padding: 20px;
   box-sizing: border-box;
-  transition: right 1s ease-in-out; /* vraie transition droite-gauche */
+  transition: right 1s ease-in-out;
   color: #ffffff;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   z-index: 2;
 }
 
@@ -48,26 +48,27 @@ body {
   z-index: -1;
 }
 
+/* Sidebar active (position finale) */
 .sidebar.active {
-  right: 0; /* glisse vers sa position finale */
+  right: 0;
 }
 
 .sidebar h1 {
-  font-size: 3em; /* même que homepage */
-  margin-bottom: 15px;
+  font-size: 2.2em;
+  margin-bottom: 8px;
 }
 
 .sidebar h2 {
-  font-size: 1.2em; /* même que homepage */
-  margin-bottom: 40px;
+  font-size: 1em;
+  margin-bottom: 20px;
   font-weight: 400;
 }
 
 .sidebar blockquote {
   font-style: italic;
-  font-size: 1.8em;
-  line-height: 1.6;
-  margin-bottom: 40px;
+  font-size: 1em;
+  line-height: 1.4;
+  margin-bottom: 20px;
   color: #ffffff;
 }
 
@@ -78,11 +79,11 @@ body {
 }
 
 .sidebar nav a {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-decoration: none;
   color: #ffffff;
   font-weight: bold;
-  font-size: 1.05em;
+  font-size: 0.95em; /* texte plus petit */
 }
 
 .sidebar nav a.current {
@@ -96,13 +97,13 @@ body {
 
 /* Contenu principal */
 .content {
-  margin-left: 0;
-  margin-right: 30%; /* laisse la place pour sidebar à droite */
-  width: 70%;
+  margin-right: 25%; /* laisse la place pour sidebar à droite */
+  width: 75%;
   padding: 60px 40px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  z-index: 1;
+  background-color: #0a1f44; /* bleu navy */
+  min-height: 100vh;
 }
 
 .content.active {
@@ -120,19 +121,19 @@ body {
 
 .photo-section blockquote {
   font-style: italic;
-  font-size: 1.6em;
+  font-size: 1.4em;
   line-height: 1.5;
   margin-bottom: 40px;
   color: #ffffff;
 }
 
 .bio-section h2 {
-  font-size: 2em;
+  font-size: 1.8em;
   margin-bottom: 20px;
 }
 
 .bio-section p {
-  font-size: 1.1em;
+  font-size: 1.05em;
   line-height: 1.6;
   margin-bottom: 15px;
 }
