@@ -9,8 +9,9 @@ body {
   font-family: 'Merriweather', serif;
   margin: 0;
   padding: 0;
-  color: #ffffff;
   overflow-x: hidden;
+  color: #ffffff;
+  background-color: #0a1f44;
 }
 
 /* Container pour sidebar + contenu */
@@ -19,7 +20,7 @@ body {
   min-height: 100vh;
 }
 
-/* Mini-home sidebar (fond identique à la homepage) */
+/* Sidebar mini-home */
 .sidebar {
   width: 30%;
   min-width: 250px;
@@ -27,19 +28,18 @@ body {
   background-size: cover;
   position: fixed;
   top: 0;
-  left: -30%; /* commence hors écran à gauche */
+  right: -30%; /* commence hors écran à droite */
   height: 100%;
   padding: 40px 20px;
   box-sizing: border-box;
-  transition: left 1s ease-in-out; /* vraie transition fluide */
+  transition: right 1s ease-in-out; /* vraie transition droite-gauche */
   color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   z-index: 2;
 }
 
-/* Overlay sombre identique homepage */
+/* overlay sombre */
 .sidebar::before {
   content: "";
   position: absolute;
@@ -48,18 +48,17 @@ body {
   z-index: -1;
 }
 
-/* Sidebar active (position finale) */
 .sidebar.active {
-  left: 0;
+  right: 0; /* glisse vers sa position finale */
 }
 
 .sidebar h1 {
-  font-size: 3em;
+  font-size: 3em; /* même que homepage */
   margin-bottom: 15px;
 }
 
 .sidebar h2 {
-  font-size: 1.2em;
+  font-size: 1.2em; /* même que homepage */
   margin-bottom: 40px;
   font-weight: 400;
 }
@@ -97,11 +96,13 @@ body {
 
 /* Contenu principal */
 .content {
-  margin-left: 30%; /* laisse la place pour sidebar */
+  margin-left: 0;
+  margin-right: 30%; /* laisse la place pour sidebar à droite */
   width: 70%;
   padding: 60px 40px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  z-index: 1;
 }
 
 .content.active {
@@ -141,21 +142,6 @@ body {
 
 <div class="container">
 
-  <!-- Sidebar mini-home -->
-  <div class="sidebar" id="sidebar">
-    <h1>Hamza Bendahmane</h1>
-    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
-    <blockquote>“Excellence, fighting spirit, and tenacity<br>to tackle the world’s engineering challenges.”</blockquote>
-    <nav>
-      <a class="current" href="#">About</a>
-      <a href="education.html">Education</a>
-      <a href="projects.html">Experiences and Projects</a>
-      <a href="code.html">Code and Software</a>
-      <a href="publications.html">Publications</a>
-      <a href="skills.html">Skills</a>
-    </nav>
-  </div>
-
   <!-- Contenu principal -->
   <div class="content" id="content">
     <main>
@@ -171,27 +157,39 @@ body {
     </main>
   </div>
 
+  <!-- Sidebar mini-home -->
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity<br>to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a class="current" href="#">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a href="code.html">Code and Software</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
 </div>
 
 <script>
-// Animation : sidebar glisse depuis la gauche uniquement depuis Home
+// Animation : sidebar glisse depuis la droite uniquement si première visite depuis Home
 window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
   const content = document.getElementById('content');
 
-  // fade-in du contenu principal
+  // fade-in contenu principal
   content.classList.add('active');
 
-  // glisse sidebar uniquement si première visite depuis Home
   if (!sessionStorage.getItem('visitedHome')) {
-    sidebar.classList.add('active');
+    sidebar.classList.add('active'); // glisse depuis droite vers gauche
     sessionStorage.setItem('visitedHome', 'true');
   } else {
-    sidebar.style.left = '0';
+    sidebar.style.right = '0';
   }
 });
 </script>
 
 </body>
 </html>
-
