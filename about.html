@@ -21,7 +21,7 @@ body {
 
 /* Sidebar mini-home */
 .sidebar {
-  width: 25%; /* un peu plus étroite pour que tout tienne */
+  width: 25%;
   min-width: 220px;
   background: url("earth-11595(1).jpg") no-repeat center center;
   background-size: cover;
@@ -31,7 +31,7 @@ body {
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  transition: right 1s ease-in-out;
+  transition: right 1s ease-in-out; /* vraie transition droite-gauche */
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,6 @@ body {
   z-index: -1;
 }
 
-/* Sidebar active (position finale) */
 .sidebar.active {
   right: 0;
 }
@@ -83,7 +82,7 @@ body {
   text-decoration: none;
   color: #ffffff;
   font-weight: bold;
-  font-size: 0.95em; /* texte plus petit */
+  font-size: 0.95em;
 }
 
 .sidebar nav a.current {
@@ -162,7 +161,7 @@ body {
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
-    <blockquote>“Excellence, fighting spirit, and tenacity<br>to tackle the world’s engineering challenges.”</blockquote>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
     <nav>
       <a class="current" href="#">About</a>
       <a href="education.html">Education</a>
@@ -194,3 +193,4 @@ window.addEventListener('load', () => {
 
 </body>
 </html>
+
