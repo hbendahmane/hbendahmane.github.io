@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hamza Bendahmane - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  color: #f5f5f5; /* texte clair */
+  text-align: center;
+  overflow-x: hidden;
+  background: url("earth-11595") no-repeat center center fixed; /* ton image de fond Terre de nuit */
+  background-size: cover;
+}
+
+/* overlay sombre pour garder lisible */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.65); /* voile sombre */
+  z-index: -1;
+}
+
+header {
+  background-color: #0a1f44;
+  height: 4px;
+  width: 100vw;
+}
+
+main {
+  max-width: 900px;
+  margin: 60px auto;
+  position: relative;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 15px;
+  color: #ffffff; /* nom bien visible */
+}
+
+h2 {
+  font-size: 1.2em;
+  color: #9cc9ff; /* bleu clair pour contraste */
+  margin-bottom: 40px;
+}
+
+blockquote {
+  font-style: italic;
+  font-size: 1.8em;
+  line-height: 1.6;
+  margin: 40px 0;
+  color: #ffffff;
+}
+
+/* Lignes élégantes en version plus large et visibles */
+.line {
+  height: 5px;
+  width: 100vw;
+  border-radius: 3px;
+}
+
+.line-top {
+  background: linear-gradient(to right, #0a1f44, rgba(10,31,68,0.2));
+  margin: 20px 0 30px 0;
+}
+
+.line-bottom {
+  background: linear-gradient(to left, #0a1f44, rgba(10,31,68,0.2));
+  margin: 30px 0 20px 0;
+}
+
+nav {
+  margin-top: 5px;
+}
+
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #9cc9ff; /* liens bleu clair */
+  font-weight: bold;
+  font-size: 1.05em;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+<header></header>
+
+<main>
+  <h1>Hamza Bendahmane</h1>
+  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
+</main>
+
+<!-- Ligne supérieure -->
+<div class="line line-top"></div>
+
+<main>
+  <blockquote>
+    “Excellence, fighting spirit, and tenacity<br>
+    in engineering to tackle global challenges.”
+  </blockquote>
+</main>
+
+<!-- Ligne inférieure -->
+<div class="line line-bottom"></div>
+
+<!-- Navigation -->
+<main>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="education.html">Education</a>
+    <a href="projects.html">Projects</a>
+    <a href="code.html">Code</a>
+    <a href="publications.html">Publications</a>
+    <a href="skills.html">Skills</a>
+  </nav>
+</main>
+
+</body>
+</html>
