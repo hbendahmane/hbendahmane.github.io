@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  overflow-x: hidden;
+  background-color: #0a1f44; /* couleur similaire à la homepage */
+  color: #fff;
+}
+
+/* Container pour sidebar + contenu */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
 /* Sidebar mini-home */
 .sidebar {
   width: 30%;
@@ -19,10 +40,32 @@
   left: 0; /* glisse vers sa position finale */
 }
 
+.sidebar h1 {
+  margin: 0 0 10px 0;
+  font-size: 2em;
+}
+
+.sidebar h2 {
+  margin: 0 0 30px 0;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.sidebar nav a {
+  display: block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.sidebar nav a:hover {
+  text-decoration: underline;
+}
+
 /* Contenu principal */
 .content {
-  margin-left: 0;
-  margin-left: 30%; /* décale le contenu principal pour laisser la place à la sidebar */
+  margin-left: 30%; /* espace laissé pour sidebar */
   width: 70%;
   padding: 60px 40px;
   opacity: 0;
@@ -33,3 +76,87 @@
   opacity: 1;
 }
 
+/* Sections About */
+.photo-section img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 15px;
+  border: 3px solid #ffffff;
+  margin-bottom: 20px;
+}
+
+.photo-section blockquote {
+  font-style: italic;
+  font-size: 1.6em;
+  line-height: 1.5;
+  margin: 0 0 40px 0;
+  color: #ffffff;
+}
+
+.bio-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.bio-section p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Contenu principal -->
+  <div class="content" id="content">
+    <main>
+      <div class="photo-section">
+        <img src="hamza-photo.jpg" alt="Hamza Bendahmane">
+        <blockquote>My motto: "Excellence, resilience, and curiosity drive my journey."</blockquote>
+      </div>
+      <div class="bio-section">
+        <h2>Who I am & What I aim to become</h2>
+        <p>Hello! I am Hamza Bendahmane, a French state-accredited Engineer (CTI), passionate about tackling global engineering challenges with determination and creativity.</p>
+        <p>My goal is to contribute to cutting-edge engineering projects worldwide, continuously learning, innovating, and pushing the limits of technology to make a meaningful impact.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Sidebar mini-home -->
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI)</h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Projects</a>
+      <a href="code.html">Code</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+</div>
+
+<script>
+// Animation conditionnelle
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+
+  // Fade-in du contenu principal à chaque page
+  content.classList.add('active');
+
+  // Animation du sidebar seulement si première visite depuis Home
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active'); // glisse depuis la gauche
+    sessionStorage.setItem('visitedHome', 'true');
+  } else {
+    // Sidebar déjà en position
+    sidebar.style.left = '0';
+  }
+});
+</script>
+
+</body>
+</html>
