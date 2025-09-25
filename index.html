@@ -9,19 +9,19 @@ body {
   font-family: 'Merriweather', serif;
   margin: 0;
   padding: 0;
-  color: #222;
+  color: #ffffff; /* texte blanc partout */
   text-align: center;
   overflow-x: hidden;
-  background: url("world-36479_1920.png") no-repeat center center fixed; /* ton image */
+  background: url("earth-11595(1).jpg") no-repeat center center fixed; /* image de fond Terre de nuit */
   background-size: cover;
 }
 
-/* fond blanc semi-transparent pour garder la lisibilité du texte */
+/* overlay sombre léger */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,0.5);
+  background: rgba(0,0,0,0.55); /* voile sombre équilibré */
   z-index: -1;
 }
 
@@ -40,46 +40,31 @@ main {
 h1 {
   font-size: 3em;
   margin-bottom: 15px;
+  color: #ffffff;
 }
 
 h2 {
   font-size: 1.2em;
-  color: #0a1f44;
+  color: #ffffff; /* même style blanc que le reste */
   margin-bottom: 40px;
 }
 
 blockquote {
   font-style: italic;
-  font-size: 1.6em;
+  font-size: 1.8em;
   line-height: 1.6;
   margin: 40px 0;
-}
-
-/* Lignes élégantes */
-.line {
-  height: 4px;
-  width: 100vw;
-  border-radius: 3px;
-}
-
-.line-top {
-  background: linear-gradient(to right, #0a1f44, rgba(10,31,68,0.2));
-  margin: 20px 0 30px 0;
-}
-
-.line-bottom {
-  background: linear-gradient(to left, #0a1f44, rgba(10,31,68,0.2));
-  margin: 30px 0 20px 0;
+  color: #ffffff;
 }
 
 nav {
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 nav a {
   margin: 0 12px;
   text-decoration: none;
-  color: #0a1f44;
+  color: #ffffff; /* cohérent, blanc */
   font-weight: bold;
   font-size: 1.05em;
   white-space: nowrap;
@@ -96,29 +81,23 @@ nav a:hover {
 
 <main>
   <h1>Hamza Bendahmane</h1>
-  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc equivalent</h2>
+  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
 </main>
-
-<!-- Ligne supérieure -->
-<div class="line line-top"></div>
 
 <main>
   <blockquote>
-    “Excellence, fighting spirit, and tenacity<br>
-    in engineering to tackle global challenges.”
+    “Excellence, fighting spirit, and tenacity <br>
+    to tackle the world’s engineering challenges.”
   </blockquote>
 </main>
-
-<!-- Ligne inférieure -->
-<div class="line line-bottom"></div>
 
 <!-- Navigation -->
 <main>
   <nav>
     <a href="about.html">About</a>
     <a href="education.html">Education</a>
-    <a href="projects.html">Projects</a>
-    <a href="code.html">Code</a>
+    <a href="projects.html">Experiences and Projects</a>
+    <a href="code.html">Code and Software</a>
     <a href="publications.html">Publications</a>
     <a href="skills.html">Skills</a>
   </nav>
@@ -126,5 +105,4 @@ nav a:hover {
 
 </body>
 </html>
-
 
