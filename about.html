@@ -31,7 +31,7 @@ body {
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  transition: right 1s ease-in-out; /* vraie transition droite-gauche */
+  transition: right 1s ease-in-out;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,6 @@ body {
   z-index: 2;
 }
 
-/* overlay sombre */
 .sidebar::before {
   content: "";
   position: absolute;
@@ -67,16 +66,8 @@ body {
   font-style: italic;
   font-size: 1em;
   line-height: 1.4;
-  margin-bottom: 8px;
-  color: #ffffff;
-}
-
-.sidebar p.note {
-  font-size: 0.75em;
-  color: #ccc;
   margin-bottom: 20px;
-  text-align: left;
-  line-height: 1.4;
+  color: #ffffff;
 }
 
 /* Navigation */
@@ -144,6 +135,13 @@ body {
   line-height: 1.6;
   margin-bottom: 15px;
 }
+
+.note-final {
+  font-size: 0.8em;
+  color: #ccc;
+  margin-top: 60px;
+  line-height: 1.4;
+}
 </style>
 </head>
 <body>
@@ -155,13 +153,19 @@ body {
     <main>
       <div class="photo-section">
         <img src="hamza-photo.jpg" alt="Hamza Bendahmane">
-        <blockquote>My motto: "Excellence, resilience, and curiosity drive my journey."</blockquote>
+        <blockquote>My motto: “Luctor et emergo”<sup>1</sup></blockquote>
       </div>
       <div class="bio-section">
         <h2>Who I am & What I aim to become</h2>
         <p>Hello! I am a French state-accredited Engineer (CTI), passionate about tackling global engineering challenges with determination and creativity.</p>
         <p>My goal is to contribute to cutting-edge engineering projects worldwide, continuously learning, innovating, and pushing the limits of technology to make a meaningful impact.</p>
       </div>
+      
+      <!-- Note de bas de page -->
+      <p class="note-final">
+        1. <em>Luctor et emergo</em> (“I struggle and I emerge”) is the historic motto of the Dutch province of Zeeland (16th century), symbolizing perseverance and resilience in the face of adversity.  
+        It is also the title of Ed Dean’s 2010 book <em>Luctor et Emergo: Latin for I Struggle and Overcome</em>, where the expression conveys resilience in life’s struggles and the pursuit of one’s goals.
+      </p>
     </main>
   </div>
 
@@ -169,11 +173,7 @@ body {
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
-    <blockquote>“Luctor et emergo”<sup>1</sup></blockquote>
-    <p class="note">
-      1. <em>Luctor et emergo</em> (“I struggle and I emerge”) is the historic motto of the Dutch province of Zeeland (16th century), symbolizing perseverance and resilience in the face of adversity.  
-      It is also the title of Ed Dean’s 2010 book <em>Luctor et Emergo: Latin for I Struggle and Overcome</em>, where the expression conveys resilience in life’s struggles and the pursuit of one’s goals.
-    </p>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
     <nav>
       <a class="current" href="#">About</a>
       <a href="education.html">Education</a>
@@ -205,7 +205,3 @@ window.addEventListener('load', () => {
 
 </body>
 </html>
-
-
-
-
