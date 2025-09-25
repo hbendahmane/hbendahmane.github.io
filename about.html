@@ -9,188 +9,145 @@ body {
   font-family: 'Merriweather', serif;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   color: #ffffff;
-}
-
-/* Container pour sidebar + contenu */
-.container {
+  background-color: #0a1f44; /* rappel du bleu nuit */
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Sidebar mini-home */
 .sidebar {
-  width: 25%;
-  min-width: 220px;
+  width: 30%;
+  min-width: 250px;
   background: url("earth-11595(1).jpg") no-repeat center center;
   background-size: cover;
   position: fixed;
   top: 0;
-  right: -25%; /* commence hors écran à droite */
+  left: -30%; /* commence hors écran à gauche */
   height: 100%;
-  padding: 20px;
+  padding: 40px 20px;
   box-sizing: border-box;
-  transition: right 1s ease-in-out; /* vraie transition droite-gauche */
-  color: #ffffff;
+  transition: left 1s ease; /* animation slide */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  z-index: 2;
+  align-items: center;
+  text-align: center;
 }
 
-/* overlay sombre */
 .sidebar::before {
   content: "";
   position: absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.55);
-  z-index: -1;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55); /* voile sombre */
+  z-index: 0;
 }
 
-.sidebar.active {
-  right: 0;
-}
-
-.sidebar h1 {
-  font-size: 2.2em;
-  margin-bottom: 8px;
+.sidebar > * {
+  position: relative;
+  z-index: 1;
 }
 
 .sidebar h2 {
   font-size: 1em;
   margin-bottom: 20px;
-  font-weight: 400;
 }
 
 .sidebar blockquote {
   font-style: italic;
   font-size: 1em;
   line-height: 1.4;
-  margin-bottom: 20px;
-  color: #ffffff;
+  margin: 20px 0 5px 0;
 }
 
-/* Navigation */
-.sidebar nav {
+.sidebar p.note {
+  font-size: 0.75em;
+  color: #ccc;
+  margin: 5px 0 20px 0;
+  text-align: left;
+  line-height: 1.4;
+}
+
+nav {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
-.sidebar nav a {
-  margin-bottom: 10px;
+nav a {
   text-decoration: none;
   color: #ffffff;
   font-weight: bold;
   font-size: 0.95em;
 }
 
-.sidebar nav a.current {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.sidebar nav a:hover:not(.current) {
+nav a:hover {
   text-decoration: underline;
 }
 
 /* Contenu principal */
 .content {
-  margin-right: 25%; /* laisse la place pour sidebar à droite */
-  width: 75%;
+  margin-left: 30%;
+  width: 70%;
   padding: 60px 40px;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
-  background-color: #0a1f44; /* bleu navy */
-  min-height: 100vh;
+  transition: opacity 1s ease;
+  overflow-y: auto;
 }
 
 .content.active {
   opacity: 1;
 }
-
-/* Sections About */
-.photo-section img {
-  width: 100%;
-  max-width: 350px;
-  border-radius: 15px;
-  border: 3px solid #ffffff;
-  margin-bottom: 20px;
-}
-
-.photo-section blockquote {
-  font-style: italic;
-  font-size: 1.4em;
-  line-height: 1.5;
-  margin-bottom: 40px;
-  color: #ffffff;
-}
-
-.bio-section h2 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
-}
-
-.bio-section p {
-  font-size: 1.05em;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
 </style>
 </head>
 <body>
 
-<div class="container">
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+  
+  <blockquote>
+    “My motto: Luctor et emergo”<sup>1</sup>
+  </blockquote>
+  <p class="note">
+    1. <em>Luctor et emergo</em> (“I struggle and I emerge”) is the historic motto of the Dutch province of Zeeland (16th century), symbolizing perseverance and resilience in the face of adversity.  
+    It is also the title of Ed Dean’s 2010 book <em>Luctor et Emergo: Latin for I Struggle and Overcome</em>, where the expression conveys resilience in life’s struggles and the pursuit of one’s goals.
+  </p>
 
-  <!-- Contenu principal -->
-  <div class="content" id="content">
-    <main>
-      <div class="photo-section">
-        <img src="hamza-photo.jpg" alt="Hamza Bendahmane">
-        <blockquote>My motto: "Excellence, resilience, and curiosity drive my journey."</blockquote>
-      </div>
-      <div class="bio-section">
-        <h2>Who I am & What I aim to become</h2>
-        <p>Hello! I am a French state-accredited Engineer (CTI), passionate about tackling global engineering challenges with determination and creativity.</p>
-        <p>My goal is to contribute to cutting-edge engineering projects worldwide, continuously learning, innovating, and pushing the limits of technology to make a meaningful impact.</p>
-      </div>
-    </main>
-  </div>
+  <nav>
+    <a href="education.html">Education</a>
+    <a href="projects.html">Experiences and Projects</a>
+    <a href="code.html">Code and Software</a>
+    <a href="publications.html">Publications</a>
+    <a href="skills.html">Skills</a>
+  </nav>
+</div>
 
-  <!-- Sidebar mini-home -->
-  <div class="sidebar" id="sidebar">
-    <h1>Hamza Bendahmane</h1>
-    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
-    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
-    <nav>
-      <a class="current" href="#">About</a>
-      <a href="education.html">Education</a>
-      <a href="projects.html">Experiences and Projects</a>
-      <a href="code.html">Code and Software</a>
-      <a href="publications.html">Publications</a>
-      <a href="skills.html">Skills</a>
-    </nav>
-  </div>
+<!-- Contenu About -->
+<div class="content" id="content">
+  <h1>About Me</h1>
+  <p>
+    I am Hamza Bendahmane, a French state-accredited engineer (CTI) with a strong academic and professional background. 
+    My journey has been defined by curiosity, perseverance, and the will to apply engineering to global challenges.
+  </p>
+  <p>
+    Beyond technical expertise, I value resilience, adaptability, and a sense of purpose in tackling complex problems. 
+    My ambition is to contribute meaningfully to projects that combine innovation, responsibility, and long-term vision.
+  </p>
 </div>
 
 <script>
-// Animation : sidebar glisse depuis la droite uniquement si première visite depuis Home
-window.addEventListener('load', () => {
-  const sidebar = document.getElementById('sidebar');
-  const content = document.getElementById('content');
-
-  // fade-in contenu principal
-  content.classList.add('active');
-
-  if (!sessionStorage.getItem('visitedHome')) {
-    sidebar.classList.add('active'); // glisse depuis droite vers gauche
-    sessionStorage.setItem('visitedHome', 'true');
-  } else {
-    sidebar.style.right = '0';
-  }
-});
+  // Animation au chargement
+  window.onload = () => {
+    document.getElementById('sidebar').classList.add('active');
+    setTimeout(() => {
+      document.getElementById('content').classList.add('active');
+    }, 600);
+  };
 </script>
 
 </body>
 </html>
+
 
