@@ -18,12 +18,12 @@
     color: var(--white);
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
-    overflow:hidden;
+    overflow-y: auto; /* autoriser le scroll */
   }
 
   .container{display:flex;min-height:100vh;}
 
-  /* Sidebar (kept identical to About page) */
+  /* Sidebar (identique à About) */
   .sidebar {
     width: 25%;
     min-width: 220px;
@@ -31,7 +31,7 @@
     background-size: cover;
     position: fixed;
     top: 0;
-    right: -25%; /* starts off-screen to right */
+    right: -25%;
     height: 100%;
     padding: 20px;
     box-sizing: border-box;
@@ -52,9 +52,7 @@
   .sidebar > * { position: relative; z-index: 1; }
   .sidebar h1{ font-size: 2.2em; margin:0 0 8px 0; }
   .sidebar h2{ font-size: 1em; margin:0 0 20px 0; font-weight:400; }
-  .sidebar blockquote{ font-style:italic; font-size:1em; line-height:1.4; margin:0 0 12px 0; color:var(--white); }
-  .sidebar p.note { font-size:0.8em; color:var(--muted); margin-bottom:12px; text-align:left; line-height:1.4; }
-
+  .sidebar blockquote{ font-style:italic; font-size:1em; line-height:1.4; margin:0 0 12px 0; }
   .sidebar nav{ display:flex; flex-direction:column; margin-top:12px; }
   .sidebar nav a{ color:var(--white); text-decoration:none; font-weight:bold; margin-bottom:10px; font-size:0.95em; }
   .sidebar nav a.current{ opacity:0.5; pointer-events:none; }
@@ -62,12 +60,11 @@
 
   /* Main content */
   .content {
-    margin-right: 25%; /* leave space for sidebar */
+    margin-right: 25%;
     width: 75%;
     padding: 48px 48px;
     background-color: var(--navy);
     min-height: 100vh;
-    overflow-y: auto;
     opacity: 0;
     transition: opacity 0.9s ease-in-out;
     position: relative;
@@ -85,31 +82,38 @@
     padding: 8px 0;
     border-bottom: 1px dashed rgba(255,255,255,0.04);
   }
-  .timeline-item .left{
-    max-width:72%;
-  }
+  .timeline-item .left{ max-width:72%; }
   .timeline-item .title{ font-weight:700; margin-bottom:6px; font-size:1.02em; }
-  .timeline-item .subtitle{ margin:0; color:var(--white); font-size:0.98em; line-height:1.45; }
+  .timeline-item .subtitle{ margin:0; font-size:0.98em; line-height:1.45; }
+  .timeline-item .date{ font-weight:700; white-space:nowrap; font-size:0.98em; }
 
-  .timeline-item .date{
-    font-weight:700;
-    color:var(--white);
-    white-space:nowrap;
-    font-size:0.98em;
-    align-self:flex-start;
-  }
-
-  /* Visual brace linking Prepa + Engineer school */
+  /* Brace linking Prepa + Engineer school */
   .brace {
-    position:absolute;
-    left: calc(75% - 25% - 28px); /* left edge relative to content area to place brace near left margin */
-    /* calc explanation: content width = 75% of page, sidebar = 25% -> we shift inside content area */
-    /* tweak positioning if needed */
+    position: absolute;
+    left: 20px;
+    top: 180px; /* ajuste selon ton écran */
+    height: 160px; /* ajuste pour couvrir Diplôme + Prépa */
+    border-left: 2px solid rgba(255,255,255,0.3);
   }
-  /* large curly brace using SVG (styled below in HTML) */
-  .brace svg{ display:block; width:36px; height:140px; fill:none; stroke:rgba(255,255,255,0.12); stroke-width:3; }
+  .brace::before,
+  .brace::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-right: none;
+  }
+  .brace::before { border-bottom: none; }
+  .brace::after { border-top: none; margin-top: auto; }
+  .brace-label {
+    font-size:0.95em;
+    color:var(--muted);
+    margin-left:24px;
+    margin-top:60px;
+  }
 
-  /* Footnotes area (ordered top->bottom) */
+  /* Footnotes */
   .footnotes{
     margin-top:28px;
     padding-top:18px;
@@ -120,29 +124,18 @@
   }
   .footnotes p{ margin:10px 0; }
 
-  /* responsive tweaks */
-  @media (max-width:900px){
-    .content{ padding:28px; }
-    .timeline-item .left{ max-width:64%; }
-  }
-  @media (max-width:700px){
-    .sidebar{ right:0; position:fixed; width:100%; height:auto; min-width:0; padding:16px; top:0; left:0; transform:none; }
-    .content{ margin-right:0; width:100%; padding-top:calc(200px); } /* keep space for mobile header if desired */
-    .brace{ display:none; }
-  }
 </style>
 </head>
 <body>
 
 <div class="container">
 
-  <!-- Main content (Education) -->
+  <!-- Main content -->
   <div class="content" id="content">
     <main class="education-section">
       <h2>Education</h2>
 
-      <div class="timeline" id="timeline">
-        <!-- NEWEST -->
+      <div class="timeline">
         <div class="timeline-item">
           <div class="left">
             <div class="title">MSc — Cell Physics</div>
@@ -151,7 +144,7 @@
           <div class="date">2023–2024</div>
         </div>
 
-        <div class="timeline-item" id="diploma-item">
+        <div class="timeline-item">
           <div class="left">
             <div class="title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
             <div class="subtitle">Télécom Physique Strasbourg, France</div>
@@ -159,7 +152,7 @@
           <div class="date">2021–2025</div>
         </div>
 
-        <div class="timeline-item" id="prepa-item">
+        <div class="timeline-item">
           <div class="left">
             <div class="title">Classes Préparatoires (PCSI) — Physics · Chemistry · Engineering Sciences</div>
             <div class="subtitle">Lycée du Parc, Lyon, France</div>
@@ -168,31 +161,21 @@
         </div>
       </div>
 
-      <!-- Brace (visual link) placed to the left of the Diplôme + Prépa items -->
-      <div class="brace" aria-hidden="true">
-        <!-- SVG curly brace (vertical) -->
-        <svg viewBox="0 0 50 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M40 10 C20 10, 10 40, 10 70 C10 110, 20 140, 40 140" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div style="font-size:0.95em;color:var(--muted);margin-top:6px;padding-left:6px;max-width:220px;">BSc + MSc in Engineering <sup>[3]</sup></div>
-      </div>
+      <!-- Brace linking Prepa + Engineer -->
+      <div class="brace"></div>
+      <div class="brace-label">BSc + MSc in Engineering <sup>[3]</sup></div>
 
-      <!-- Footnotes in top->bottom order (matches items above) -->
+      <!-- Footnotes -->
       <div class="footnotes">
-        <p><strong>Notes</strong></p>
-
-        <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam. Placed <strong>30th out of 170 Grandes Écoles</strong> in the year I entered (source to insert: <em>L’Étudiant 2021 ranking</em>). [INSERT L'ETUDIANT 2021 LINK]</p>
-
-        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious preparatory classes; ranked approximately <strong>4th–8th</strong> among top PCSI classes, out of about <strong>169 first-year PCSI classes</strong> nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank" rel="noopener">IPESUP (PCSI Top-10)</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank" rel="noopener">Groupe Réussite (CPGE PC/PCSI)</a>.</p>
-
-        <p><sup>[3]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the <strong>Commission des Titres d'Ingénieur (CTI)</strong>. It is recognized internationally and commonly treated as equivalent to a combined <strong>BSc + MSc</strong> in Engineering under international frameworks such as the <a href="https://www.internationalengineeringalliance.org/accords/washington-accord" target="_blank" rel="noopener">Washington Accord</a>. See also the CTI brochure: <a href="https://www.cti-commission.fr/wp-content/uploads/2022/05/CTI_depliant_EN_2022_May.pdf" target="_blank" rel="noopener">CTI official brochure (EN)</a>.</p>
-
+        <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam. Ranked 30th out of 170 Grandes Écoles in the year I entered (source: L’Étudiant 2021). [INSERT LINK]</p>
+        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — one of France’s most prestigious preparatory schools, consistently ranked between 4th and 8th nationwide out of 169 PCSI first-year programs. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>.</p>
+        <p><sup>[3]</sup> The French Diplôme d’Ingénieur is protected and accredited by the Commission des Titres d'Ingénieur (CTI). It is internationally recognized and considered equivalent to a combined BSc + MSc in Engineering under the <a href="https://www.internationalengineeringalliance.org/accords/washington-accord" target="_blank">Washington Accord</a>. See also the <a href="https://www.cti-commission.fr/wp-content/uploads/2022/05/CTI_depliant_EN_2022_May.pdf" target="_blank">CTI official brochure</a>.</p>
       </div>
 
     </main>
   </div>
 
-  <!-- Sidebar mini-home (exactly same style/content as About page) -->
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
@@ -210,22 +193,20 @@
 </div>
 
 <script>
-  // Sidebar animation: slides in only on first navigation from Home
-  window.addEventListener('load', () => {
-    const sidebar = document.getElementById('sidebar');
-    const content = document.getElementById('content');
-
-    content.classList.add('active');
-
-    if (!sessionStorage.getItem('visitedHome')) {
-      sidebar.classList.add('active'); // slide in from right
-      sessionStorage.setItem('visitedHome', 'true');
-    } else {
-      sidebar.style.right = '0';
-    }
-  });
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content.classList.add('active');
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else {
+    sidebar.style.right = '0';
+  }
+});
 </script>
 
 </body>
 </html>
+
 
