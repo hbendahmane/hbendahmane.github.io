@@ -1,202 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <title>Education - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body {
-  font-family: 'Merriweather', serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  color: #ffffff;
-}
+  :root{
+    --navy: #0a1f44;
+    --white: #ffffff;
+    --muted: #cfcfcf;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;}
+  body{
+    font-family: 'Merriweather', serif;
+    background-color: var(--navy);
+    color: var(--white);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow:hidden;
+  }
 
-/* Container for sidebar + content */
-.container {
-  display: flex;
-  min-height: 100vh;
-}
+  .container{display:flex;min-height:100vh;}
 
-/* Sidebar mini-home */
-.sidebar {
-  width: 25%;
-  min-width: 220px;
-  background: url("earth-11595(1).jpg") no-repeat center center;
-  background-size: cover;
-  position: fixed;
-  top: 0;
-  right: -25%; /* start off-screen */
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-  transition: right 1s ease-in-out;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  z-index: 2;
-}
+  /* Sidebar (kept identical to About page) */
+  .sidebar {
+    width: 25%;
+    min-width: 220px;
+    background: url("earth-11595(1).jpg") no-repeat center center;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    right: -25%; /* starts off-screen to right */
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: right 1s ease-in-out;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 3;
+  }
+  .sidebar::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.55);
+    z-index: 0;
+  }
+  .sidebar > * { position: relative; z-index: 1; }
+  .sidebar h1{ font-size: 2.2em; margin:0 0 8px 0; }
+  .sidebar h2{ font-size: 1em; margin:0 0 20px 0; font-weight:400; }
+  .sidebar blockquote{ font-style:italic; font-size:1em; line-height:1.4; margin:0 0 12px 0; color:var(--white); }
+  .sidebar p.note { font-size:0.8em; color:var(--muted); margin-bottom:12px; text-align:left; line-height:1.4; }
 
-/* Dark overlay */
-.sidebar::before {
-  content: "";
-  position: absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.55);
-  z-index: -1;
-}
+  .sidebar nav{ display:flex; flex-direction:column; margin-top:12px; }
+  .sidebar nav a{ color:var(--white); text-decoration:none; font-weight:bold; margin-bottom:10px; font-size:0.95em; }
+  .sidebar nav a.current{ opacity:0.5; pointer-events:none; }
+  .sidebar nav a:hover:not(.current){ text-decoration:underline; }
 
-.sidebar.active {
-  right: 0;
-}
+  /* Main content */
+  .content {
+    margin-right: 25%; /* leave space for sidebar */
+    width: 75%;
+    padding: 48px 48px;
+    background-color: var(--navy);
+    min-height: 100vh;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.9s ease-in-out;
+    position: relative;
+  }
+  .content.active{ opacity: 1; }
 
-.sidebar h2 {
-  font-size: 1em;
-  margin-bottom: 20px;
-  font-weight: 400;
-}
+  .education-section h2{ font-size: 1.8em; margin: 0 0 24px 0; }
+  .timeline{ display:flex; flex-direction:column; gap:20px; }
 
-.sidebar blockquote {
-  font-style: italic;
-  font-size: 1em;
-  line-height: 1.4;
-  margin-bottom: 20px;
-  color: #ffffff;
-}
+  .timeline-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.04);
+  }
+  .timeline-item .left{
+    max-width:72%;
+  }
+  .timeline-item .title{ font-weight:700; margin-bottom:6px; font-size:1.02em; }
+  .timeline-item .subtitle{ margin:0; color:var(--white); font-size:0.98em; line-height:1.45; }
 
-/* Navigation */
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-}
+  .timeline-item .date{
+    font-weight:700;
+    color:var(--white);
+    white-space:nowrap;
+    font-size:0.98em;
+    align-self:flex-start;
+  }
 
-.sidebar nav a {
-  margin-bottom: 10px;
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 0.95em;
-}
+  /* Visual brace linking Prepa + Engineer school */
+  .brace {
+    position:absolute;
+    left: calc(75% - 25% - 28px); /* left edge relative to content area to place brace near left margin */
+    /* calc explanation: content width = 75% of page, sidebar = 25% -> we shift inside content area */
+    /* tweak positioning if needed */
+  }
+  /* large curly brace using SVG (styled below in HTML) */
+  .brace svg{ display:block; width:36px; height:140px; fill:none; stroke:rgba(255,255,255,0.12); stroke-width:3; }
 
-.sidebar nav a.current {
-  opacity: 0.5;
-  pointer-events: none;
-}
+  /* Footnotes area (ordered top->bottom) */
+  .footnotes{
+    margin-top:28px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,0.06);
+    color:var(--muted);
+    font-size:0.95em;
+    line-height:1.5;
+  }
+  .footnotes p{ margin:10px 0; }
 
-.sidebar nav a:hover:not(.current) {
-  text-decoration: underline;
-}
-
-/* Main content */
-.content {
-  margin-right: 25%;
-  width: 75%;
-  padding: 60px 40px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  background-color: #0a1f44;
-  min-height: 100vh;
-}
-
-.content.active {
-  opacity: 1;
-}
-
-/* Education Section */
-.education-section h2 {
-  font-size: 1.8em;
-  margin-bottom: 30px;
-}
-
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.timeline-item {
-  font-size: 1.05em;
-  line-height: 1.6;
-}
-
-.timeline-item strong {
-  display: block;
-  font-size: 1.1em;
-  margin-bottom: 4px;
-}
-
-.brace {
-  margin-top: 30px;
-  border-left: 3px solid #ffffff;
-  padding-left: 12px;
-  font-style: italic;
-  font-size: 1em;
-  max-width: 350px;
-}
-
-/* Footnotes */
-.footnotes {
-  margin-top: 50px;
-  font-size: 0.9em;
-  line-height: 1.4;
-}
-
-.footnotes p {
-  margin-bottom: 8px;
-}
+  /* responsive tweaks */
+  @media (max-width:900px){
+    .content{ padding:28px; }
+    .timeline-item .left{ max-width:64%; }
+  }
+  @media (max-width:700px){
+    .sidebar{ right:0; position:fixed; width:100%; height:auto; min-width:0; padding:16px; top:0; left:0; transform:none; }
+    .content{ margin-right:0; width:100%; padding-top:calc(200px); } /* keep space for mobile header if desired */
+    .brace{ display:none; }
+  }
 </style>
 </head>
 <body>
 
 <div class="container">
 
-  <!-- Main content -->
+  <!-- Main content (Education) -->
   <div class="content" id="content">
     <main class="education-section">
       <h2>Education</h2>
-      <div class="timeline">
 
+      <div class="timeline" id="timeline">
+        <!-- NEWEST -->
         <div class="timeline-item">
-          <strong>MSc in Cell Physics</strong>
-          University of Strasbourg, France <br>
-          [Insert syllabus link]
+          <div class="left">
+            <div class="title">MSc — Cell Physics</div>
+            <div class="subtitle">University of Strasbourg, France</div>
+          </div>
+          <div class="date">2023–2024</div>
         </div>
 
-        <div class="timeline-item">
-          <strong>Diplôme d’Ingénieur – General Engineering, Physics & Modeling</strong>
-          Télécom Physique Strasbourg, France (2021–2025) <sup>[2]</sup> <br>
-          [Insert syllabus link]
+        <div class="timeline-item" id="diploma-item">
+          <div class="left">
+            <div class="title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
+            <div class="subtitle">Télécom Physique Strasbourg, France</div>
+          </div>
+          <div class="date">2021–2025</div>
         </div>
 
-        <div class="timeline-item">
-          <strong>Classes Préparatoires aux Grandes Écoles – Physics, Chemistry and Engineering Sciences</strong>
-          Lycée du Parc, Lyon, France (2019–2021) <sup>[1]</sup> <br>
-          [Insert syllabus link]
+        <div class="timeline-item" id="prepa-item">
+          <div class="left">
+            <div class="title">Classes Préparatoires (PCSI) — Physics · Chemistry · Engineering Sciences</div>
+            <div class="subtitle">Lycée du Parc, Lyon, France</div>
+          </div>
+          <div class="date">2019–2021</div>
         </div>
       </div>
 
-      <div class="brace">
-        BSc + MSc in Engineering <sup>[3]</sup>
+      <!-- Brace (visual link) placed to the left of the Diplôme + Prépa items -->
+      <div class="brace" aria-hidden="true">
+        <!-- SVG curly brace (vertical) -->
+        <svg viewBox="0 0 50 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 10 C20 10, 10 40, 10 70 C10 110, 20 140, 40 140" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="font-size:0.95em;color:var(--muted);margin-top:6px;padding-left:6px;max-width:220px;">BSc + MSc in Engineering <sup>[3]</sup></div>
       </div>
 
-      <!-- Footnotes -->
+      <!-- Footnotes in top->bottom order (matches items above) -->
       <div class="footnotes">
         <p><strong>Notes</strong></p>
 
-      <p><sup>[1]</sup> Ranked among the most prestigious Classes Préparatoires in France, occupying positions <strong>4th–8th</strong> out of <strong>169 institutions </strong> nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank" rel="noopener">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank" rel="noopener">Groupe Réussite</a>, and [CPGE listings](https://fr.wikipedia.org/wiki/Liste_des_classes_pr%C3%A9paratoires_aux_grandes_%C3%A9coles?utm_source=chatgpt.com).</p>
+        <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam. Placed <strong>30th out of 170 Grandes Écoles</strong> in the year I entered (source to insert: <em>L’Étudiant 2021 ranking</em>). [INSERT L'ETUDIANT 2021 LINK]</p>
 
-      <p><sup>[2]</sup> Institut Mines-Télécom partner, admission via national competitive exams. Ranked 30th out of 170 Grandes Écoles in the year I entered, top tier in recent years (*L'Étudiant* ranking link can be added here).</p>
+        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious preparatory classes; ranked approximately <strong>4th–8th</strong> among top PCSI classes, out of about <strong>169 first-year PCSI classes</strong> nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank" rel="noopener">IPESUP (PCSI Top-10)</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank" rel="noopener">Groupe Réussite (CPGE PC/PCSI)</a>.</p>
 
-      <p><sup>[3]</sup> The French Diplôme d’Ingénieur is protected and accredited by the <strong>Commission des Titres d'Ingénieur (CTI)</strong>, recognized internationally and equivalent to a combined <strong>BSc and MSc in Engineering </strong> under the <strong>Washington Accord</strong>. Sources: <a href="https://www.cti-commission.fr/wp-content/uploads/2022/05/CTI_depliant_EN_2022_May.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener">CTI official brochure</a>, <a href="https://www.internationalengineeringalliance.org/accords/washington-accord?utm_source=chatgpt.com" target="_blank" rel="noopener">Washington Accord</a>.</p>
-     </div>
+        <p><sup>[3]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the <strong>Commission des Titres d'Ingénieur (CTI)</strong>. It is recognized internationally and commonly treated as equivalent to a combined <strong>BSc + MSc</strong> in Engineering under international frameworks such as the <a href="https://www.internationalengineeringalliance.org/accords/washington-accord" target="_blank" rel="noopener">Washington Accord</a>. See also the CTI brochure: <a href="https://www.cti-commission.fr/wp-content/uploads/2022/05/CTI_depliant_EN_2022_May.pdf" target="_blank" rel="noopener">CTI official brochure (EN)</a>.</p>
+
+      </div>
 
     </main>
   </div>
 
-  <!-- Sidebar mini-home -->
+  <!-- Sidebar mini-home (exactly same style/content as About page) -->
   <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
     <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
     <nav>
@@ -208,22 +206,26 @@ body {
       <a href="skills.html">Skills</a>
     </nav>
   </div>
+
 </div>
 
 <script>
-// Sidebar slides in only on first load from Home
-window.addEventListener('load', () => {
-  const sidebar = document.getElementById('sidebar');
-  const content = document.getElementById('content');
-  content.classList.add('active');
-  if (!sessionStorage.getItem('visitedHome')) {
-    sidebar.classList.add('active');
-    sessionStorage.setItem('visitedHome', 'true');
-  } else {
-    sidebar.style.right = '0';
-  }
-});
+  // Sidebar animation: slides in only on first navigation from Home
+  window.addEventListener('load', () => {
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
+
+    content.classList.add('active');
+
+    if (!sessionStorage.getItem('visitedHome')) {
+      sidebar.classList.add('active'); // slide in from right
+      sessionStorage.setItem('visitedHome', 'true');
+    } else {
+      sidebar.style.right = '0';
+    }
+  });
 </script>
 
 </body>
 </html>
+
