@@ -11,24 +11,20 @@ body {
   padding: 0;
   color: #ffffff;
   background-color: #0a1f44;
-  overflow-y: auto; /* allow scrolling */
+  overflow-y: auto;
 }
 
-/* Container for sidebar + content */
-.container {
-  display: flex;
-  min-height: 100vh;
-}
+/* Container */
+.container { display: flex; min-height: 100vh; }
 
-/* Sidebar (exactly as in your About) */
+/* Sidebar (same as About) */
 .sidebar {
   width: 25%;
   min-width: 220px;
   background: url("earth-11595(1).jpg") no-repeat center center;
   background-size: cover;
   position: fixed;
-  top: 0;
-  right: -25%; /* start off-screen to the right */
+  top: 0; right: -25%;
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -49,27 +45,27 @@ body {
 .sidebar.active { right: 0; }
 .sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
 .sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
-.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
+.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; }
 
-/* Navigation */
+/* Nav */
 .sidebar nav { display: flex; flex-direction: column; }
-.sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
+.sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #fff; font-weight: bold; font-size: 0.95em; }
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
 /* Main content */
 .content {
-  margin-right: 25%; /* leave room for sidebar */
+  margin-right: 25%;
   width: 75%;
   padding: 60px 40px;
   background-color: #0a1f44;
   min-height: 100vh;
-  box-sizing: border-box;
   position: relative;
+  box-sizing: border-box;
 }
 
-/* Education layout */
-.education-section h2 { font-size: 1.8em; margin: 0 0 24px 0; }
+/* Education section */
+.education-section h2 { font-size: 1.8em; margin: 0 0 24px; }
 .timeline { display:flex; flex-direction:column; gap:18px; }
 .timeline-item {
   display:flex;
@@ -77,32 +73,31 @@ body {
   align-items:flex-start;
   gap:12px;
   padding: 10px 0;
-  border-bottom: 1px dashed rgba(255,255,255,0.04);
+  border-bottom: 1px dashed rgba(255,255,255,0.05);
 }
 .timeline-item .left { max-width:72%; }
 .timeline-item .title { font-weight:700; margin-bottom:6px; font-size:1.02em; }
 .timeline-item .subtitle { margin:0; font-size:0.98em; line-height:1.45; }
-.timeline-item .date { font-weight:700; font-size:0.98em; white-space:nowrap; color:#ffffff; }
+.timeline-item .date { font-weight:700; font-size:0.98em; white-space:nowrap; }
 
-/* Syllabus placeholder (right under title if needed) */
-.syllabus-link { display:block; margin-top:6px; color:#cfcfcf; font-size:0.9em; text-decoration:underline; }
+/* Syllabus link */
+.syllabus-link { display:block; margin-top:6px; color:#cfcfcf; font-size:0.9em; text-decoration:none; }
+.syllabus-link::after { content:" ↗"; font-size:0.85em; opacity:0.7; }
 
-/* Vertical visible bar (right side) */
-.brace-right {
-  position: absolute;
-  right: calc(25% + 8px); /* just right of content before the sidebar */
-  width: 4px;
-  background: rgba(255,255,255,0.18);
-  border-radius: 2px;
-  z-index: 1;
+/* Accolade à gauche */
+.accolade {
+  position:absolute;
+  left:10px;
+  font-size:2.2em;
+  color:#fff;
+  line-height:1;
+  white-space:pre;
 }
-/* small caps label to the right of the bar */
-.brace-label {
-  position: absolute;
-  right: calc(25% + 20px);
-  color: #cfcfcf;
-  font-size: 0.9em;
-  transform: translateX(12px);
+.accolade-label {
+  position:absolute;
+  left:40px;
+  font-size:0.9em;
+  color:#cfcfcf;
   white-space:nowrap;
 }
 
@@ -117,10 +112,10 @@ body {
 }
 .footnotes p { margin: 10px 0; }
 
-/* Responsive tweaks */
+/* Responsive */
 @media (max-width:900px){
   .content{ padding:32px; }
-  .brace-right, .brace-label { display:none; }
+  .accolade, .accolade-label{ display:none; }
 }
 </style>
 </head>
@@ -128,18 +123,16 @@ body {
 
 <div class="container">
 
-  <!-- Main content -->
   <div class="content" id="content">
     <main class="education-section">
       <h2>Education</h2>
 
       <div class="timeline">
-        <!-- Newest first -->
-        <div class="timeline-item" id="msc-item">
+        <div class="timeline-item">
           <div class="left">
             <div class="title">MSc — Cell Physics</div>
             <div class="subtitle">University of Strasbourg, France</div>
-            <a class="syllabus-link" href="#" aria-label="Syllabus link (MSc)">Syllabus / link</a>
+            <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="date">2023–2024</div>
         </div>
@@ -147,8 +140,8 @@ body {
         <div class="timeline-item" id="diploma-item">
           <div class="left">
             <div class="title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
-            <div class="subtitle">Télécom Physique Strasbourg, France</div>
-            <a class="syllabus-link" href="#" aria-label="Syllabus link (Diplôme)">Syllabus / link</a>
+            <div class="subtitle">Grande École Télécom Physique Strasbourg, France</div>
+            <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="date">2021–2025</div>
         </div>
@@ -157,29 +150,27 @@ body {
           <div class="left">
             <div class="title">Classes Préparatoires aux Grandes Écoles (PCSI) — Physics, Chemistry, &amp; Engineering Sciences</div>
             <div class="subtitle">Lycée du Parc, Lyon, France</div>
-            <a class="syllabus-link" href="#" aria-label="Syllabus link (Prepa)">Syllabus / link</a>
+            <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="date">2019–2021</div>
         </div>
       </div>
 
-      <!-- Visible vertical bar to the right that will cover diploma + prepa; JS will size it -->
-      <div id="braceBar" class="brace-right" aria-hidden="true"></div>
-      <div id="braceLabel" class="brace-label" aria-hidden="true">BSc + MSc in Engineering <sup>[3]</sup></div>
+      <!-- Accolade gauche -->
+      <div id="accolade" class="accolade">{</div>
+      <div id="accolade-label" class="accolade-label">BSc + MSc in Engineering <sup>[3]</sup></div>
 
-      <!-- Footnotes (top -> bottom order) -->
-      <div class="footnotes" id="footnotes">
-        <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam. Ranked 30th out of 170 Grandes Écoles in the year I entered (source: <em>L’Étudiant</em> 2021). [INSERT L'ETUDIANT 2021 LINK]</p>
+      <div class="footnotes">
+        <p><sup>[1]</sup> Grande École Télécom Physique Strasbourg — admitted via national competitive exam. Ranked 30th out of 170 Grandes Écoles in the year I entered (source: <em>L’Étudiant</em> 2021). [INSERT L'ETUDIANT 2021 LINK]</p>
 
-        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious preparatory classes; ranked approximately 4th–8th among PCSI first-year programs, out of about <strong>169 first-year PCSI classes</strong> nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank" rel="noopener">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank" rel="noopener">Groupe Réussite</a>.</p>
+        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious preparatory classes; ranked approximately 4th–8th among PCSI first-year programs, out of about <strong>169 first-year PCSI classes</strong> nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP ↗</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite ↗</a>.</p>
 
-        <p><sup>[3]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the <strong>Commission des Titres d'Ingénieur (CTI)</strong>. This accreditation includes strict requirements on curriculum structure, minimum duration of internships in industry, and international experience — requirements that are common across Grandes Écoles in France. The Diplôme d’Ingénieur is internationally recognized and commonly treated as equivalent to a combined <strong>BSc + MSc</strong> in Engineering under the <a href="https://www.internationalengineeringalliance.org/accords/washington-accord" target="_blank" rel="noopener">Washington Accord</a>. See also: <a href="https://www.cti-commission.fr/wp-content/uploads/2022/05/CTI_depliant_EN_2022_May.pdf" target="_blank" rel="noopener">CTI official brochure (EN)</a>.</p>
+        <p><sup>[3]</sup> The French Diplôme d’Ingénieur is protected and accredited by the <strong>Commission des Titres d'Ingénieur (CTI)</strong>. This accreditation includes strict requirements on curriculum structure, internships in industry, and international experience — common to all Grandes Écoles in France. The Diplôme d’Ingénieur is internationally recognized as equivalent to a combined <strong>BSc + MSc</strong> under the <a href="https://www.internationalengineeringalliance.org/accords/washington-accord" target="_blank">Washington Accord ↗</a>. See also: <a href="https://www.cti-commission.fr/wp-content/uploads/2022/05/CTI_depliant_EN_2022_May.pdf" target="_blank">CTI official brochure (EN) ↗</a>.</p>
       </div>
-
     </main>
   </div>
 
-  <!-- Sidebar mini-home (exactly as you provided in About) -->
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
@@ -193,14 +184,11 @@ body {
       <a href="skills.html">Skills</a>
     </nav>
   </div>
-
 </div>
 
 <script>
-/* Sidebar animation (same logic as About): slide in only first time from Home */
 window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
-  const content = document.getElementById('content'); // not strictly necessary here
   if (!sessionStorage.getItem('visitedHome')) {
     sidebar.classList.add('active');
     sessionStorage.setItem('visitedHome', 'true');
@@ -208,31 +196,24 @@ window.addEventListener('load', () => {
     sidebar.style.right = '0';
   }
 
-  // Position & size the right vertical bar (brace) to span diploma -> prepa items
+  // Position the accolade spanning between diploma and prepa
   const dipl = document.getElementById('diploma-item');
   const prep = document.getElementById('prepa-item');
-  const brace = document.getElementById('braceBar');
-  const label = document.getElementById('braceLabel');
+  const brace = document.getElementById('accolade');
+  const label = document.getElementById('accolade-label');
+  const contentRect = document.querySelector('.content').getBoundingClientRect();
+  const diplRect = dipl.getBoundingClientRect();
+  const prepRect = prep.getBoundingClientRect();
+  const top = Math.round(diplRect.top - contentRect.top);
+  const bottom = Math.round(prepRect.top - contentRect.top + prepRect.height);
+  const height = bottom - top;
 
-  if (dipl && prep && brace && label) {
-    // compute positions relative to the content container
-    const contentRect = document.querySelector('.content').getBoundingClientRect();
-    const diplRect = dipl.getBoundingClientRect();
-    const prepRect = prep.getBoundingClientRect();
-
-    const top = Math.round(diplRect.top - contentRect.top + 8); // small padding
-    const bottom = Math.round(prepRect.top - contentRect.top + prepRect.height - 8);
-    const height = Math.max(30, bottom - top);
-
-    brace.style.top = top + 'px';
-    brace.style.height = height + 'px';
-    // position label roughly centered vertically on the brace
-    label.style.top = (top + height/2 - 10) + 'px';
-  }
+  brace.style.top = top + 'px';
+  brace.style.height = height + 'px';
+  brace.style.fontSize = height + 'px'; /* scale accolade to span */
+  label.style.top = (top + height/2 - 10) + 'px';
 });
 </script>
 
 </body>
 </html>
-
-
