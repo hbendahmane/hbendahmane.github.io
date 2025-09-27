@@ -13,7 +13,7 @@ body {
   color: #ffffff;
 }
 
-/* Container pour sidebar + contenu */
+/* Container */
 .container {
   display: flex;
   min-height: 100vh;
@@ -65,15 +65,8 @@ body {
 .sidebar blockquote {
   font-style: italic;
   font-size: 1em;
-  line-height: 1.4;
   margin-bottom: 20px;
   color: #ffffff;
-}
-
-/* Navigation */
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
 }
 
 .sidebar nav a {
@@ -93,7 +86,7 @@ body {
   text-decoration: underline;
 }
 
-/* Contenu principal */
+/* Content */
 .content {
   margin-right: 25%;
   width: 75%;
@@ -109,44 +102,31 @@ body {
   opacity: 1;
 }
 
-/* Section education */
 .education-entry {
   margin-bottom: 30px;
   font-size: 1.1em;
   line-height: 1.6;
-}
-
-.education-entry a {
   color: #fff;
-  text-decoration: none;
-  position: relative;
-}
-
-.education-entry a::after {
-  content: "↗";
-  font-size: 0.75em;
-  margin-left: 5px;
-  vertical-align: super;
 }
 
 /* Ligne verticale + label */
 .line-group {
   position: absolute;
-  left: 10px;
-  top: 180px;   /* ajuster selon placement */
-  bottom: 200px;
+  left: 20px;
+  top: 160px; /* ajuste si besoin */
+  height: 220px; /* encadre juste prépa + diplôme */
   display: flex;
   align-items: center;
 }
 
 .line {
   border-left: 2px solid #fff;
-  flex-grow: 1;
+  height: 100%;
 }
 
 .line-label {
   position: absolute;
-  left: -40px;
+  left: -45px;
   top: 50%;
   transform: translateY(-50%);
   color: #fff;
@@ -168,13 +148,25 @@ body {
   margin-top: 60px;
   line-height: 1.4;
 }
+
+.note-final a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.note-final a::after {
+  content: "↗";
+  font-size: 0.75em;
+  margin-left: 4px;
+  vertical-align: super;
+}
 </style>
 </head>
 <body>
 
 <div class="container">
 
-  <!-- Contenu principal -->
+  <!-- Content -->
   <div class="content" id="content">
     <main>
       <h2>Education</h2>
@@ -199,7 +191,7 @@ body {
         </div>
       </div>
 
-      <!-- Notes de bas de page -->
+      <!-- Footnotes -->
       <p class="note-final">
         1. Lycée du Parc is one of the most prestigious institutions hosting French <em>Classes Préparatoires aux Grandes Écoles</em>, ranked between 4th and 8th nationally in the PCSI track among 181 institutions in 2019 (see 
         <a href="https://groupe-reussite.fr/classement-prepa-pcsi/" target="_blank">Groupe Réussite</a>, 
@@ -216,7 +208,7 @@ body {
     </main>
   </div>
 
-  <!-- Sidebar mini-home -->
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
@@ -250,4 +242,3 @@ window.addEventListener('load', () => {
 
 </body>
 </html>
-
