@@ -63,8 +63,9 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 
 /* Numéros de notes */
 sup a {
-  font-size: 1.05em;
-  font-weight: bold;
+  font-size: 1em; /* même taille que texte courant */
+  font-weight: 400;
+  font-family: inherit;
   color: #ffffff;
   text-decoration: none;
 }
@@ -86,8 +87,9 @@ sup a:hover { text-decoration: underline; }
 .vertical-label .footnote-inline {
   writing-mode: horizontal-tb;
   transform: none;
-  font-size: 0.95em;
+  font-size: 1em; /* même police et taille */
   margin-left: 4px;
+  font-weight: 400;
 }
 
 /* Footnotes */
@@ -191,8 +193,8 @@ window.addEventListener('load', () => {
   if(diploma && label) {
     const contentBox = document.querySelector('.content').getBoundingClientRect();
     const top = diploma.getBoundingClientRect().top - contentBox.top;
-    // décalé pour que le "+" tombe entre diplôme et prépa
-    label.style.top = (top + 30) + 'px';
+    // ajusté un peu plus haut
+    label.style.top = (top + 10) + 'px';
   }
 });
 </script>
