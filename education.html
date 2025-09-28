@@ -5,7 +5,6 @@
 <title>Education - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* --- Base --- */
 body {
   font-family: 'Merriweather', serif;
   margin: 0;
@@ -14,14 +13,10 @@ body {
   background-color: #0a1f44;
   overflow-y: auto;
 }
-
-/* Container for sidebar + content */
 .container {
   display: flex;
   min-height: 100vh;
 }
-
-/* --- Sidebar: copied from About page --- */
 .sidebar {
   width: 25%;
   min-width: 220px;
@@ -56,7 +51,6 @@ body {
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
-/* --- Main content --- */
 .content {
   margin-right: 25%;
   width: 75%;
@@ -70,22 +64,17 @@ body {
 }
 .content.active { opacity: 1; }
 
-/* Heading */
 h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 
-/* --- Education entries --- */
 .education-list { display: block; margin-top: 8px; }
 .education-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.04); }
 .education-left { max-width: 74%; }
 .education-title { font-size: 1.12em; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
 .education-sub { font-size: 1em; font-weight: 700; color: #ffffff; margin: 0; }
-/* year on the right */
 .education-year { font-weight: 700; color: #ffffff; white-space: nowrap; margin-left: 12px; }
-/* syllabus link small below subtitle */
 .syllabus-link { display: inline-block; margin-top: 8px; color: #cfcfcf; font-size: 0.92em; text-decoration: none; }
 .syllabus-link::after { content: " ↗"; font-size: 0.85em; vertical-align: super; opacity: 0.8; color: #cfcfcf; }
 
-/* vertical BSc+MSc label */
 .vertical-label {
   position: absolute;
   left: 8px;
@@ -99,13 +88,11 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 }
 .vertical-label sup { writing-mode: horizontal-tb; font-size: 0.85em; vertical-align: baseline; }
 
-/* Footnotes */
 .footnotes { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); color: #cfcfcf; font-size: 0.95em; line-height: 1.5; }
 .footnotes p { margin: 10px 0; }
 .footnotes a { color: #ffffff; text-decoration: none; }
 .footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
 
-/* responsive tweaks */
 @media (max-width: 900px) { .content { padding: 28px; } .vertical-label { display: none; } }
 </style>
 </head>
@@ -113,12 +100,10 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 
 <div class="container">
 
-  <!-- Main content -->
   <div class="content" id="content">
     <main>
       <h2 class="page-title">Education</h2>
 
-      <!-- Vertical label BSc+MSc -->
       <div class="vertical-label" id="verticalLabel">BSc + MSc <sup>[5]</sup></div>
 
       <div class="education-list">
@@ -136,7 +121,7 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         <div class="education-item">
           <div class="education-left">
             <div class="education-title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
-            <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup>[1]</sup></div>
+            <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup>[1]</sup><sup>[2]</sup></div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2021–2025</div>
@@ -145,8 +130,8 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         <!-- Prépa -->
         <div class="education-item">
           <div class="education-left">
-            <div class="education-title">Classes Préparatoires aux Grandes Écoles (PCSI) — Physics, Chemistry &amp; Engineering Sciences</div>
-            <div class="education-sub">Lycée du Parc, Lyon, France<sup>[2]</sup></div>
+            <div class="education-title">Classes Préparatoires aux Grandes Écoles (PCSI) — Physics, Chemistry &amp; Engineering Sciences<sup>[3]</sup></div>
+            <div class="education-sub">Lycée du Parc, Lyon, France<sup>[4]</sup></div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2019–2021</div>
@@ -156,16 +141,16 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
       <!-- Footnotes -->
       <div class="footnotes">
         <p><sup>[1]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements common to all French Grandes Écoles.</p>
-        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — one of France’s most prestigious preparatory classes; ranked approximately 4th–8th among ~169 first-year PCSI classes nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>.</p>
-        <p><sup>[3]</sup> Classes Préparatoires aux Grandes Écoles — two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French highly-selective institutions.</p>
-        <p><sup>[4]</sup> Grande École Télécom Physique Strasbourg — Institut Mines-Télécom Partner; ranked 30th out of ~170 Grandes Écoles the year I entered. (Insert L’Étudiant 2021 link.)</p>
+        <p><sup>[2]</sup> Grande École Télécom Physique Strasbourg — Institut Mines-Télécom Partner; ranked 30th out of ~170 Grandes Écoles the year I entered. (Insert L’Étudiant 2021 link.)</p>
+        <p><sup>[3]</sup> Classes Préparatoires aux Grandes Écoles (PCSI) — two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French highly-selective institutions.</p>
+        <p><sup>[4]</sup> Lycée du Parc — one of France’s most prestigious preparatory classes; ranked approximately 4th–8th among ~169 first-year PCSI classes nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>.</p>
         <p><sup>[5]</sup> According to the Washington Accord, the French Diplôme d’Ingénieur (BSc + MSc equivalent) is internationally recognized as equivalent to a combined Bachelor’s and Master’s degree in Engineering. (Insert official Washington Accord link.)</p>
       </div>
 
     </main>
   </div>
 
-  <!-- Sidebar mini-home -->
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
@@ -192,7 +177,7 @@ window.addEventListener('load', () => {
     sessionStorage.setItem('visitedHome', 'true');
   } else { sidebar.style.right = '0'; }
 
-  // Position vertical BSc+MSc label to cover Diploma + Prepa
+  // Position vertical BSc+MSc label between Diplôme d’Ingénieur and Prépa
   const diploma = document.querySelectorAll('.education-item')[1];
   const prepa = document.querySelectorAll('.education-item')[2];
   const label = document.getElementById('verticalLabel');
