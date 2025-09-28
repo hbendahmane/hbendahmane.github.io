@@ -13,35 +13,23 @@ body {
   background-color: #0a1f44;
   overflow-y: auto;
 }
-.container {
-  display: flex;
-  min-height: 100vh;
-}
+.container { display: flex; min-height: 100vh; }
+
+/* Sidebar */
 .sidebar {
   width: 25%;
   min-width: 220px;
   background: url("earth-11595(1).jpg") no-repeat center center;
   background-size: cover;
   position: fixed;
-  top: 0;
-  right: -25%;
-  height: 100%;
-  padding: 20px;
+  top: 0; right: -25%;
+  height: 100%; padding: 20px;
   box-sizing: border-box;
   transition: right 1s ease-in-out;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  z-index: 2;
+  color: #ffffff; display: flex; flex-direction: column;
+  justify-content: flex-start; z-index: 2;
 }
-.sidebar::before {
-  content: "";
-  position: absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.55);
-  z-index: -1;
-}
+.sidebar::before { content: ""; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.55); z-index: -1; }
 .sidebar.active { right: 0; }
 .sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
 .sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
@@ -51,15 +39,13 @@ body {
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
+/* Content */
 .content {
   margin-right: 25%;
-  width: 75%;
-  padding: 60px 40px;
+  width: 75%; padding: 60px 40px;
   background-color: #0a1f44;
-  min-height: 100vh;
-  box-sizing: border-box;
-  position: relative;
-  opacity: 0;
+  min-height: 100vh; box-sizing: border-box;
+  position: relative; opacity: 0;
   transition: opacity 0.9s ease-in-out;
 }
 .content.active { opacity: 1; }
@@ -75,27 +61,31 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 .syllabus-link { display: inline-block; margin-top: 8px; color: #cfcfcf; font-size: 0.92em; text-decoration: none; }
 .syllabus-link::after { content: " ↗"; font-size: 0.85em; vertical-align: super; opacity: 0.8; color: #cfcfcf; }
 
-/* Label vertical BSc+MSc bas → haut */
+/* Numéros de notes (plus grands, cliquables) */
+sup a {
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+}
+sup a:hover { text-decoration: underline; }
+
+/* Vertical label */
 .vertical-label {
   position: absolute;
-  left: 2px; /* légèrement plus à gauche */
+  left: 2px;
   color: #ffffff;
   font-weight: 700;
   font-size: 1.12em;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  transform: rotate(180deg); /* bas en haut */
+  transform: rotate(180deg);
   letter-spacing: 6px;
   z-index: 2;
 }
-.vertical-label sup {
-  writing-mode: horizontal-tb;
-  font-size: 0.85em;
-  vertical-align: baseline;
-  transform: rotate(180deg);
-  display: inline-block;
-}
+.vertical-label sup a { font-size: 0.95em; }
 
+/* Footnotes */
 .footnotes { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); color: #cfcfcf; font-size: 0.95em; line-height: 1.5; }
 .footnotes p { margin: 10px 0; }
 .footnotes a { color: #ffffff; text-decoration: none; }
@@ -112,7 +102,7 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
     <main>
       <h2 class="page-title">Education</h2>
 
-      <div class="vertical-label" id="verticalLabel">BSc + MSc <sup>5</sup></div>
+      <div class="vertical-label" id="verticalLabel">BSc + MSc <sup><a href="#fn5">5</a></sup></div>
 
       <div class="education-list">
         <!-- MSc -->
@@ -128,8 +118,8 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         <!-- Diplôme d'Ingénieur -->
         <div class="education-item" id="diploma">
           <div class="education-left">
-            <div class="education-title">Diplôme d’Ingénieur¹ — General Engineering, Physics &amp; Modeling</div>
-            <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France²</div>
+            <div class="education-title">Diplôme d’Ingénieur<sup><a href="#fn1">1</a></sup> — General Engineering, Physics &amp; Modeling</div>
+            <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup><a href="#fn2">2</a></sup></div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2021–2025</div>
@@ -138,8 +128,8 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         <!-- Prépa -->
         <div class="education-item" id="prepa">
           <div class="education-left">
-            <div class="education-title">Classes Préparatoires aux Grandes Écoles — Physics, Chemistry &amp; Engineering Sciences³</div>
-            <div class="education-sub">Lycée du Parc, Lyon, France⁴</div>
+            <div class="education-title">Classes Préparatoires aux Grandes Écoles — Physics, Chemistry &amp; Engineering Sciences<sup><a href="#fn3">3</a></sup></div>
+            <div class="education-sub">Lycée du Parc, Lyon, France<sup><a href="#fn4">4</a></sup></div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2019–2021</div>
@@ -148,11 +138,15 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 
       <!-- Footnotes -->
       <div class="footnotes">
-        <p>1. The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements common to all French Grandes Écoles. It is internationally recognised as equivalent to a combined BSc + MSc in Engineering.</p>
-        <p>2. Grande École Télécom Physique Strasbourg — Institut Mines-Télécom Partner; ranked 30th out of ~170 Grandes Écoles the year I entered. (Insert L’Étudiant 2021 link.)</p>
-        <p>3. Classes Préparatoires aux Grandes Écoles — two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French highly-selective institutions.</p>
-        <p>4. Lycée du Parc — one of France’s most prestigious preparatory classes; ranked approximately 4th–8th among ~169 first-year PCSI classes nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>.</p>
-        <p>5. According to the Washington Accord, the French Diplôme d’Ingénieur (BSc + MSc equivalent) is internationally recognised as comparable to accredited engineering degrees from other signatory countries.</p>
+        <p id="fn1">1. The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements common to all French Grandes Écoles. It is internationally recognised as equivalent to a combined BSc + MSc in Engineering. <a href="#diploma">↑ back</a></p>
+
+        <p id="fn2">2. Grande École Télécom Physique Strasbourg — Institut Mines-Télécom Partner; ranked 30th out of ~170 Grandes Écoles the year I entered. (Insert L’Étudiant 2021 link.) <a href="#diploma">↑ back</a></p>
+
+        <p id="fn3">3. Classes Préparatoires aux Grandes Écoles — two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French highly-selective institutions. <a href="#prepa">↑ back</a></p>
+
+        <p id="fn4">4. Lycée du Parc — one of France’s most prestigious preparatory classes; ranked approximately 4th–8th among ~169 first-year PCSI classes nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>. <a href="#prepa">↑ back</a></p>
+
+        <p id="fn5">5. According to the Washington Accord, the French Diplôme d’Ingénieur (BSc + MSc equivalent) is internationally recognised as comparable to accredited engineering degrees from other signatory countries. <a href="#verticalLabel">↑ back</a></p>
       </div>
 
     </main>
@@ -185,11 +179,10 @@ window.addEventListener('load', () => {
     sessionStorage.setItem('visitedHome', 'true');
   } else { sidebar.style.right = '0'; }
 
-  // Position vertical label (BSc + MSc) entre diplôme et prépa
+  // Position vertical label (BSc + MSc)
   const diploma = document.getElementById('diploma');
-  const prepa = document.getElementById('prepa');
   const label = document.getElementById('verticalLabel');
-  if(diploma && prepa && label) {
+  if(diploma && label) {
     const contentBox = document.querySelector('.content').getBoundingClientRect();
     const top = diploma.getBoundingClientRect().top - contentBox.top;
     label.style.top = (top - 40) + 'px';
