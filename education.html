@@ -75,6 +75,7 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 .syllabus-link { display: inline-block; margin-top: 8px; color: #cfcfcf; font-size: 0.92em; text-decoration: none; }
 .syllabus-link::after { content: " ↗"; font-size: 0.85em; vertical-align: super; opacity: 0.8; color: #cfcfcf; }
 
+/* Label vertical BSc+MSc bas → haut */
 .vertical-label {
   position: absolute;
   left: 8px;
@@ -83,10 +84,17 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
   font-size: 1.12em;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  transform-origin: center;
+  transform: rotate(180deg); /* pour écrire de bas en haut */
+  letter-spacing: 6px;       /* espace les lettres pour englober */
   z-index: 2;
 }
-.vertical-label sup { writing-mode: horizontal-tb; font-size: 0.85em; vertical-align: baseline; }
+.vertical-label sup {
+  writing-mode: horizontal-tb;
+  font-size: 0.85em;
+  vertical-align: baseline;
+  transform: rotate(180deg); /* corrige le sup pour être lisible */
+  display: inline-block;
+}
 
 .footnotes { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); color: #cfcfcf; font-size: 0.95em; line-height: 1.5; }
 .footnotes p { margin: 10px 0; }
@@ -118,7 +126,7 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         </div>
 
         <!-- Diplôme d'Ingénieur -->
-        <div class="education-item">
+        <div class="education-item" id="diploma">
           <div class="education-left">
             <div class="education-title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
             <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup>[1]</sup><sup>[2]</sup></div>
@@ -128,7 +136,7 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         </div>
 
         <!-- Prépa -->
-        <div class="education-item">
+        <div class="education-item" id="prepa">
           <div class="education-left">
             <div class="education-title">Classes Préparatoires aux Grandes Écoles (PCSI) — Physics, Chemistry &amp; Engineering Sciences<sup>[3]</sup></div>
             <div class="education-sub">Lycée du Parc, Lyon, France<sup>[4]</sup></div>
@@ -177,15 +185,15 @@ window.addEventListener('load', () => {
     sessionStorage.setItem('visitedHome', 'true');
   } else { sidebar.style.right = '0'; }
 
-  // Position vertical BSc+MSc label between Diplôme d’Ingénieur and Prépa
-  const diploma = document.querySelectorAll('.education-item')[1];
-  const prepa = document.querySelectorAll('.education-item')[2];
+  // Position vertical label (BSc + MSc) entre diplôme et prépa
+  const diploma = document.getElementById('diploma');
+  const prepa = document.getElementById('prepa');
   const label = document.getElementById('verticalLabel');
   if(diploma && prepa && label) {
     const contentBox = document.querySelector('.content').getBoundingClientRect();
     const top = diploma.getBoundingClientRect().top - contentBox.top;
     const bottom = prepa.getBoundingClientRect().bottom - contentBox.top;
-    label.style.top = (top + (bottom-top)/2 - 10) + 'px';
+    label.style.top = (top + (bottom-top)/2 - 40) + 'px';
   }
 });
 </script>
