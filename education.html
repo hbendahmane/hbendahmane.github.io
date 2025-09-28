@@ -5,7 +5,6 @@
 <title>Education - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Base (keeps same look as your About page) */
 body {
   font-family: 'Merriweather', serif;
   margin: 0;
@@ -14,186 +13,135 @@ body {
   background-color: #0a1f44;
   overflow-y: auto;
 }
-
-/* Container */
 .container { display: flex; min-height: 100vh; }
 
-/* Sidebar (exact same style/content as your About) */
+/* Sidebar (identique About) */
 .sidebar {
-  width: 25%;
-  min-width: 220px;
+  width: 25%; min-width: 220px;
   background: url("earth-11595(1).jpg") no-repeat center center;
   background-size: cover;
-  position: fixed;
-  top: 0;
-  right: -25%; /* starts off-screen */
-  height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  position: fixed; top: 0; right: -25%; height: 100%;
+  padding: 20px; box-sizing: border-box;
   transition: right 1s ease-in-out;
   color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  display: flex; flex-direction: column; justify-content: flex-start;
   z-index: 3;
 }
 .sidebar::before {
-  content: "";
-  position: absolute;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.55);
-  z-index: -1;
+  content: ""; position: absolute; top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.55); z-index: -1;
 }
 .sidebar.active { right: 0; }
 .sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
 .sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
-.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
-.sidebar nav { display: flex; flex-direction: column; z-index: 1; }
+.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; }
+.sidebar nav { display: flex; flex-direction: column; }
 .sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
-/* Main content */
+/* Content */
 .content {
-  margin-right: 25%; /* leaves space for sidebar */
-  width: 75%;
-  padding: 60px 40px;
-  box-sizing: border-box;
-  position: relative;
-  min-height: 100vh;
+  margin-right: 25%; width: 75%;
+  padding: 60px 40px; box-sizing: border-box;
+  position: relative; min-height: 100vh;
   background-color: #0a1f44;
 }
-
-/* Page title */
 .page-title { font-size: 1.8em; margin: 0 0 24px 0; color: #ffffff; }
 
-/* Timeline / entries (keeps typography consistent, all white) */
+/* Entries */
 .timeline { position: relative; }
-.entry {
-  display: block;
-  padding: 18px 0;
-  border-bottom: 1px dashed rgba(255,255,255,0.04);
-}
-.entry-title {
-  font-size: 1.15em;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-}
-.entry-meta {
-  font-size: 1em;
-  font-weight: 400;
-  color: #ffffff;
-  margin: 6px 0 0 0;
-}
-.entry-year {
-  position: absolute;
-  right: 40px;
-  top: 18px;
-  font-weight: 700;
-  color: #ffffff;
-  white-space: nowrap;
-}
+.entry { padding: 18px 0; border-bottom: 1px dashed rgba(255,255,255,0.04); position: relative; }
+.entry-title { font-size: 1.15em; font-weight: 700; margin: 0; color:#fff; }
+.entry-meta { font-size: 1em; font-weight: 400; margin: 6px 0 0 0; color:#fff; }
+.entry-year { position: absolute; right: 40px; top: 18px; font-weight: 700; color:#fff; }
 
-/* Syllabus small link */
+/* Syllabus links */
 .syllabus {
-  display: inline-block;
-  margin-top: 8px;
-  color: #cfcfcf;
-  font-size: 0.92em;
-  text-decoration: none;
+  display:inline-block; margin-top: 8px;
+  color: #cfcfcf; font-size: 0.92em; text-decoration: none;
 }
-.syllabus::after { content: " ↗"; font-size: 0.85em; color: #cfcfcf; vertical-align: super; }
+.syllabus::after { content:" ↗"; font-size:0.85em; color:#cfcfcf; vertical-align: super; }
 
-/* Vertical label only (no line) */
+/* Vertical label */
 .vertical-label {
   position: absolute;
-  left: 18px; /* sits to the left of the entries */
+  left: 8px;
   color: #ffffff;
-  font-size: 0.95em; /* slightly smaller than titles */
+  font-size: 0.85em;
   font-weight: 700;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  transform: rotate(180deg); /* keep reading top->bottom visually */
-  z-index: 2;
+  transform: rotate(180deg);
   white-space: nowrap;
 }
-.vertical-label sup { writing-mode: horizontal-tb; font-size: 0.8em; }
+.vertical-label sup { writing-mode: horizontal-tb; font-size: 0.75em; }
 
-/* Footnotes (simple, no bold) */
+/* Footnotes */
 .footnotes {
-  margin-top: 36px;
-  padding-top: 18px;
+  margin-top: 36px; padding-top: 18px;
   border-top: 1px solid rgba(255,255,255,0.06);
-  color: #cfcfcf;
-  font-size: 0.95em;
-  line-height: 1.45;
+  color: #cfcfcf; font-size: 0.95em; line-height: 1.45;
 }
 .footnotes p { margin: 10px 0; }
 .footnotes a { color: #ffffff; text-decoration: none; }
 .footnotes a::after { content: " ↗"; font-size: 0.85em; margin-left: 4px; opacity: 0.9; }
 
-/* Responsive: hide vertical label on small screens */
+/* Responsive */
 @media (max-width: 900px) {
-  .vertical-label { display: none; left: 6px; }
-  .entry-year { right: 20px; }
-  .content { padding: 28px; }
+  .vertical-label { display:none; }
+  .entry-year { right:20px; }
+  .content { padding:28px; }
 }
 </style>
 </head>
 <body>
-
 <div class="container">
 
-  <!-- Main content -->
+  <!-- Main -->
   <div class="content" id="content">
     <main>
       <h2 class="page-title">Education</h2>
-
       <div class="timeline">
 
-        <!-- MSc (newest) -->
+        <!-- MSc -->
         <div class="entry" id="msc">
           <div class="entry-title">MSc — Cell Physics</div>
           <div class="entry-meta">University of Strasbourg, Strasbourg, France</div>
           <div class="entry-year">2023–2024</div>
-          <a class="syllabus" href="#" aria-label="MSc syllabus">Syllabus</a>
+          <a class="syllabus" href="#">Syllabus</a>
         </div>
 
-        <!-- Diplôme d'Ingénieur (will have footnote [1]) -->
+        <!-- Diplôme d’Ingénieur -->
         <div class="entry" id="diploma">
           <div class="entry-title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
           <div class="entry-meta">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup>[1]</sup></div>
           <div class="entry-year">2021–2025</div>
-          <a class="syllabus" href="#" aria-label="Diplôme syllabus">Syllabus</a>
+          <a class="syllabus" href="#">Syllabus</a>
         </div>
 
-        <!-- Prépa (will have footnote [2]) -->
+        <!-- Prépa -->
         <div class="entry" id="prepa">
-          <div class="entry-title">Classes Préparatoires aux Grandes Écoles (PCSI)</div>
+          <div class="entry-title">Classes Préparatoires aux Grandes Écoles — Physics, Chemistry &amp; Engineering Sciences (PCSI)</div>
           <div class="entry-meta">Lycée du Parc, Lyon, France<sup>[2]</sup></div>
           <div class="entry-year">2019–2021</div>
-          <a class="syllabus" href="#" aria-label="Prépa syllabus">Syllabus</a>
+          <a class="syllabus" href="#">Syllabus</a>
         </div>
 
-        <!-- vertical label only; JS will position it centered between diploma and prepa -->
-        <div id="verticalLabel" class="vertical-label" aria-hidden="true">BSc + MSc in Engineering<sup>[3]</sup></div>
-
-      </div> <!-- .timeline -->
-
-      <!-- Footnotes in order top->bottom -->
-      <div class="footnotes" id="footnotes">
-        <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam; ranked 30th out of ~170 Grandes Écoles in the year of entry (source: L’Étudiant 2021). [INSERT L’ÉTUDIANT 2021 LINK]</p>
-
-        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious Classes Préparatoires aux Grandes Écoles; ranked approximately <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank" rel="noopener">4th</a> (IPESUP) to <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank" rel="noopener">8th</a> (Groupe Réussite) among about <strong>169</strong> first-year PCSI classes nationwide.</p>
-
-        <p><sup>[3]</sup> The French <em>Diplôme d’Ingénieur</em> is protected and accredited by the Commission des Titres d'Ingénieur (CTI). CTI accreditation enforces strict requirements on curriculum, minimum internship durations and international exposure, common to France’s Grandes Écoles. It is recognised at master’s level and commonly treated for international purposes as equivalent to a combined BSc + MSc in Engineering.</p>
+        <!-- Label -->
+        <div id="verticalLabel" class="vertical-label">BSc + MSc in Engineering<sup>[3]</sup></div>
       </div>
 
+      <!-- Footnotes -->
+      <div class="footnotes">
+        <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam; ranked 30th out of ~170 Grandes Écoles in the year of entry (source: L’Étudiant 2021).</p>
+        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious Classes Préparatoires aux Grandes Écoles; ranked approximately <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">4th</a> to <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">8th</a> among about <strong>169</strong> first-year PCSI classes nationwide.</p>
+        <p><sup>[3]</sup> The French <em>Diplôme d’Ingénieur</em> is protected and accredited by the Commission des Titres d'Ingénieur (CTI). CTI accreditation enforces strict requirements on curriculum, internships, and international exposure. It is recognised internationally and commonly treated as equivalent to a combined BSc + MSc in Engineering.</p>
+      </div>
     </main>
   </div>
 
-  <!-- Sidebar (exact same as your About page) -->
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
@@ -207,54 +155,35 @@ body {
       <a href="skills.html">Skills</a>
     </nav>
   </div>
-
 </div>
 
 <script>
-// Sidebar slide-in behavior (same logic as About)
+// Sidebar animation
 window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
   const content = document.getElementById('content');
-  content && content.classList && content.classList.add('active');
-
+  content.classList.add('active');
   if (!sessionStorage.getItem('visitedHome')) {
     sidebar.classList.add('active');
-    sessionStorage.setItem('visitedHome', 'true');
-  } else {
-    sidebar.style.right = '0';
+    sessionStorage.setItem('visitedHome','true');
+  } else { sidebar.style.right='0'; }
+
+  // Position vertical label between diploma and prepa
+  const diploma=document.getElementById('diploma');
+  const prepa=document.getElementById('prepa');
+  const label=document.getElementById('verticalLabel');
+  function positionLabel(){
+    if(!diploma||!prepa||!label) return;
+    const top=diploma.offsetTop;
+    const bottom=prepa.offsetTop+prepa.offsetHeight;
+    const center=top+(bottom-top)/2;
+    const labelHeight=label.offsetHeight;
+    label.style.top=`${center-labelHeight/2}px`;
   }
-
-  // position vertical label centered between diploma and prepa
-  const diploma = document.getElementById('diploma');
-  const prepa = document.getElementById('prepa');
-  const label = document.getElementById('verticalLabel');
-  const contentRect = document.querySelector('.content').getBoundingClientRect();
-
-  function positionLabel() {
-    if (!diploma || !prepa || !label) return;
-    const diplRect = diploma.getBoundingClientRect();
-    const prepRect = prepa.getBoundingClientRect();
-
-    // compute center between top of diploma and bottom of prepa relative to content
-    const topRel = diplRect.top - contentRect.top;
-    const bottomRel = (prepRect.top - contentRect.top) + prepRect.height;
-    const center = topRel + (bottomRel - topRel) / 2;
-
-    // measure label height to center vertically
-    const labelHeight = label.getBoundingClientRect().height;
-    const topPos = Math.round(center - labelHeight / 2);
-    // ensure the label remains visible inside content
-    label.style.top = `${Math.max(8, topPos)}px`;
-    // left is already defined by CSS (18px); if you want to nudge horizontally, adjust here
-  }
-
-  // initial position and reposition on resize
   positionLabel();
-  window.addEventListener('resize', positionLabel);
-  // sometimes font loading affects measurements; reposition shortly after load
-  setTimeout(positionLabel, 250);
+  window.addEventListener('resize',positionLabel);
+  setTimeout(positionLabel,300);
 });
 </script>
-
 </body>
 </html>
