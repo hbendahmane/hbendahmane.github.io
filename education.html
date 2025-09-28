@@ -11,6 +11,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   color: #ffffff;
+  background-color: #0a1f44; /* bleu navy */
 }
 
 /* Container */
@@ -19,7 +20,7 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar */
+/* Sidebar identique About */
 .sidebar {
   width: 25%;
   min-width: 220px;
@@ -46,15 +47,8 @@ body {
   z-index: -1;
 }
 .sidebar.active { right: 0; }
-.sidebar h1 {
-  font-size: 2.2em;
-  margin-bottom: 8px;
-}
-.sidebar h2 {
-  font-size: 1em;
-  margin-bottom: 20px;
-  font-weight: 400;
-}
+.sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
+.sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
 .sidebar blockquote {
   font-style: italic;
   font-size: 1em;
@@ -73,57 +67,64 @@ body {
   font-weight: bold;
   font-size: 0.95em;
 }
-.sidebar nav a.current {
-  opacity: 0.5;
-  pointer-events: none;
-}
-.sidebar nav a:hover:not(.current) {
-  text-decoration: underline;
-}
+.sidebar nav a.current { opacity: 0.5; pointer-events: none; }
+.sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
-/* Main content */
+/* Content */
 .content {
   margin-right: 25%;
   width: 75%;
   padding: 60px 40px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  background-color: #0a1f44;
-  min-height: 100vh;
 }
 .content.active { opacity: 1; }
 
-/* Education section */
-.education-entry {
-  margin-bottom: 35px;
+/* Education timeline */
+.timeline {
+  position: relative;
+  margin-left: 80px;
+  padding-left: 40px;
+  border-left: 2px solid #ffffff;
 }
-.education-entry h3 {
+.timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+}
+.timeline-item h3 {
   font-size: 1.4em;
   margin: 0;
+  color: #ffffff;
 }
-.education-entry p {
+.timeline-item h4 {
   font-size: 1em;
-  margin: 5px 0 0;
-  color: #ddd;
+  margin: 5px 0 10px;
+  color: #ffffff;
+  font-weight: 400;
+}
+.timeline-item p {
+  font-size: 0.95em;
+  margin: 5px 0;
 }
 
-/* Vertical label (BSc + MSc) */
+/* Label vertical */
 .vertical-label {
+  position: absolute;
+  left: -70px;
+  top: 0;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-size: 0.9em;
   color: #ffffff;
-  position: absolute;
-  left: -60px;
-  top: 180px;
+  font-weight: 400;
 }
 
-/* Footnotes */
+/* Notes */
 .note-final {
   font-size: 0.8em;
   color: #ccc;
-  margin-top: 60px;
-  line-height: 1.4;
+  margin-top: 40px;
+  line-height: 1.5;
 }
 .note-final a {
   color: #ffffff;
@@ -131,7 +132,7 @@ body {
 }
 .note-final a::after {
   content: " ↗";
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 </style>
 </head>
@@ -143,32 +144,39 @@ body {
   <div class="content" id="content">
     <main>
       <h2>Education</h2>
+      <div class="timeline">
+        
+        <!-- Label vertical BSc+MSc -->
+        <div class="vertical-label">BSc + MSc in Engineering³</div>
 
-      <div class="education-entry">
-        <h3>2023–2024 — MSc, Cell Physics</h3>
-        <p>University of Strasbourg, France</p>
-      </div>
+        <!-- Prépa -->
+        <div class="timeline-item">
+          <h3>Classes Préparatoires aux Grandes Écoles</h3>
+          <h4>Lycée Champollion, Grenoble, France | 2018 – 2021</h4>
+          <p>Intensive undergraduate program in Mathematics, Physics, Chemistry & Engineering Science.</p>
+        </div>
 
-      <div class="education-entry">
-        <h3>2021–2025 — Diplôme d’Ingénieur, General Engineering, Physics and Modeling</h3>
-        <p>Grande École Télécom Physique Strasbourg, France</p>
-      </div>
+        <!-- Diplôme Ingénieur -->
+        <div class="timeline-item">
+          <h3>Diplôme d’Ingénieur – Cell Physics, Biology & Computer Science</h3>
+          <h4>Telecom Physique Strasbourg, Université de Strasbourg, France | 2021 – 2024</h4>
+          <p>Ranked 30th out of 170 Grandes Écoles at entry.<sup>2</sup></p>
+        </div>
 
-      <div class="vertical-label">BSc + MSc in Engineering<sup>3</sup></div>
+        <!-- MSc -->
+        <div class="timeline-item">
+          <h3>MSc – Cell Physics, Biology & Computer Science</h3>
+          <h4>Université de Strasbourg, France | 2023 – 2024</h4>
+          <p>Completed alongside the Diplôme d’Ingénieur.</p>
+        </div>
 
-      <div class="education-entry">
-        <h3>2019–2021 — Classes Préparatoires aux Grandes Écoles, Physics, Chemistry, & Engineering Science</h3>
-        <p>Lycée du Parc, Lyon, France</p>
       </div>
 
       <!-- Footnotes -->
       <p class="note-final">
-        1. Lycée du Parc is among the most prestigious preparatory schools in France, ranked between 
-        <a href="https://www.ipesup.fr/prepa-classement-lycees/">4th</a> and 
-        <a href="https://www.groupe-reussite.fr/blog/classement-prepa-pcsi/">8th</a> out of 132 institutions hosting PCSI tracks nationwide in 2019.  
-        2. Télécom Physique Strasbourg, part of the Institut Mines-Télécom, was ranked 30th out of 170 Grandes Écoles d’ingénieurs by L’Étudiant in 2021. Admission is through national competitive examination.  
-        3. The French Diplôme d’Ingénieur is protected and accredited by the Commission des Titres d’Ingénieur (CTI), which enforces strict requirements on curriculum, internships, and international experiences.  
-        It is internationally recognized as equivalent to both a Bachelor’s and a Master’s degree under the Washington Accord.
+        1. The French Diplôme d’Ingénieur is protected and accredited by the Commission des Titres d’Ingénieur (CTI).  
+        2. Ranked <a href="https://etudiant.lefigaro.fr/etudes/ecoles-ingenieurs/classement/general">30th</a> out of 170 Grandes Écoles nationwide the year of admission.  
+        3. Internationally recognized as equivalent to a combined Bachelor and Master in Engineering under the Washington Accord.
       </p>
     </main>
   </div>
@@ -190,7 +198,6 @@ body {
 </div>
 
 <script>
-// Animation sidebar
 window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
   const content = document.getElementById('content');
