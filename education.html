@@ -115,8 +115,7 @@ body {
 }
 
 .entry-title {
-  font-size: 1.05em;
-  font-weight: 700;
+  font-size: 1em;
   color: #ffffff;
   margin: 0;
 }
@@ -168,28 +167,33 @@ body {
     <main>
       <h1>Education</h1>
 
-      <div class="education-entry">
-        <span class="vertical-label">BSc + MSc in Engineering<sup>1</sup></span>
-        <div class="entry-title">Classes Préparatoires aux Grandes Écoles – Physics, Chemistry & Engineering Sciences</div>
-        <div class="entry-subtitle">Lycée du Parc, Lyon, France</div>
-        <div class="entry-date">2019 – 2021</div>
-      </div>
-
-      <div class="education-entry">
-        <div class="entry-title">Diplôme d’Ingénieur – General Engineering, Physics and Modeling</div>
-        <div class="entry-subtitle">Grande École Telecom Physique Strasbourg, France</div>
-        <div class="entry-date">2021 – 2025</div>
-      </div>
-
+      <!-- MSc en haut -->
       <div class="education-entry">
         <div class="entry-title">MSc – Cell Physics</div>
         <div class="entry-subtitle">University of Strasbourg, France</div>
         <div class="entry-date">2023 – 2024</div>
       </div>
 
+      <!-- Diplôme d’Ingénieur -->
+      <div class="education-entry">
+        <span class="vertical-label">BSc + MSc in Engineering<sup>3</sup></span>
+        <div class="entry-title">Diplôme d’Ingénieur – General Engineering, Physics and Modeling</div>
+        <div class="entry-subtitle">Grande École Telecom Physique Strasbourg, France</div>
+        <div class="entry-date">2021 – 2025</div>
+      </div>
+
+      <!-- Prépa en bas -->
+      <div class="education-entry">
+        <div class="entry-title">Classes Préparatoires aux Grandes Écoles – Physics, Chemistry & Engineering Sciences</div>
+        <div class="entry-subtitle">Lycée du Parc, Lyon, France</div>
+        <div class="entry-date">2019 – 2021</div>
+      </div>
+
       <!-- Notes de bas de page -->
       <p class="note-final">
-        1. The French Diplôme d’Ingénieur is protected and accredited by the Commission des Titres d'Ingénieur (CTI), including strict conditions on teaching, duration of internships, and international experience common to all top French engineering schools. It is internationally recognized as equivalent to a BSc + MSc according to the Washington Accord. Sources: [IPESUP], [Groupe Réussites].
+        1. The Lycée du Parc preparatory class is one of the most prestigious in France, ranked 4th–8th out of all first-year PCSI classes in the country. Sources: [IPESUP], [Groupe Réussites].<br>
+        2. Grande École Telecom Physique Strasbourg is part of the Institut Mines-Télécom network, admission via national competitive exam, ranked 30th among 200+ schools in 2021 according to L'Etudiant. Sources: [School Website], [L'Etudiant].<br>
+        3. The French Diplôme d’Ingénieur is protected and accredited by the Commission des Titres d'Ingénieur (CTI), including strict teaching, internship, and international experience requirements. Internationally recognized as equivalent to a BSc + MSc according to the Washington Accord.
       </p>
     </main>
   </div>
@@ -212,7 +216,6 @@ body {
 </div>
 
 <script>
-// Animation : sidebar glisse depuis la droite uniquement si première visite depuis Home
 window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
   const content = document.getElementById('content');
