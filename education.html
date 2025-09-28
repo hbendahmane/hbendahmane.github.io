@@ -61,7 +61,7 @@ h2.page-title { margin:0 0 24px 0; font-size:1.8em; color:#ffffff; }
 
 /* Footnote indices uniformes */
 sup a {
-  font-size: 1em;   /* même taille que texte */
+  font-size: 1em;
   font-weight: 400; 
   font-family: inherit;
   vertical-align: super;
@@ -87,7 +87,9 @@ sup a:hover { text-decoration: underline; }
   writing-mode: horizontal-tb;
   transform: none;
   font-size: 1em;
-  margin-left: 4px;
+  margin-top: 6px;
+  display: block;
+  text-align: center;
   font-weight: 400;
 }
 
@@ -108,7 +110,10 @@ sup a:hover { text-decoration: underline; }
       <h2 class="page-title">Education</h2>
 
       <!-- BSc+MSc Vertical Label -->
-      <div class="vertical-label" id="verticalLabel">BSc + MSc<span class="footnote-inline"><sup><a href="#fn5">5</a></sup></span></div>
+      <div class="vertical-label" id="verticalLabel">
+        BSc + MSc
+        <span class="footnote-inline"><sup><a href="#fn5">5</a></sup></span>
+      </div>
 
       <div class="education-list">
         <!-- MSc -->
@@ -179,7 +184,7 @@ window.addEventListener('load', () => {
     sessionStorage.setItem('visitedHome', 'true');
   } else { sidebar.style.right = '0'; }
 
-  // Position vertical label (remonté un peu plus haut que avant)
+  // Position vertical label
   const diploma = document.getElementById('diploma');
   const prepa = document.getElementById('prepa');
   const label = document.getElementById('verticalLabel');
@@ -187,8 +192,8 @@ window.addEventListener('load', () => {
     const contentBox = document.querySelector('.content').getBoundingClientRect();
     const topDiploma = diploma.getBoundingClientRect().top - contentBox.top;
     const topPrepa = prepa.getBoundingClientRect().top - contentBox.top;
-    // placer environ au milieu mais légèrement plus haut
-    label.style.top = ( (topDiploma + topPrepa)/2 - 20 ) + 'px';
+    // placer encore plus haut que la moyenne
+    label.style.top = ( (topDiploma + topPrepa)/2 - 40 ) + 'px';
   }
 });
 </script>
