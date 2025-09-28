@@ -147,11 +147,11 @@ sup a:hover { text-decoration: underline; }
 
       <!-- Footnotes -->
       <div class="footnotes">
-        <p id="fn1">1. The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI). It includes strict requirements for curriculum, internships, and international exposure common to France’s Grandes Écoles. Recognized internationally as equivalent to a combined BSc + MSc in Engineering under the <a href="https://www.ieagreements.org/">Washington Accord</a>. <a href="#diploma">↑ back</a></p>
+        <p id="fn1">1. The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI). Includes strict curriculum, internships, and international exposure. Recognized internationally as equivalent to BSc + MSc in Engineering under the <a href="https://www.ieagreements.org/">Washington Accord</a>. <a href="#diploma">↑ back</a></p>
         <p id="fn2">2. Grande École Télécom Physique Strasbourg — an Institut Mines-Télécom partner, ranked among the top engineering schools in France. <a href="#diploma">↑ back</a></p>
-        <p id="fn3">3. Two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French and highly-selective institutions. <a href="#prepa">↑ back</a></p>
-        <p id="fn4">4. Lycée du Parc — one of France’s most prestigious preparatory schools, consistently ranked in the top 10 out of over 160 institutions offering Classes Préparatoires. <a href="#prepa">↑ back</a></p>
-        <p id="fn5">5. According to the <a href="https://www.ieagreements.org/">Washington Accord</a>, accredited engineering degrees (such as the French Diplôme d’Ingénieur) are recognized as equivalent to a BSc + MSc in Engineering. <a href="#verticalLabel">↑ back</a></p>
+        <p id="fn3">3. Two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles. <a href="#prepa">↑ back</a></p>
+        <p id="fn4">4. Lycée du Parc — one of France’s most prestigious preparatory schools, consistently ranked in the top 10 of over 160 PCSI first-year classes. <a href="#prepa">↑ back</a></p>
+        <p id="fn5">5. According to the <a href="https://www.ieagreements.org/">Washington Accord</a>, accredited engineering degrees (like Diplôme d’Ingénieur) are recognized as equivalent to BSc + MSc in Engineering. <a href="#verticalLabel">↑ back</a></p>
       </div>
     </main>
   </div>
@@ -170,6 +170,7 @@ sup a:hover { text-decoration: underline; }
       <a href="skills.html">Skills</a>
     </nav>
   </div>
+
 </div>
 
 <script>
@@ -180,17 +181,18 @@ window.addEventListener('load', () => {
   if (!sessionStorage.getItem('visitedHome')) {
     sidebar.classList.add('active');
     sessionStorage.setItem('visitedHome', 'true');
-  } else { sidebar.style.right = '0'; }
+  } else { sidebar.style.right='0'; }
 
-  // Remonter BSc+MSc vertical label
+  // Position vertical label over diploma+prepa
   const diploma = document.getElementById('diploma');
   const prepa = document.getElementById('prepa');
   const label = document.getElementById('verticalLabel');
-  if(diploma && prepa && label) {
+  if(diploma && prepa && label){
     const contentBox = document.querySelector('.content').getBoundingClientRect();
     const topDiploma = diploma.getBoundingClientRect().top - contentBox.top;
     const topPrepa = prepa.getBoundingClientRect().top - contentBox.top;
-    label.style.top = ((topDiploma + topPrepa)/2 - 10) + 'px'; // un peu plus haut
+    label.style.top = (topDiploma + topPrepa)/2 - 12 + 'px';
+    label.style.left = '2px';
   }
 });
 </script>
