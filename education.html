@@ -110,7 +110,7 @@ sup a:hover { text-decoration: underline; }
         <div class="education-item">
           <div class="education-left">
             <div class="education-title">MSc — Cell Physics</div>
-            <div class="education-sub">University of Strasbourg, Strasbourg, France</div>
+            <div class="education-sub">University of Strasbourg, France</div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2023–2024</div>
@@ -120,7 +120,7 @@ sup a:hover { text-decoration: underline; }
         <div class="education-item" id="diploma">
           <div class="education-left">
             <div class="education-title">Diplôme d’Ingénieur<sup><a href="#fn1">1</a></sup> — General Engineering, Physics &amp; Modeling</div>
-            <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup><a href="#fn2">2</a></sup></div>
+            <div class="education-sub">Grande École Télécom Physique Strasbourg, France<sup><a href="#fn2">2</a></sup></div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2021–2025</div>
@@ -182,7 +182,7 @@ window.addEventListener('load', () => {
     const contentBox = document.querySelector('.content').getBoundingClientRect();
     const topDiploma = diploma.getBoundingClientRect().top - contentBox.top;
     const topPrepa = prepa.getBoundingClientRect().top - contentBox.top;
-    label.style.top = (topDiploma + topPrepa)/2 - 10 + 'px';
+    label.style.top = (topDiploma + topPrepa)/2 - 12 + 'px';
     label.style.left = '2px';
   }
 });
