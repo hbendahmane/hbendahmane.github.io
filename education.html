@@ -5,6 +5,7 @@
 <title>Education - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* --- Base --- */
 body {
   font-family: 'Merriweather', serif;
   margin: 0;
@@ -13,11 +14,14 @@ body {
   background-color: #0a1f44;
   overflow-y: auto;
 }
+
+/* Container for sidebar + content */
 .container {
   display: flex;
   min-height: 100vh;
 }
-/* Sidebar same as About */
+
+/* --- Sidebar: copied from About page --- */
 .sidebar {
   width: 25%;
   min-width: 220px;
@@ -52,7 +56,7 @@ body {
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
-/* Main content */
+/* --- Main content --- */
 .content {
   margin-right: 25%;
   width: 75%;
@@ -65,21 +69,34 @@ body {
   transition: opacity 0.9s ease-in-out;
 }
 .content.active { opacity: 1; }
+
+/* Heading */
 h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 
-/* Education entries */
+/* --- Education entries --- */
 .education-list { display: block; margin-top: 8px; }
 .education-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.04); }
 .education-left { max-width: 74%; }
-.education-title { font-size: 1.05em; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
-.education-sub { font-size: 0.95em; font-weight: 700; color: #ffffff; margin: 0; }
+.education-title { font-size: 1.12em; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+.education-sub { font-size: 1em; font-weight: 700; color: #ffffff; margin: 0; }
+/* year on the right */
 .education-year { font-weight: 700; color: #ffffff; white-space: nowrap; margin-left: 12px; }
-.syllabus-link { display: inline-block; margin-top: 4px; color: #cfcfcf; font-size: 0.88em; text-decoration: none; }
-.syllabus-link::after { content: " ↗"; font-size: 0.8em; vertical-align: super; opacity: 0.8; color: #cfcfcf; }
+/* syllabus link small below subtitle */
+.syllabus-link { display: inline-block; margin-top: 8px; color: #cfcfcf; font-size: 0.92em; text-decoration: none; }
+.syllabus-link::after { content: " ↗"; font-size: 0.85em; vertical-align: super; opacity: 0.8; color: #cfcfcf; }
 
-/* Vertical line & label */
-.vertical-line { position: absolute; left: 22px; width: 2px; background: #ffffff; z-index: 1; border-radius: 2px; }
-.vertical-label { position: absolute; left: 4px; color: #ffffff; font-weight: 700; font-size: 1em; writing-mode: vertical-rl; text-orientation: mixed; transform-origin: center; z-index: 2; }
+/* vertical BSc+MSc label */
+.vertical-label {
+  position: absolute;
+  left: 8px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.12em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform-origin: center;
+  z-index: 2;
+}
 .vertical-label sup { writing-mode: horizontal-tb; font-size: 0.85em; vertical-align: baseline; }
 
 /* Footnotes */
@@ -88,8 +105,8 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 .footnotes a { color: #ffffff; text-decoration: none; }
 .footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
 
-/* responsive */
-@media (max-width: 900px) { .content { padding: 28px; } .vertical-line, .vertical-label { display: none; } }
+/* responsive tweaks */
+@media (max-width: 900px) { .content { padding: 28px; } .vertical-label { display: none; } }
 </style>
 </head>
 <body>
@@ -100,10 +117,13 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
   <div class="content" id="content">
     <main>
       <h2 class="page-title">Education</h2>
-      <div class="education-list">
 
+      <!-- Vertical label BSc+MSc -->
+      <div class="vertical-label" id="verticalLabel">BSc + MSc <sup>[5]</sup></div>
+
+      <div class="education-list">
         <!-- MSc -->
-        <div class="education-item" id="msc-item">
+        <div class="education-item">
           <div class="education-left">
             <div class="education-title">MSc — Cell Physics</div>
             <div class="education-sub">University of Strasbourg, Strasbourg, France</div>
@@ -113,7 +133,7 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         </div>
 
         <!-- Diplôme d'Ingénieur -->
-        <div class="education-item" id="diploma-item">
+        <div class="education-item">
           <div class="education-left">
             <div class="education-title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
             <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup>[1]</sup></div>
@@ -123,31 +143,29 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         </div>
 
         <!-- Prépa -->
-        <div class="education-item" id="prepa-item">
+        <div class="education-item">
           <div class="education-left">
-            <div class="education-title">Classes Préparatoires aux Grandes Écoles — Physics, Chemistry &amp; Engineering Sciences</div>
+            <div class="education-title">Classes Préparatoires aux Grandes Écoles (PCSI) — Physics, Chemistry &amp; Engineering Sciences</div>
             <div class="education-sub">Lycée du Parc, Lyon, France<sup>[2]</sup></div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2019–2021</div>
         </div>
-
       </div>
-
-      <!-- vertical line & label -->
-      <div id="verticalLine" class="vertical-line" aria-hidden="true"></div>
-      <div id="verticalLabel" class="vertical-label" aria-hidden="true">BSc + MSc in Engineering <sup>[3]</sup></div>
 
       <!-- Footnotes -->
       <div class="footnotes">
-        <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam; placed 30th out of ~170 Grandes Écoles in the year I entered. (Insert L’Étudiant 2021 link.)</p>
-        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious Classes Préparatoires aux Grandes Écoles; ranked approximately 4th–8th among PCSI first-year programs (about 169 first-year PCSI classes nationwide). Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank" rel="noopener">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank" rel="noopener">Groupe Réussite</a>.</p>
-        <p><sup>[3]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements, recognised internationally as equivalent to a combined BSc + MSc in Engineering.</p>
+        <p><sup>[1]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements common to all French Grandes Écoles.</p>
+        <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — one of France’s most prestigious preparatory classes; ranked approximately 4th–8th among ~169 first-year PCSI classes nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>.</p>
+        <p><sup>[3]</sup> Classes Préparatoires aux Grandes Écoles — two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French highly-selective institutions.</p>
+        <p><sup>[4]</sup> Grande École Télécom Physique Strasbourg — Institut Mines-Télécom Partner; ranked 30th out of ~170 Grandes Écoles the year I entered. (Insert L’Étudiant 2021 link.)</p>
+        <p><sup>[5]</sup> According to the Washington Accord, the French Diplôme d’Ingénieur (BSc + MSc equivalent) is internationally recognized as equivalent to a combined Bachelor’s and Master’s degree in Engineering. (Insert official Washington Accord link.)</p>
       </div>
+
     </main>
   </div>
 
-  <!-- Sidebar mini-home (exact same as About) -->
+  <!-- Sidebar mini-home -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
@@ -169,30 +187,20 @@ window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
   const content = document.getElementById('content');
   content && content.classList.add('active');
-
   if (!sessionStorage.getItem('visitedHome')) {
     sidebar.classList.add('active');
     sessionStorage.setItem('visitedHome', 'true');
   } else { sidebar.style.right = '0'; }
 
-  // Position vertical line & label
-  const diplElem = document.getElementById('diploma-item');
-  const prepElem = document.getElementById('prepa-item');
-  const contentBox = content.getBoundingClientRect();
-  const line = document.getElementById('verticalLine');
+  // Position vertical BSc+MSc label to cover Diploma + Prepa
+  const diploma = document.querySelectorAll('.education-item')[1];
+  const prepa = document.querySelectorAll('.education-item')[2];
   const label = document.getElementById('verticalLabel');
-
-  if(diplElem && prepElem && line && label){
-    const diplRect = diplElem.getBoundingClientRect();
-    const prepRect = prepElem.getBoundingClientRect();
-    const top = Math.round(diplRect.top - contentBox.top + 6);
-    const bottom = Math.round(prepRect.top - contentBox.top + prepRect.height - 6);
-    const height = Math.max(20, bottom - top);
-    line.style.top = top + 'px';
-    line.style.height = height + 'px';
-    line.style.left = (contentBox.width * 0.02) + 'px';
-    label.style.top = (top + height/2 - 10) + 'px';
-    label.style.left = (parseFloat(line.style.left) - 36) + 'px';
+  if(diploma && prepa && label) {
+    const contentBox = document.querySelector('.content').getBoundingClientRect();
+    const top = diploma.getBoundingClientRect().top - contentBox.top;
+    const bottom = prepa.getBoundingClientRect().bottom - contentBox.top;
+    label.style.top = (top + (bottom-top)/2 - 10) + 'px';
   }
 });
 </script>
