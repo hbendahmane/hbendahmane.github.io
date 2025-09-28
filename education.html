@@ -5,7 +5,6 @@
 <title>Education - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* --- Base --- */
 body {
   font-family: 'Merriweather', serif;
   margin: 0;
@@ -14,14 +13,11 @@ body {
   background-color: #0a1f44;
   overflow-y: auto;
 }
-
-/* Container for sidebar + content */
 .container {
   display: flex;
   min-height: 100vh;
 }
-
-/* --- Sidebar: same as About --- */
+/* Sidebar same as About */
 .sidebar {
   width: 25%;
   min-width: 220px;
@@ -48,18 +44,15 @@ body {
   z-index: -1;
 }
 .sidebar.active { right: 0; }
-
 .sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
 .sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
 .sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
-
-/* Navigation */
 .sidebar nav { display: flex; flex-direction: column; }
 .sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
-/* --- Main content --- */
+/* Main content */
 .content {
   margin-right: 25%;
   width: 75%;
@@ -72,82 +65,31 @@ body {
   transition: opacity 0.9s ease-in-out;
 }
 .content.active { opacity: 1; }
-
-/* Heading */
 h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 
-/* --- Education entries --- */
+/* Education entries */
 .education-list { display: block; margin-top: 8px; }
-.education-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 12px 0;
-  border-bottom: 1px dashed rgba(255,255,255,0.04);
-}
+.education-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.04); }
 .education-left { max-width: 74%; }
 .education-title { font-size: 1.05em; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
 .education-sub { font-size: 0.95em; font-weight: 700; color: #ffffff; margin: 0; }
 .education-year { font-weight: 700; color: #ffffff; white-space: nowrap; margin-left: 12px; }
-.syllabus-link {
-  display: inline-block;
-  margin-top: 4px;
-  color: #cfcfcf;
-  font-size: 0.88em;
-  text-decoration: none;
-}
-.syllabus-link::after {
-  content: " ↗";
-  font-size: 0.8em;
-  vertical-align: super;
-  opacity: 0.8;
-  color: #cfcfcf;
-}
+.syllabus-link { display: inline-block; margin-top: 4px; color: #cfcfcf; font-size: 0.88em; text-decoration: none; }
+.syllabus-link::after { content: " ↗"; font-size: 0.8em; vertical-align: super; opacity: 0.8; color: #cfcfcf; }
 
-/* --- Vertical line & label --- */
-.vertical-line {
-  position: absolute;
-  left: 22px;
-  width: 2px;
-  background: #ffffff;
-  z-index: 1;
-  border-radius: 2px;
-}
-.vertical-label {
-  position: absolute;
-  left: 4px;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 1em;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform-origin: center;
-  z-index: 2;
-}
-.vertical-label sup {
-  writing-mode: horizontal-tb;
-  font-size: 0.85em;
-  vertical-align: baseline;
-}
+/* Vertical line & label */
+.vertical-line { position: absolute; left: 22px; width: 2px; background: #ffffff; z-index: 1; border-radius: 2px; }
+.vertical-label { position: absolute; left: 4px; color: #ffffff; font-weight: 700; font-size: 1em; writing-mode: vertical-rl; text-orientation: mixed; transform-origin: center; z-index: 2; }
+.vertical-label sup { writing-mode: horizontal-tb; font-size: 0.85em; vertical-align: baseline; }
 
-/* --- Footnotes --- */
-.footnotes {
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  color: #cfcfcf;
-  font-size: 0.95em;
-  line-height: 1.5;
-}
+/* Footnotes */
+.footnotes { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); color: #cfcfcf; font-size: 0.95em; line-height: 1.5; }
 .footnotes p { margin: 10px 0; }
 .footnotes a { color: #ffffff; text-decoration: none; }
 .footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
 
 /* responsive */
-@media (max-width: 900px) {
-  .content { padding: 28px; }
-  .vertical-line, .vertical-label { display: none; }
-}
+@media (max-width: 900px) { .content { padding: 28px; } .vertical-line, .vertical-label { display: none; } }
 </style>
 </head>
 <body>
@@ -200,4 +142,15 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
       <div class="footnotes">
         <p><sup>[1]</sup> Télécom Physique Strasbourg — admitted via national competitive exam; placed 30th out of ~170 Grandes Écoles in the year I entered. (Insert L’Étudiant 2021 link.)</p>
         <p><sup>[2]</sup> Lycée du Parc (PCSI, 2019) — an institution hosting some of France’s most prestigious Classes Préparatoires aux Grandes Écoles; ranked approximately 4th–8th among PCSI first-year programs (about 169 first-year PCSI classes nationwide). Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank" rel="noopener">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank" rel="noopener">Groupe Réussite</a>.</p>
-        <p><sup>[3]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with
+        <p><sup>[3]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements, recognised internationally as equivalent to a combined BSc + MSc in Engineering.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Sidebar mini-home (exact same as About) -->
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">
