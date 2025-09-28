@@ -78,21 +78,21 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 /* Label vertical BSc+MSc bas → haut */
 .vertical-label {
   position: absolute;
-  left: 8px;
+  left: 2px; /* légèrement plus à gauche */
   color: #ffffff;
   font-weight: 700;
   font-size: 1.12em;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  transform: rotate(180deg); /* pour écrire de bas en haut */
-  letter-spacing: 6px;       /* espace les lettres pour englober */
+  transform: rotate(180deg); /* bas en haut */
+  letter-spacing: 6px;
   z-index: 2;
 }
 .vertical-label sup {
   writing-mode: horizontal-tb;
   font-size: 0.85em;
   vertical-align: baseline;
-  transform: rotate(180deg); /* corrige le sup pour être lisible */
+  transform: rotate(180deg);
   display: inline-block;
 }
 
@@ -112,7 +112,7 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
     <main>
       <h2 class="page-title">Education</h2>
 
-      <div class="vertical-label" id="verticalLabel">BSc + MSc <sup>[5]</sup></div>
+      <div class="vertical-label" id="verticalLabel">BSc + MSc <sup>5</sup></div>
 
       <div class="education-list">
         <!-- MSc -->
@@ -128,8 +128,8 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         <!-- Diplôme d'Ingénieur -->
         <div class="education-item" id="diploma">
           <div class="education-left">
-            <div class="education-title">Diplôme d’Ingénieur — General Engineering, Physics &amp; Modeling</div>
-            <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France<sup>[1]</sup><sup>[2]</sup></div>
+            <div class="education-title">Diplôme d’Ingénieur¹ — General Engineering, Physics &amp; Modeling</div>
+            <div class="education-sub">Grande École Télécom Physique Strasbourg, Strasbourg, France²</div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2021–2025</div>
@@ -138,8 +138,8 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
         <!-- Prépa -->
         <div class="education-item" id="prepa">
           <div class="education-left">
-            <div class="education-title">Classes Préparatoires aux Grandes Écoles (PCSI) — Physics, Chemistry &amp; Engineering Sciences<sup>[3]</sup></div>
-            <div class="education-sub">Lycée du Parc, Lyon, France<sup>[4]</sup></div>
+            <div class="education-title">Classes Préparatoires aux Grandes Écoles — Physics, Chemistry &amp; Engineering Sciences³</div>
+            <div class="education-sub">Lycée du Parc, Lyon, France⁴</div>
             <a class="syllabus-link" href="#">Syllabus / link</a>
           </div>
           <div class="education-year">2019–2021</div>
@@ -148,11 +148,11 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
 
       <!-- Footnotes -->
       <div class="footnotes">
-        <p><sup>[1]</sup> The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements common to all French Grandes Écoles.</p>
-        <p><sup>[2]</sup> Grande École Télécom Physique Strasbourg — Institut Mines-Télécom Partner; ranked 30th out of ~170 Grandes Écoles the year I entered. (Insert L’Étudiant 2021 link.)</p>
-        <p><sup>[3]</sup> Classes Préparatoires aux Grandes Écoles (PCSI) — two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French highly-selective institutions.</p>
-        <p><sup>[4]</sup> Lycée du Parc — one of France’s most prestigious preparatory classes; ranked approximately 4th–8th among ~169 first-year PCSI classes nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>.</p>
-        <p><sup>[5]</sup> According to the Washington Accord, the French Diplôme d’Ingénieur (BSc + MSc equivalent) is internationally recognized as equivalent to a combined Bachelor’s and Master’s degree in Engineering. (Insert official Washington Accord link.)</p>
+        <p>1. The French <strong>Diplôme d’Ingénieur</strong> is protected and accredited by the Commission des Titres d'Ingénieur (CTI), with strict curriculum, internship, and international experience requirements common to all French Grandes Écoles. It is internationally recognised as equivalent to a combined BSc + MSc in Engineering.</p>
+        <p>2. Grande École Télécom Physique Strasbourg — Institut Mines-Télécom Partner; ranked 30th out of ~170 Grandes Écoles the year I entered. (Insert L’Étudiant 2021 link.)</p>
+        <p>3. Classes Préparatoires aux Grandes Écoles — two years of intensive undergraduate studies preparing for the competitive entrance examinations to the French Grandes Écoles, the top French highly-selective institutions.</p>
+        <p>4. Lycée du Parc — one of France’s most prestigious preparatory classes; ranked approximately 4th–8th among ~169 first-year PCSI classes nationwide. Sources: <a href="https://www.ipesup.fr/formation/prepa-scientifique/classement/" target="_blank">IPESUP</a>, <a href="https://groupe-reussite.fr/ressources/classement-prepa-pc/" target="_blank">Groupe Réussite</a>.</p>
+        <p>5. According to the Washington Accord, the French Diplôme d’Ingénieur (BSc + MSc equivalent) is internationally recognised as comparable to accredited engineering degrees from other signatory countries.</p>
       </div>
 
     </main>
@@ -192,8 +192,7 @@ window.addEventListener('load', () => {
   if(diploma && prepa && label) {
     const contentBox = document.querySelector('.content').getBoundingClientRect();
     const top = diploma.getBoundingClientRect().top - contentBox.top;
-    const bottom = prepa.getBoundingClientRect().bottom - contentBox.top;
-    label.style.top = (top + (bottom-top)/2 - 40) + 'px';
+    label.style.top = (top - 40) + 'px';
   }
 });
 </script>
