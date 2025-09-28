@@ -153,4 +153,49 @@ h2.page-title { margin: 0 0 24px 0; font-size: 1.8em; color: #ffffff; }
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
     <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
     <nav>
-      <a href="about.html">
+      <a href="about.html">About</a>
+      <a class="current" href="#">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a href="code.html">Code and Software</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content && content.classList.add('active');
+
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else { sidebar.style.right = '0'; }
+
+  // Position vertical line & label
+  const diplElem = document.getElementById('diploma-item');
+  const prepElem = document.getElementById('prepa-item');
+  const contentBox = content.getBoundingClientRect();
+  const line = document.getElementById('verticalLine');
+  const label = document.getElementById('verticalLabel');
+
+  if(diplElem && prepElem && line && label){
+    const diplRect = diplElem.getBoundingClientRect();
+    const prepRect = prepElem.getBoundingClientRect();
+    const top = Math.round(diplRect.top - contentBox.top + 6);
+    const bottom = Math.round(prepRect.top - contentBox.top + prepRect.height - 6);
+    const height = Math.max(20, bottom - top);
+    line.style.top = top + 'px';
+    line.style.height = height + 'px';
+    line.style.left = (contentBox.width * 0.02) + 'px';
+    label.style.top = (top + height/2 - 10) + 'px';
+    label.style.left = (parseFloat(line.style.left) - 36) + 'px';
+  }
+});
+</script>
+
+</body>
+</html>
