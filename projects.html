@@ -19,7 +19,7 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar identique à About */
+/* Sidebar (identique à About/Éducation) */
 .sidebar {
   width: 25%;
   min-width: 220px;
@@ -45,9 +45,7 @@ body {
   background: rgba(0,0,0,0.55);
   z-index: -1;
 }
-.sidebar.active {
-  right: 0;
-}
+.sidebar.active { right: 0; }
 .sidebar h1 {
   font-size: 2.2em;
   margin-bottom: 8px;
@@ -92,10 +90,9 @@ body {
   transition: opacity 1s ease-in-out;
   background-color: #0a1f44;
   min-height: 100vh;
+  box-sizing: border-box;
 }
-.content.active {
-  opacity: 1;
-}
+.content.active { opacity: 1; }
 h1 {
   font-size: 2em;
   margin-bottom: 30px;
@@ -103,54 +100,50 @@ h1 {
   padding-bottom: 10px;
 }
 
-/* Timeline */
-.timeline {
-  position: relative;
-  margin-left: 20px;
-  padding-left: 20px;
-  border-left: 2px solid #ffffff55;
-}
-.timeline-item {
-  position: relative;
-  margin-bottom: 40px;
-}
-.timeline-item:before {
-  content: "";
-  position: absolute;
-  left: -31px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  background-color: white;
-  border-radius: 50%;
-}
-.title {
-  font-weight: bold;
-  font-size: 18px;
-}
-.subtitle {
-  font-size: 15px;
-  color: #ccc;
-  margin-bottom: 5px;
-}
-.date {
-  position: absolute;
-  right: -160px;
-  top: 0;
-  font-size: 14px;
-  color: #aaa;
-  white-space: nowrap;
-}
-.description {
-  font-size: 14px;
-  line-height: 1.6;
+/* Expériences */
+.experience-list {
+  display: block;
   margin-top: 8px;
 }
-.timeline-item a {
-  text-decoration: none;
-  color: white;
+.experience-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.07);
 }
-.timeline-item a:hover {
+.experience-left {
+  max-width: 74%;
+}
+.experience-title {
+  font-size: 1.12em;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+.experience-sub {
+  font-size: 1em;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+}
+.experience-year {
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+.experience-desc {
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin-top: 6px;
+  color: #cccccc;
+}
+.experience-item a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.experience-item a:hover {
   text-decoration: underline;
 }
 </style>
@@ -163,62 +156,75 @@ h1 {
   <div class="content" id="content">
     <main>
       <h1>Experiences & Projects</h1>
-      <div class="timeline">
 
-        <div class="timeline-item">
-          <div class="title"><a href="liverpool.html">Research Intern / Assistant</a></div>
-          <div class="subtitle"> University of Liverpool, Department of Chemistry, United Kingdom</div>
-          <div class="date">Aug 2024 – Jan 2025</div>
-          <div class="description">
-            Completed as part of the Diplôme d’Ingénieur requirements. Thesis: Exploring Synthesis Methods of Alginate/Gelatine Microgels.
+      <div class="experience-list">
+
+        <div class="experience-item">
+          <div class="experience-left">
+            <div class="experience-title"><a href="liverpool.html">Research Intern / Assistant</a></div>
+            <div class="experience-sub">University of Liverpool, Department of Chemistry, United Kingdom</div>
+            <div class="experience-desc">
+              Completed as part of the requirements for my MSc in Engineering program.  
+              Thesis: <em>Exploring Synthesis Methods of Alginate/Gelatine Microgels</em>.  
+              Supervisor: Dr Joe Forth.
+            </div>
           </div>
+          <div class="experience-year">Aug 2024 – Jan 2025</div>
         </div>
 
-        <div class="timeline-item">
-          <div class="title"><a href="cea.html">Research Intern / Assistant</a></div>
-          <div class="subtitle">Commissariat à l’énergie atomique et aux énergies alternatives (CEA), Cadarache, France</div>
-          <div class="date">Mar 2024 – Jul 2024</div>
-          <div class="description">
-            Completed as part of the requirements for my Diplôme d’Ingénieur and MSc.  
-            Theses: Exploring chemotaxis in the magnetotactic bacterium Magnetospirillum gryphiswaldense.  
+        <div class="experience-item">
+          <div class="experience-left">
+            <div class="experience-title"><a href="cea.html">Research Intern / Assistant</a></div>
+            <div class="experience-sub">Commissariat à l’énergie atomique et aux énergies alternatives (CEA), Cadarache, France</div>
+            <div class="experience-desc">
+              Completed as part of the requirements for my dual Master’s degrees in Cell Physics & Engineering.  
+              Theses: <em>Exploring chemotaxis in the magnetotactic bacterium Magnetospirillum gryphiswaldense</em>.  
+              Supervisors: Drs Damien Faivre, Mila Sirinelli-Kojadinovic & Emilie Gachon.
+            </div>
           </div>
+          <div class="experience-year">Mar 2024 – Jul 2024</div>
         </div>
 
-        <div class="timeline-item">
-          <div class="title"><a href="nasa.html">Collaborative Engineering Project</a></div>
-          <div class="subtitle">National Aeronautics and Space Administration (NASA Harvest Program)</div>
-          <div class="date">Oct 2022 – May 2023</div>
-          <div class="description">
-            Evaluation of a field delimitation algorithm, creation of geographic reference data in vector format using QGIS.    
-            Creation of geographic reference data in vector format using QGIS. Co-author of a related publication.
-            Research & implementation of comparison metrics with Python.  
-            Co-author of a related publication.
+        <div class="experience-item">
+          <div class="experience-left">
+            <div class="experience-title"><a href="nasa.html">Collaborative Engineering Project</a></div>
+            <div class="experience-sub">NASA Harvest Program – Télécom Physique Strasbourg – University of Strasbourg</div>
+            <div class="experience-desc">
+              Evaluation of a field delimitation algorithm.  
+              Creation of geographic reference data in vector format using QGIS.  
+              Research & implementation of comparison metrics with Python.  
+              Co-author of a related publication.
+            </div>
           </div>
+          <div class="experience-year">Oct 2022 – May 2023</div>
         </div>
 
-        <div class="timeline-item">
-          <div class="title"><a href="tipe.html">Research Competition for the Grandes Écoles (TIPE)</a></div>
-          <div class="subtitle">Lycée du Parc, Lyon, France</div>
-          <div class="date">2019 – 2021</div>
-          <div class="description">
-            Multidisciplinary research project conducted over three semesters.  
-            Presented in a highly selective oral exam in Paris following national written selection. Thesis: Calcite-based aerosols to counteract global warming.
+        <div class="experience-item">
+          <div class="experience-left">
+            <div class="experience-title"><a href="tipe.html">Research Competition for the ’Grandes Écoles’ (TIPE)</a></div>
+            <div class="experience-sub">Lycée du Parc, Lyon, France</div>
+            <div class="experience-desc">
+              Multidisciplinary research project conducted over three semesters.  
+              Presented in a highly selective oral exam in Paris, following national written selection.  
+              Thesis: <em>Calcite-based aerosols to counteract global warming</em>.
+            </div>
           </div>
+          <div class="experience-year">2019 – 2021</div>
         </div>
 
       </div>
     </main>
   </div>
 
-  <!-- Sidebar identique à About -->
+  <!-- Sidebar corrigée -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
     <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
     <nav>
       <a href="about.html">About</a>
-      <a class="current" href="#">Experiences & Projects</a>
       <a href="education.html">Education</a>
+      <a class="current" href="#">Experiences & Projects</a>
       <a href="code.html">Code and Software</a>
       <a href="publications.html">Publications</a>
       <a href="skills.html">Skills</a>
