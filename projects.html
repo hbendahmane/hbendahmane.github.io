@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Experiences & Projects - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  color: #ffffff;
+}
+
+/* Container */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar identique à About */
+.sidebar {
+  width: 25%;
+  min-width: 220px;
+  background: url("earth-11595(1).jpg") no-repeat center center;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  right: -25%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: right 1s ease-in-out;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 2;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
+.sidebar.active {
+  right: 0;
+}
+.sidebar h1 {
+  font-size: 2.2em;
+  margin-bottom: 8px;
+}
+.sidebar h2 {
+  font-size: 1em;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.sidebar blockquote {
+  font-style: italic;
+  font-size: 1em;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar nav a {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+.sidebar nav a.current {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.sidebar nav a:hover:not(.current) {
+  text-decoration: underline;
+}
+
+/* Contenu principal */
+.content {
+  margin-right: 25%;
+  width: 75%;
+  padding: 60px 40px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-color: #0a1f44;
+  min-height: 100vh;
+}
+.content.active {
+  opacity: 1;
+}
+h1 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ffffff44;
+  padding-bottom: 10px;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 2px solid #ffffff55;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+.timeline-item:before {
+  content: "";
+  position: absolute;
+  left: -31px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 50%;
+}
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
+.subtitle {
+  font-size: 15px;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+.date {
+  position: absolute;
+  right: -160px;
+  top: 0;
+  font-size: 14px;
+  color: #aaa;
+  white-space: nowrap;
+}
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.timeline-item a {
+  text-decoration: none;
+  color: white;
+}
+.timeline-item a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Contenu -->
+  <div class="content" id="content">
+    <main>
+      <h1>Experiences & Projects</h1>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="title"><a href="liverpool.html">Research Intern / Assistant</a></div>
+          <div class="subtitle"> University of Liverpool, Department of Chemistry, United Kingdom</div>
+          <div class="date">Aug 2024 – Jan 2025</div>
+          <div class="description">
+            Completed as part of the Diplôme d’Ingénieur requirements. Thesis: Exploring Synthesis Methods of Alginate/Gelatine Microgels.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="title"><a href="cea.html">Research Intern / Assistant</a></div>
+          <div class="subtitle">Commissariat à l’énergie atomique et aux énergies alternatives (CEA), Cadarache, France</div>
+          <div class="date">Mar 2024 – Jul 2024</div>
+          <div class="description">
+            Completed as part of the requirements for my Diplôme d’Ingénieur and MSc.  
+            Theses: Exploring chemotaxis in the magnetotactic bacterium Magnetospirillum gryphiswaldense.  
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="title"><a href="nasa.html">Collaborative Engineering Project</a></div>
+          <div class="subtitle">National Aeronautics and Space Administration (NASA Harvest Program)</div>
+          <div class="date">Oct 2022 – May 2023</div>
+          <div class="description">
+            Evaluation of a field delimitation algorithm, creation of geographic reference data in vector format using QGIS.    
+            Creation of geographic reference data in vector format using QGIS. Co-author of a related publication.
+            Research & implementation of comparison metrics with Python.  
+            Co-author of a related publication.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="title"><a href="tipe.html">Research Competition for the Grandes Écoles (TIPE)</a></div>
+          <div class="subtitle">Lycée du Parc, Lyon, France</div>
+          <div class="date">2019 – 2021</div>
+          <div class="description">
+            Multidisciplinary research project conducted over three semesters.  
+            Presented in a highly selective oral exam in Paris following national written selection. Thesis: Calcite-based aerosols to counteract global warming.
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Sidebar identique à About -->
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">About</a>
+      <a class="current" href="#">Experiences & Projects</a>
+      <a href="education.html">Education</a>
+      <a href="code.html">Code and Software</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+</div>
+
+<script>
+// Animation sidebar
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+
+  content.classList.add('active');
+
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else {
+    sidebar.style.right = '0';
+  }
+});
+</script>
+
+</body>
+</html>
