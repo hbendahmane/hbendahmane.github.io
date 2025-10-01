@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TIPE Project - Hamza Bendahmane</title>
+<title>TIPE - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body {
   font-family: 'Merriweather', serif;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   color: #ffffff;
+  overflow-x: hidden;
+  background-color: #0a1f44;
 }
 
 /* Container */
@@ -38,7 +39,6 @@ body {
   justify-content: flex-start;
   z-index: 2;
 }
-
 .sidebar::before {
   content: "";
   position: absolute;
@@ -46,180 +46,137 @@ body {
   background: rgba(0,0,0,0.55);
   z-index: -1;
 }
-
 .sidebar.active { right: 0; }
+.sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
+.sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
+.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
+.sidebar nav { display: flex; flex-direction: column; }
+.sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
+.sidebar nav a.current { opacity: 0.5; pointer-events: none; }
+.sidebar nav a:hover:not(.current) { text-decoration: underline; }
 
-.sidebar h1 {
-  font-size: 2.2em;
-  margin-bottom: 8px;
-}
-
-.sidebar h2 {
-  font-size: 1em;
-  margin-bottom: 20px;
-  font-weight: 400;
-}
-
-.sidebar blockquote {
-  font-style: italic;
-  font-size: 1em;
-  line-height: 1.4;
-  margin-bottom: 20px;
-  color: #ffffff;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar nav a {
-  margin-bottom: 10px;
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 0.95em;
-}
-
-.sidebar nav a.current {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.sidebar nav a:hover:not(.current) {
-  text-decoration: underline;
-}
-
-/* Contenu principal */
+/* Content */
 .content {
   margin-right: 25%;
   width: 75%;
   padding: 60px 40px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  background-color: #0a1f44;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 .content.active { opacity: 1; }
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 10px;
+/* Back link */
+.back-link {
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
-.subtitle {
+/* Main title and subtitle */
+h1.page-title {
+  font-size: 2em;
+  margin-bottom: 6px;
+}
+h2.subtitle {
   font-size: 1.1em;
   margin-bottom: 30px;
   color: #ffffff;
+  font-weight: 400;
 }
 
-h2 {
+/* Sections */
+h2.section-title {
+  font-size: 1.3em;
   margin-top: 30px;
-  font-size: 1.5em;
-  border-bottom: 1px solid #ffffff;
-  padding-bottom: 6px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
-
-p {
-  font-size: 1.05em;
+p.section-text {
+  font-size: 1em;
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: #ffffff;
 }
 
-/* Images */
-.logo-container {
+/* Image gallery */
+.image-gallery {
   display: flex;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
-.logo-container img {
-  width: 22%;
-  border-radius: 12px;
-  border: 2px solid #fff;
+.image-gallery img {
+  width: calc(25% - 15px);
+  border-radius: 8px;
 }
 
 /* Footnotes */
-.note-final {
-  font-size: 0.8em;
-  color: #ccc;
-  margin-top: 40px;
-  line-height: 1.4;
-}
-.note-final a {
-  color: #ccc;
-  text-decoration: none;
-}
-.note-final a:hover {
-  text-decoration: underline;
-}
-
-/* Back button */
-.back-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: none;
+.footnotes {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: #cfcfcf;
   font-size: 0.95em;
+  line-height: 1.5;
 }
-.back-link::before {
-  content: "← ";
-}
-.back-link:hover {
-  text-decoration: underline;
-}
+.footnotes p { margin: 10px 0; }
+.footnotes sup { font-size: 0.85em; vertical-align: baseline; }
+.footnotes a { color: #ffffff; text-decoration: none; }
+.footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
 </style>
 </head>
 <body>
 
 <div class="container">
 
-  <!-- Contenu principal -->
   <div class="content" id="content">
     <main>
-      <a href="projects.html" class="back-link">Back to Experiences and Projects</a>
-      <h1>Research Competition for the Grandes Écoles (TIPE)</h1>
-      <div class="subtitle">Classe préparatoire aux Grandes Écoles, Lycée du Parc, Lyon, France</div>
+      <a href="projects.html" class="back-link">← Back to Experiences & Projects</a>
+      <h1 class="page-title">Research Competition for the Grandes Écoles (TIPE)</h1>
+      <h2 class="subtitle">Classe préparatoires aux Grandes Écoles, Lycée du Parc, Lyon, France</h2>
 
-      <!-- Logos -->
-      <div class="logo-container">
-        <img src="lycee-du-parc-logo.jpg" alt="Lycée du Parc">
-        <img src="concours-polytechniques.jpg" alt="Concours Polytechniques">
-        <img src="concours-mines-ponts.jpg" alt="Concours Mines-Ponts">
-        <img src="concours-centrales.jpg" alt="Concours Centrales">
+      <!-- Image gallery -->
+      <div class="image-gallery">
+        <img src="concours_polytech.png" alt="Concours communs polytechniques">
+        <img src="concours_mines.png" alt="Concours commun Mines-Ponts">
+        <img src="concours_centrales.png" alt="Concours centrales">
+        <img src="lycee_parc.png" alt="Lycée du Parc">
       </div>
 
-      <h2>Context</h2>
-      <p>
+      <!-- Sections -->
+      <h2 class="section-title">Context</h2>
+      <p class="section-text">
         Multidisciplinary research project conducted over three semesters. Presented in a highly selective
         oral exam in Paris, following national written selection.
       </p>
 
-      <h2>Goals</h2>
-      <p>
+      <h2 class="section-title">Goals</h2>
+      <p class="section-text">
         I chose to study a geoengineering project<sup>1,2</sup>, focusing on the injection of calcite-based aerosols into the stratosphere to counteract global warming.
       </p>
 
-      <h2>Approach</h2>
-      <p>
+      <h2 class="section-title">Approach</h2>
+      <p class="section-text">
         Impact on Earth’s reflectivity, molecular physico-chemistry, calcite and ozone-layer protection, limitations of such a practice.
       </p>
 
-      <h2>Results</h2>
-      <p>
+      <h2 class="section-title">Results</h2>
+      <p class="section-text">
         Low reflectance for ultraviolet rays, high reflectance for visible and infrared rays, birefringence of rhombohedral calcite crystals, approximate albedo of 0.7. Experimental demonstration of the neutralizing effect of calcite on halogen compounds, providing protection for the ozone layer. Very low yield of this reaction, particle stability compromised by the temperature gradient in the stratosphere, viability also poses limitations.
       </p>
 
       <!-- Footnotes -->
-      <p class="note-final">
-        1. Smith, J. et al. (2021). Atmospheric implications of calcite aerosols.  
-        <a href="https://doi.org/xxxxx" target="_blank">https://doi.org/xxxxx</a>
-      </p>
-      <p class="note-final">
-        2. Doe, A. et al. (2022). Geoengineering and climate modelling: a review.  
-        <a href="https://doi.org/yyyyy" target="_blank">https://doi.org/yyyyy</a>
-      </p>
+      <div class="footnotes">
+        <p id="fn1"><sup>1</sup> Smith, J. et al. (2021) Atmospheric implications of calcite aerosols. 
+          <a href="https://doi.org/xxxxx" target="_blank" rel="noopener">DOI link</a>
+        </p>
+        <p id="fn2"><sup>2</sup> Doe, A. et al. (2022) Geoengineering and climate modelling: a review. 
+          <a href="https://doi.org/yyyyy" target="_blank" rel="noopener">DOI link</a>
+        </p>
+      </div>
     </main>
   </div>
 
@@ -232,16 +189,15 @@ p {
       <a href="about.html">About</a>
       <a href="education.html">Education</a>
       <a class="current" href="projects.html">Experiences and Projects</a>
-      <a class="current" href="#">TIPE</a>
       <a href="code.html">Code and Software</a>
       <a href="publications.html">Publications</a>
       <a href="skills.html">Skills</a>
     </nav>
   </div>
+
 </div>
 
 <script>
-// Animation sidebar
 window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
   const content = document.getElementById('content');
