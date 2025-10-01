@@ -75,6 +75,9 @@ body {
   display: inline-block;
   margin-bottom: 20px;
 }
+.back-link::before {
+  content: "← ";
+}
 
 /* Main title and subtitle */
 h1.page-title {
@@ -113,19 +116,29 @@ p.section-text {
   border-radius: 8px;
 }
 
-/* Footnotes */
+/* Footnotes (identiques About) */
 .footnotes {
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  color: #cfcfcf;
-  font-size: 0.95em;
+  margin-top: 30px;
+  font-size: 0.85em;
+  color: #aaa;
   line-height: 1.5;
 }
-.footnotes p { margin: 10px 0; }
-.footnotes sup { font-size: 0.85em; vertical-align: baseline; }
-.footnotes a { color: #ffffff; text-decoration: none; }
-.footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
+.footnotes p {
+  margin: 6px 0;
+}
+.footnotes a {
+  color: #aaa;
+  text-decoration: none;
+}
+.footnotes a:hover {
+  text-decoration: underline;
+}
+.footnotes a::after {
+  content: " ↗";
+  font-size: 0.85em;
+  opacity: 0.9;
+  margin-left: 4px;
+}
 </style>
 </head>
 <body>
@@ -134,7 +147,7 @@ p.section-text {
 
   <div class="content" id="content">
     <main>
-      <a href="projects.html" class="back-link">← Back to Experiences & Projects</a>
+      <a href="projects.html" class="back-link">Back to Experiences & Projects</a>
       <h1 class="page-title">Research Competition for the Grandes Écoles (TIPE)</h1>
       <h2 class="subtitle">Classe préparatoires aux Grandes Écoles, Lycée du Parc, Lyon, France</h2>
 
@@ -170,10 +183,10 @@ p.section-text {
 
       <!-- Footnotes -->
       <div class="footnotes">
-        <p id="fn1"><sup>1</sup> Smith, J. et al. (2021) Atmospheric implications of calcite aerosols. 
+        <p id="fn1"><sup>1</sup> Smith, J. et al. (2021). Atmospheric implications of calcite aerosols. 
           <a href="https://doi.org/xxxxx" target="_blank" rel="noopener">DOI link</a>
         </p>
-        <p id="fn2"><sup>2</sup> Doe, A. et al. (2022) Geoengineering and climate modelling: a review. 
+        <p id="fn2"><sup>2</sup> Doe, A. et al. (2022). Geoengineering and climate modelling: a review. 
           <a href="https://doi.org/yyyyy" target="_blank" rel="noopener">DOI link</a>
         </p>
       </div>
