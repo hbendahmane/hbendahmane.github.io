@@ -113,19 +113,23 @@ p.section-text {
   border-radius: 8px;
 }
 
-/* Footnotes */
-.footnotes {
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  color: #cfcfcf;
-  font-size: 0.95em;
-  line-height: 1.5;
+/* Footnotes identical to about.html */
+.note-final {
+  font-size: 0.8em;
+  color: #ccc;
+  margin-top: 60px;
+  line-height: 1.4;
 }
-.footnotes p { margin: 10px 0; }
-.footnotes sup { font-size: 0.85em; vertical-align: baseline; }
-.footnotes a { color: #ffffff; text-decoration: none; }
-.footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
+.note-final a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.note-final a::after {
+  content: " ↗";
+  font-size: 0.85em;
+  opacity: 0.9;
+  margin-left: 4px;
+}
 </style>
 </head>
 <body>
@@ -168,15 +172,15 @@ p.section-text {
         Low reflectance for ultraviolet rays, high reflectance for visible and infrared rays, birefringence of rhombohedral calcite crystals, approximate albedo of 0.7. Experimental demonstration of the neutralizing effect of calcite on halogen compounds, providing protection for the ozone layer. Very low yield of this reaction, particle stability compromised by the temperature gradient in the stratosphere, viability also poses limitations.
       </p>
 
-      <!-- Footnotes -->
-      <div class="footnotes">
-        <p id="fn1"><sup>1</sup> Smith, J. et al. (2021) Atmospheric implications of calcite aerosols. 
-          <a href="https://doi.org/xxxxx" target="_blank" rel="noopener">DOI link</a>
-        </p>
-        <p id="fn2"><sup>2</sup> Doe, A. et al. (2022) Geoengineering and climate modelling: a review. 
-          <a href="https://doi.org/yyyyy" target="_blank" rel="noopener">DOI link</a>
-        </p>
-      </div>
+      <!-- Footnotes identical to About -->
+      <p class="note-final">
+        1. Smith, J. et al. (2021) Atmospheric implications of calcite aerosols. 
+        <a href="https://doi.org/xxxxx" target="_blank" rel="noopener">DOI link</a>
+      </p>
+      <p class="note-final">
+        2. Doe, A. et al. (2022) Geoengineering and climate modelling: a review. 
+        <a href="https://doi.org/yyyyy" target="_blank" rel="noopener">DOI link</a>
+      </p>
     </main>
   </div>
 
