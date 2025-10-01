@@ -42,7 +42,7 @@ body {
 .sidebar::before {
   content: "";
   position: absolute;
-  top:0; left:0; right:0; bottom:0;
+  inset: 0;
   background: rgba(0,0,0,0.55);
   z-index: -1;
 }
@@ -75,35 +75,15 @@ body {
   display: inline-block;
   margin-bottom: 20px;
 }
-.back-link::before {
-  content: "← ";
-}
+.back-link::before { content: "← "; }
 
-/* Main title and subtitle */
-h1.page-title {
-  font-size: 2em;
-  margin-bottom: 6px;
-}
-h2.subtitle {
-  font-size: 1.1em;
-  margin-bottom: 30px;
-  color: #ffffff;
-  font-weight: 400;
-}
+/* Titles */
+h1.page-title { font-size: 2em; margin-bottom: 6px; }
+h2.subtitle { font-size: 1.1em; margin-bottom: 30px; color: #ffffff; font-weight: 400; }
 
 /* Sections */
-h2.section-title {
-  font-size: 1.3em;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-p.section-text {
-  font-size: 1em;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #ffffff;
-}
+h2.section-title { font-size: 1.3em; margin-top: 30px; margin-bottom: 10px; color: #ffffff; }
+p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #ffffff; }
 
 /* Image gallery */
 .image-gallery {
@@ -116,29 +96,28 @@ p.section-text {
   border-radius: 8px;
 }
 
-/* Footnotes (identiques About) */
-.footnotes {
-  margin-top: 30px;
-  font-size: 0.85em;
-  color: #aaa;
-  line-height: 1.5;
-}
-.footnotes p {
-  margin: 6px 0;
-}
-.footnotes a {
-  color: #aaa;
+/* Footnote indices (uniform size) */
+sup a {
+  font-size: 0.95em;
+  font-family: inherit;
+  vertical-align: super;
+  color: #ffffff;
   text-decoration: none;
 }
-.footnotes a:hover {
-  text-decoration: underline;
+sup a:hover { text-decoration: underline; }
+
+/* Footnotes */
+.footnotes {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: #cfcfcf;
+  font-size: 0.95em;
+  line-height: 1.5;
 }
-.footnotes a::after {
-  content: " ↗";
-  font-size: 0.85em;
-  opacity: 0.9;
-  margin-left: 4px;
-}
+.footnotes p { margin: 10px 0; }
+.footnotes a { color: #ffffff; text-decoration: none; }
+.footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
 </style>
 </head>
 <body>
@@ -167,8 +146,8 @@ p.section-text {
       </p>
 
       <h2 class="section-title">Goals</h2>
-      <p class="section-text">
-        I chose to study a geoengineering project<sup>1,2</sup>, focusing on the injection of calcite-based aerosols into the stratosphere to counteract global warming.
+      <p class="section-text" id="goals">
+        I chose to study a geoengineering project<sup><a href="#fn1">1</a>,<a href="#fn2">2</a></sup>, focusing on the injection of calcite-based aerosols into the stratosphere to counteract global warming.
       </p>
 
       <h2 class="section-title">Approach</h2>
@@ -183,11 +162,11 @@ p.section-text {
 
       <!-- Footnotes -->
       <div class="footnotes">
-        <p id="fn1"><sup>1</sup> Smith, J. et al. (2021). Atmospheric implications of calcite aerosols. 
-          <a href="https://doi.org/xxxxx" target="_blank" rel="noopener">DOI link</a>
+        <p id="fn1">1. Smith, J. et al. (2021). Atmospheric implications of calcite aerosols. 
+          <a href="https://doi.org/xxxxx" target="_blank" rel="noopener">DOI link</a> <a href="#goals">↑ back</a>
         </p>
-        <p id="fn2"><sup>2</sup> Doe, A. et al. (2022). Geoengineering and climate modelling: a review. 
-          <a href="https://doi.org/yyyyy" target="_blank" rel="noopener">DOI link</a>
+        <p id="fn2">2. Doe, A. et al. (2022). Geoengineering and climate modelling: a review. 
+          <a href="https://doi.org/yyyyy" target="_blank" rel="noopener">DOI link</a> <a href="#goals">↑ back</a>
         </p>
       </div>
     </main>
@@ -215,13 +194,10 @@ window.addEventListener('load', () => {
   const sidebar = document.getElementById('sidebar');
   const content = document.getElementById('content');
   content.classList.add('active');
-
   if (!sessionStorage.getItem('visitedHome')) {
     sidebar.classList.add('active');
     sessionStorage.setItem('visitedHome', 'true');
-  } else {
-    sidebar.style.right = '0';
-  }
+  } else { sidebar.style.right='0'; }
 });
 </script>
 
