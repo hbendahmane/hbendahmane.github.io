@@ -96,43 +96,20 @@ p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #
   border-radius: 8px;
 }
 
-/* Footnote indices (slightly larger) */
-sup a {
-  font-size: 1.05em;
-  font-family: inherit;
-  vertical-align: super;
+/* Styled external links (with arrow) */
+a.external-link {
   color: #ffffff;
   text-decoration: none;
+  font-weight: 600;
 }
-sup a:hover { text-decoration: underline; }
-
-/* Styled external links (with arrow) */
-.syllabus-link {
-  display: inline-block;
-  color: #cfcfcf;
-  font-size: 0.92em;
-  text-decoration: none;
-}
-.syllabus-link::after {
+a.external-link::after {
   content: " ↗";
   font-size: 0.85em;
   vertical-align: super;
-  opacity: 0.8;
-  color: #cfcfcf;
+  opacity: 0.9;
+  margin-left: 4px;
 }
-
-/* Footnotes */
-.footnotes {
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  color: #cfcfcf;
-  font-size: 0.95em;
-  line-height: 1.5;
-}
-.footnotes p { margin: 10px 0; }
-.footnotes a { color: #ffffff; text-decoration: none; }
-.footnotes a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
+a.external-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -143,7 +120,7 @@ sup a:hover { text-decoration: underline; }
     <main>
       <a href="projects.html" class="back-link">Back to Experiences & Projects</a>
       <h1 class="page-title">NASA Harvest Project</h1>
-      <h2 class="subtitle">National Aeronautics and Space Administration (NASA Harvest) - Grande École Télécom Physique Strasbourg - ICube Laboratory</h2>
+      <h2 class="subtitle">Grande École Engineering Studies – Télécom Physique Strasbourg</h2>
 
       <!-- Image gallery -->
       <div class="image-gallery">
@@ -175,8 +152,7 @@ sup a:hover { text-decoration: underline; }
       <h2 class="section-title">Results</h2>
       <p class="section-text">
         Algorithm performance determined per metric and per Ukrainian oblast (approx. 90%).  
-        Co-author in <em>Nature</em> — 
-        <a href="https://doi.org/10.1038/s41597-025-05190-7" target="_blank" rel="noopener" class="syllabus-link">Publication</a>
+        <a href="https://doi.org/10.1038/s41597-025-05190-7" target="_blank" rel="noopener" class="external-link">Co-author in <em>Nature</em></a>
       </p>
     </main>
   </div>
