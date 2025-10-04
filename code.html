@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Code and Software - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  overflow-x: hidden;
+  background-color: #0a1f44;
+}
+
+/* Container */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 25%;
+  min-width: 220px;
+  background: url("earth-11595(1).jpg") no-repeat center center;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  right: -25%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: right 1s ease-in-out;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 2;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
+.sidebar.active { right: 0; }
+.sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
+.sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
+.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
+.sidebar nav { display: flex; flex-direction: column; }
+.sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
+.sidebar nav a.current { opacity: 0.5; pointer-events: none; }
+.sidebar nav a:hover:not(.current) { text-decoration: underline; }
+
+/* Content */
+.content {
+  margin-right: 25%;
+  width: 75%;
+  padding: 60px 40px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.content.active { opacity: 1; }
+
+/* Titles */
+h1.page-title { font-size: 2em; margin-bottom: 30px; }
+
+/* Code demo items (cards in line) */
+.code-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.code-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255,255,255,0.05);
+  padding: 20px 25px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+.code-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+.code-left {
+  max-width: 100%;
+}
+
+/* Title links with arrow */
+.code-title a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+.code-title a::after {
+  content: " ↗";
+  font-size: 0.85em;
+  opacity: 0.9;
+  margin-left: 4px;
+}
+.code-title a:hover { text-decoration: underline; }
+
+.code-desc {
+  font-size: 1em;
+  line-height: 1.4;
+  color: #eaeaea;
+  margin-top: 6px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="content" id="content">
+    <main>
+      <h1 class="page-title">Code and Software</h1>
+
+      <div class="code-list">
+        
+        <!-- C language -->
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="code_c.html">C Language — Real-time PID Motor Control</a>
+            </div>
+            <div class="code-desc">
+              Simulation of a closed-loop control system regulating motor speed with a PID algorithm.
+              Demonstrates core principles used in embedded systems for robotics and mechatronics.
+            </div>
+          </div>
+        </div>
+
+        <!-- Python -->
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="code_python.html">Python — Data Visualization of a PID Controller</a>
+            </div>
+            <div class="code-desc">
+              Implementation of the same control loop using Python with <code>matplotlib</code> for real-time visualization of system response.
+            </div>
+          </div>
+        </div>
+
+        <!-- MATLAB -->
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="code_matlab.html">MATLAB — Control System Simulation</a>
+            </div>
+            <div class="code-desc">
+              Analytical approach to model stability and transient response of dynamic systems using MATLAB’s Control Toolbox.
+            </div>
+          </div>
+        </div>
+
+        <!-- C++ -->
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="code_cpp.html">C++ — Environmental Process Simulation</a>
+            </div>
+            <div class="code-desc">
+              Object-oriented simulation of pollutant dispersion and fluid dynamics, applied to environmental engineering and aerodynamics.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a class="current" href="code.html">Code and Software</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content.classList.add('active');
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else { sidebar.style.right='0'; }
+});
+</script>
+
+</body>
+</html>
