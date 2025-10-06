@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tsunami Propagation Simulator - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Merriweather', serif; margin:0; padding:0; background-color:#0a1f44; color:#fff; }
+  .container { display:flex; flex-direction:column; align-items:center; padding:20px; }
+  h1, h2 { color:#ffffff; }
+  .section { max-width:1200px; margin-bottom:40px; }
+  #mapCanvas, #waveCanvas { border:1px solid #fff; background:#0c2745; margin:10px 0; }
+  #controls { margin:10px 0; }
+  label { margin-right:10px; }
+  input[type=range] { width:300px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="section">
+    <h1>Tsunami Propagation Simulator</h1>
+    <h2>Objective</h2>
+    <p>Simulate the propagation of tsunami waves after an earthquake in the Pacific "Ring of Fire". User can select the epicenter and magnitude; the simulator calculates the time to first coastline impact, wave height, and visualizes the wavefront.</p>
+  </div>
+
+  <div class="section">
+    <h2>Available Data</h2>
+    <ul>
+      <li>Bathymetry (ocean depth) for Pacific region — source: <a href="https://www.ngdc.noaa.gov/mgg/bathymetry/" target="_blank" style="color:#0ff;">NOAA</a></li>
+      <li>Earthquake focal depths and historical magnitudes — source: <a href="https://earthquake.usgs.gov/" target="_blank" style="color:#0ff;">USGS</a></li>
+      <li>Coastline coordinates — source: <a href="https://www.naturalearthdata.com/" target="_blank" style="color:#0ff;">Natural Earth</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Tools & Interface</h2>
+    <canvas id="mapCanvas" width="800" height="400"></canvas>
+    <canvas id="waveCanvas" width="800" height="400"></canvas>
+
+    <div id="controls">
+      <label for="magnitude">Earthquake magnitude:</label>
+      <input type="range" id="magnitude" min="6" max="9" step="0.1" value="7.5">
+      <span id="magValue">7.5</span>
+    </div>
+
+    <p>Click on the ocean in the map above to set the epicenter. Depth at clicked point will be displayed.</p>
+    <p id="depthInfo"></p>
+  </div>
+
+  <div class="section">
+    <h2>Source Code & Compilation</h2>
+    <p>All C code is available on <a href="https://github.com/hamzabendahmane/tsunami-prop-sim" target="_blank" style="color:#0ff;">GitHub</a> and compiled to WebAssembly for browser execution.</p>
+  </div>
+
+</div>
+
+<script>
+const mapCanvas = document.getElementById('mapCanvas');
+const mapCtx = mapCanvas.getContext('2d');
+const waveCanvas = document.getElementById('waveCanvas');
+const waveCtx = waveCanvas.getContext('2d');
+const magnitudeInput = document.getElementById('magnitude');
+const magValue = document.getElementById('magValue');
+const depthInfo = document.getElementById('depthInfo');
+
+// Update displayed magnitude
+magnitudeInput.addEventListener('input', () => {
+  magValue.textContent = magnitudeInput.value;
+});
+
+// Example: simple mock depth function
+function getDepth(lat, lon) {
+  // In real code, replace with bathymetry dataset
+  return 4000 + Math.floor(Math.random()*500); // meters
+}
+
+// Draw simple ocean map placeholder
+function drawMap() {
+  mapCtx.fillStyle = '#004080';
+  mapCtx.fillRect(0, 0, mapCanvas.width, mapCanvas.height);
+  // Could draw coastlines here
+}
+
+// Draw wavefront placeholder
+function drawWave(epicenterX, epicenterY, waveHeight) {
+  waveCtx.clearRect(0,0,waveCanvas.width,waveCanvas.height);
+  waveCtx.fillStyle = '#ff0000';
+  waveCtx.beginPath();
+  waveCtx.arc(epicenterX, epicenterY, waveHeight, 0, 2*Math.PI);
+  waveCtx.fill();
+}
+
+// Handle clicks on map
+mapCanvas.addEventListener('click', (e) => {
+  const rect = mapCanvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  // Mock latitude/longitude
+  const lat = (y/mapCanvas.height)*180-90;
+  const lon = (x/mapCanvas.width)*360-180;
+  
+  const depth = getDepth(lat, lon);
+  depthInfo.textContent = `Clicked depth at (${lat.toFixed(2)}, ${lon.toFixed(2)}): ${depth} m`;
+
+  // Placeholder for WASM call to compute wave propagation
+  const waveHeight = 50 + Math.random()*50;
+  drawWave(x, y, waveHeight);
+});
+
+// Initial draw
+drawMap();
+</script>
+
+</body>
+</html>
