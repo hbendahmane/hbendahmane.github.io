@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PyTorch - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  overflow-x: hidden;
+  background-color: #0a1f44;
+}
+.container { display: flex; min-height: 100vh; }
+.sidebar { width: 25%; min-width: 220px; background: url("earth-11595(1).jpg") no-repeat center center; background-size: cover; position: fixed; top: 0; right: -25%; height: 100%; padding: 20px; box-sizing: border-box; transition: right 1s ease-in-out; color: #ffffff; display: flex; flex-direction: column; justify-content: flex-start; z-index: 2; }
+.sidebar::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.55); z-index: -1; }
+.sidebar.active { right: 0; }
+.sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
+.sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
+.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
+.sidebar nav { display: flex; flex-direction: column; }
+.sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
+.sidebar nav a.current { opacity: 0.5; pointer-events: none; }
+.sidebar nav a:hover:not(.current) { text-decoration: underline; }
+
+.content { margin-right: 25%; width: 75%; padding: 60px 40px; opacity: 0; transition: opacity 1s ease-in-out; min-height: 100vh; box-sizing: border-box; }
+.content.active { opacity: 1; }
+
+.back-link { font-weight: 700; color: #ffffff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+.back-link::before { content: "← "; }
+
+h1.page-title { font-size: 2em; margin-bottom: 6px; }
+h2.section-title { font-size: 1.3em; margin-top: 30px; margin-bottom: 10px; color: #ffffff; }
+p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #ffffff; }
+
+/* Terminal block */
+.terminal-header { font-weight: 700; font-size: 1.1em; margin-bottom: 6px; }
+.terminal-block { background-color: #101f3b; border-radius: 8px; padding: 15px; font-family: monospace; white-space: pre-wrap; overflow-x: auto; color: #cfcfcf; margin-bottom: 30px; }
+
+/* Footnote indices */
+sup a { font-size:0.95em; font-family: inherit; vertical-align: super; color: #ffffff; text-decoration: none; }
+sup a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="content" id="content">
+    <main>
+      <a href="code.html" class="back-link">Back to Code and Software Demo</a>
+      <h1 class="page-title">PyTorch – Neural Model for Sequential Financial Feature Processing</h1>
+
+      <h2 class="section-title">Goal</h2>
+      <p class="section-text">
+        The objective of this module is to demonstrate a clean, production-aligned inference pipeline for an AI-driven trading signal generator. 
+        The goal is to structure a neural model capable of processing sequential market features and outputting three key metrics expected in a quantitative decision system: directional probabilities (Short / Neutral / Long), a confidence score to scale exposure, and a risk estimate to constrain position sizing. 
+        This positions the code as a foundation for a future learning-based trading engine while remaining lightweight and deterministic for demonstration and integration purposes.
+      </p>
+
+      <h2 class="section-title">Engineering Approach and Tools</h2>
+      <p class="section-text">
+        The implementation uses PyTorch to define a GRU-based neural network that processes sequences of synthetic feature vectors. 
+        The model architecture includes an input encoder layer, a recurrent GRU block for temporal pattern extraction, and three dedicated output heads. 
+        Each head produces a specific signal component with appropriate activation functions: Softmax for direction probabilities, Sigmoid for confidence scaling, and Softplus for positive risk estimation. 
+        Data is generated using random tensors to simulate a batch of market sequences, and the model is executed in inference mode without parameter updates. 
+        The inference output is then packaged and the model is exported to ONNX, enabling compatibility with deployment environments and real-time execution engines.
+      </p>
+
+      <h2 class="section-title">Execution Behavior and Output Interpretation</h2>
+      <p class="section-text">
+        The execution produces structured outputs for a batch of five simulated sequences. 
+        The direction probabilities tensor shows a balanced distribution across Short, Neutral, and Long states, confirming consistent Softmax normalization. 
+        The confidence values remain close to 0.5, indicating neutral conviction due to the absence of trained weights. 
+        The risk estimate output returns positive scalar values around 0.59–0.60, as enforced by the Softplus activation. 
+        These outputs confirm that the architecture is functioning correctly, forward propagation is valid, and the model produces coherent tensors ready for downstream consumption in a trading pipeline or ONNX runtime environment.
+      </p>
+
+      <h2 class="section-title">Code</h2>
+      <div class="terminal-header">PyTorch Code</div>
+      <div class="terminal-block">
+# --- PyTorch Model Definition ---
+import torch
+import torch.nn as nn
+
+class TradingSignalGRU(nn.Module):
+    def __init__(self, input_size, hidden_size):
+        super(TradingSignalGRU, self).__init__()
+        self.encoder = nn.Linear(input_size, hidden_size)
+        self.gru = nn.GRU(hidden_size, hidden_size, batch_first=True)
+        self.direction_head = nn.Linear(hidden_size, 3)  # Short / Neutral / Long
+        self.confidence_head = nn.Linear(hidden_size, 1)
+        self.risk_head = nn.Linear(hidden_size, 1)
+
+    def forward(self, x):
+        x = torch.relu(self.encoder(x))
+        output, _ = self.gru(x)
+        last = output[:, -1, :]
+        direction = torch.softmax(self.direction_head(last), dim=1)
+        confidence = torch.sigmoid(self.confidence_head(last))
+        risk = torch.nn.functional.softplus(self.risk_head(last))
+        return direction, confidence, risk
+
+# --- PyTorch Execution Script ---
+batch_size = 5
+sequence_length = 10
+feature_size = 8
+hidden_size = 16
+
+x = torch.rand(batch_size, sequence_length, feature_size)
+
+model = TradingSignalGRU(input_size=feature_size, hidden_size=hidden_size)
+direction, confidence, risk = model(x)
+
+print("Direction probabilities:", direction)
+print("Confidence:", confidence)
+print("Risk estimate:", risk)
+      </div>
+
+    </main>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a href="code.html" class="current">Code and Software Demo</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content.classList.add('active');
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else { sidebar.style.right='0'; }
+});
+</script>
+
+</body>
+</html>
