@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Code and Software Demo - Hamza Bendahmane</title>
+<title>Geospatial Metrics Extract - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body {
@@ -19,99 +19,74 @@ body {
 .sidebar.active { right: 0; }
 .sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
 .sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
-.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
+.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px;}
 .sidebar nav { display: flex; flex-direction: column; }
 .sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
+
 .content { margin-right: 25%; width: 75%; padding: 60px 40px; opacity: 0; transition: opacity 1s ease-in-out; min-height: 100vh; box-sizing: border-box; }
 .content.active { opacity: 1; }
-h1.page-title { font-size: 2em; margin-bottom: 30px; }
-.code-list { display: flex; flex-direction: column; gap: 25px; }
-.code-item { display: flex; justify-content: space-between; align-items: center; background-color: transparent; padding: 20px 25px; border-radius: 12px; transition: background-color 0.3s ease; }
-.code-item:hover { background-color: transparent; }
-.code-left { max-width: 100%; }
-.code-title a { color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.3em; }
-.code-title a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
-.code-title a:hover { text-decoration: underline; }
-.code-desc { font-size: 1em; line-height: 1.4; color: #eaeaea; margin-top: 6px; }
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  text-decoration: none;
+  color: #eaeaea;
+}
+.back-link:hover { text-decoration: underline; }
+
+.terminal-header {
+  background-color: #1c1c1c;
+  padding: 8px 12px;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 1px solid #333;
+}
+
+.terminal-block {
+  background-color: #0d0d0d;
+  padding: 18px;
+  font-family: Consolas, Menlo, monospace;
+  font-size: 0.95em;
+  line-height: 1.5;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  white-space: pre;
+  overflow-x: auto;
+  margin-top: 10px;
+}
 </style>
 </head>
 <body>
 <div class="container">
+
   <div class="content" id="content">
-    <main>
-      <h1 class="page-title">Code and Software Demo</h1>
-      <div class="code-list">
+    <a href="code.html" class="back-link">← Back to Code and Software Demo</a>
 
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="geosp.html"><em>Python</em> – Calculation of Geospatial Data Comparison Metrics (Extract)</a>
-            </div>
-          </div>
-        </div>
+    <h1 class="page-title">Geospatial Data Comparison Metrics — Extract</h1>
 
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="matlab_bridge.html"><em>MATLAB</em> – Bridge Health Monitoring System</a>
-            </div>
-          </div>
-        </div>
+    <p>
+      This page presents an extract of the Python implementation developed as part of my work with <strong>NASA Harvest</strong>.  
+      For a full overview of the <em>context, approach, and results</em>, see  
+      <a href="nasa.html" style="color:#cfcfcf; text-decoration:none;">nasa.html ↗</a>
+    </p>
 
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="pytorch_market.html"><em>PyTorch</em> – Neural Model for Sequential Financial Feature Processing</a>
-            </div>
-          </div>
-        </div>
+    <!-- Terminal-like block -->
+    <div class="terminal-header">PYTHON TERMINAL — EXTRACT</div>
+    <div class="terminal-block">
+# Your Python extract starts here
+# Example prompt style:
+>>> # import necessary geospatial libraries
+>>> # ...
+    </div>
 
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="control_airbus.html"><em>C</em> – Control Logic of an Airbus®-style Fly-by-Wire Flight Control System</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="stochastic_repressilator.html"><em>Python</em> – Stochastic Repressilator Gene Network Using the Gillespie Algorithm</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="verilog_smartgrid.html"><em>Verilog</em> – Smart Grid Frequency Regulation Controller</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="cpp_reservoir.html"><em>C++</em> – Gas Compositional Reservoir Simulation</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="code-item">
-          <div class="code-left">
-            <div class="code-title">
-              <a href="vhdl_water.html"><em>VHDL</em> – Water Treatment Controller</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </main>
   </div>
 
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
