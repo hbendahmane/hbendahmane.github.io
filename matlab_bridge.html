@@ -114,7 +114,7 @@ sup a:hover { text-decoration: underline; }
     <h2 class="section-title">Execution Behavior and Output Interpretation</h2>
     <p class="section-text">
       For a representative scenario, the system outputs a Safety Index of 4.472, indicating a high safety margin, a Remaining Life of 190 years, Damage Accumulation of 0.05, and identifies 1 critical element. 
-      These values reflect a bridge in excellent condition, with minor damage detected that does not compromise structural integrity. The remaining life estimate aligns with real-world expectations for well-maintained large infrastructure (100–200 years¹). 
+      These values reflect a bridge in excellent condition, with minor damage detected that does not compromise structural integrity. The remaining life estimate aligns with real-world expectations for well-maintained large infrastructure (100–200 years <sup><a href="#fn1">1</a></sup>).
       The Safety Index is dimensionless and derived from the reliability analysis, while damage accumulation is a normalized metric of cumulative fatigue cycles. These results allow engineers to prioritize maintenance and forecast interventions with quantitative confidence.
     </p>
 
@@ -287,10 +287,10 @@ fprintf('Critical Elements: %d\n', crit_elements);
 
 
     <!-- Footnotes -->
-    <p id="fn1" style="font-size:0.9em; color:#cfcfcf; margin-top:20px;">
-      ¹ <a href="https://www.senat.fr/rap/r18-609/r18-6095.html" target="_blank">Senate, upper house of the French Parliament report (2019)</a>
-    </p>
-  </div>
+      <div class="footnotes">
+  <p id="fn1">1. Source: Sénat, 2020 — <a href="https://www.senat.fr/" target="_blank">https://www.senat.fr/</a> <a href="#goal">↑ back</a></p>
+</div>
+
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
