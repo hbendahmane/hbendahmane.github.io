@@ -63,6 +63,23 @@ body {
 </style>
 </head>
 <body>
+  /* Styled external links (with arrow) */
+a.external-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+}
+a.external-link::after {
+  content: " ↗";
+  font-size: 0.85em;
+  vertical-align: super;
+  opacity: 0.9;
+  margin-left: 4px;
+}
+a.external-link:hover { text-decoration: underline; }  
+</style>
+</head>
+<body>
 <div class="container">
 
   <div class="content" id="content">
