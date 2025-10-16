@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Geospatial Metrics Extract - Hamza Bendahmane</title>
+<title>Code and Software Demo - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body {
@@ -19,93 +19,99 @@ body {
 .sidebar.active { right: 0; }
 .sidebar h1 { font-size: 2.2em; margin-bottom: 8px; }
 .sidebar h2 { font-size: 1em; margin-bottom: 20px; font-weight: 400; }
-.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px;}
+.sidebar blockquote { font-style: italic; font-size: 1em; line-height: 1.4; margin-bottom: 20px; color: #ffffff; }
 .sidebar nav { display: flex; flex-direction: column; }
 .sidebar nav a { margin-bottom: 10px; text-decoration: none; color: #ffffff; font-weight: bold; font-size: 0.95em; }
 .sidebar nav a.current { opacity: 0.5; pointer-events: none; }
 .sidebar nav a:hover:not(.current) { text-decoration: underline; }
-
 .content { margin-right: 25%; width: 75%; padding: 60px 40px; opacity: 0; transition: opacity 1s ease-in-out; min-height: 100vh; box-sizing: border-box; }
 .content.active { opacity: 1; }
-
-.back-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  font-size: 0.95em;
-  text-decoration: none;
-  color: #eaeaea;
-}
-.back-link:hover { text-decoration: underline; }
-
-.terminal-header {
-  background-color: #1c1c1c;
-  padding: 8px 12px;
-  font-size: 0.9em;
-  font-weight: bold;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  border-bottom: 1px solid #333;
-}
-
-.terminal-block {
-  background-color: #0d0d0d;
-  padding: 18px;
-  font-family: Consolas, Menlo, monospace;
-  font-size: 0.95em;
-  line-height: 1.5;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  white-space: pre;
-  overflow-x: auto;
-  margin-top: 10px;
-}
+h1.page-title { font-size: 2em; margin-bottom: 30px; }
+.code-list { display: flex; flex-direction: column; gap: 25px; }
+.code-item { display: flex; justify-content: space-between; align-items: center; background-color: transparent; padding: 20px 25px; border-radius: 12px; transition: background-color 0.3s ease; }
+.code-item:hover { background-color: transparent; }
+.code-left { max-width: 100%; }
+.code-title a { color: #ffffff; text-decoration: none; font-weight: 700; font-size: 1.3em; }
+.code-title a::after { content: " ↗"; font-size: 0.85em; opacity: 0.9; margin-left: 4px; }
+.code-title a:hover { text-decoration: underline; }
+.code-desc { font-size: 1em; line-height: 1.4; color: #eaeaea; margin-top: 6px; }
 </style>
 </head>
 <body>
 <div class="container">
-
   <div class="content" id="content">
-    <a href="code.html" class="back-link">← Back to Code and Software Demo</a>
+    <main>
+      <h1 class="page-title">Code and Software</h1>
+      <div class="code-list">
 
-    <h1 class="page-title">Geospatial Data Comparison Metrics — Extract</h1>
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="nasa.html"><em>Python</em> – Calculation of Geospatial Data Comparison Metrics (Extract)</a>
+            </div>
+          </div>
+        </div>
 
-    <p>
-      This page presents an extract of the Python implementation developed as part of my work within the NASA Harvest program.
-      <a href="nasa.html" style="color:#cfcfcf; text-decoration:none;">Context, approach, and results ↗</a>
-    </p>
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="matlab_bridge.html"><em>MATLAB</em> – Bridge Health Monitoring System</a>
+            </div>
+          </div>
+        </div>
 
-    <!-- Terminal-like block -->
-    <div class="terminal-block">
-    def IoU(Algo,Ref):
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="pytorch_market.html"><em>PyTorch</em> – Neural Model for Sequential Financial Feature Processing</a>
+            </div>
+          </div>
+        </div>
 
-    # Calculates the Intersection over Union (IoU) between "Algo" and "Ref" dataframes. For each polygon in "Algo", 
-    # it finds the matching polygon in "Ref" with the "id_Ref_Inter" column, and calculates the IoU between the two polyggons. 
-    # If the IoU value is greater than "crit", the IoU value is stored in the 
-    # "IoU_val" array. Finally, a new column "IoU_val" is added to the "NEW" to store these calculated IoU values.
-  
-    #IoU_all creates a new column with each IoU values
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="control_airbus.html"><em>C</em> – Control Logic of an Airbus®-style Fly-by-Wire Flight Control System</a>
+            </div>
+          </div>
+        </div>
 
-    IoU_all=[0 for i in range(len(Algo.geometry))]
-    j=0
-    for i in range(len(Algo.geometry)):
-        if Algo.id_Ref_Inter[i]!='Nan':
-            A_field = Algo.geometry[i]
-            Ref_Id = Algo.id_Ref_Inter[i]    
-            R_field = Ref.geometry[Ref_Id]
-            I_area = R_field.intersection(A_field).area          
-            U_area = R_field.union(A_field).area
-            IoU = I_area/U_area
-            IoU_all[i]=IoU
-            j+=1
-        else:
-            IoU_all[i]='Nan'
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="stochastic_repressilator.html"><em>Python</em> – Stochastic Repressilator Gene Network Using the Gillespie Algorithm</a>
+            </div>
+          </div>
+        </div>
 
-    Algo['IoU_all']=IoU_all  
-    </div>
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="verilog_smartgrid.html"><em>Verilog</em> – Smart Grid Frequency Regulation Controller</a>
+            </div>
+          </div>
+        </div>
 
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="cpp_reservoir.html"><em>C++</em> – Gas Compositional Reservoir Simulation</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-item">
+          <div class="code-left">
+            <div class="code-title">
+              <a href="vhdl_water.html"><em>VHDL</em> – Water Treatment Controller</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
   </div>
 
-  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
