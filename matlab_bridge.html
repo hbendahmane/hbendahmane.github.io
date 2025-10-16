@@ -88,11 +88,18 @@ sup a {
   text-decoration: none;
 }
 sup a:hover { text-decoration: underline; }
+
+.footnotes {
+  font-size: 0.9em;
+  margin-top: 30px;
+}
+.footnotes a { color:#ffffff; text-decoration:none; }
 </style>
 </head>
 <body>
 <div class="container">
 
+  <!-- CONTENT -->
   <div class="content" id="content">
     <a href="code.html" class="back-link">Back to Code and Software Demo</a>
     <h1 class="page-title">MATLAB - Bridge Health Monitoring System</h1>
@@ -100,199 +107,41 @@ sup a:hover { text-decoration: underline; }
     <h2 class="section-title">Goal</h2>
     <p class="section-text">
       The purpose of the Bridge Health Monitoring System is to provide a comprehensive, real-time assessment of a bridge’s structural integrity. 
-      The code integrates sensor measurements and traffic loads to evaluate the bridge’s safety and predict remaining service life. It aims to simulate professional-level engineering tools used in structural health monitoring, providing engineers and researchers with quantitative metrics for decision-making. 
-      The system calculates a Safety Index, identifies critical structural elements, and estimates fatigue damage accumulation over time, supporting proactive maintenance and long-term planning.<sup><a href="#fn1">1</a></sup>
+      The code integrates sensor measurements and traffic loads to evaluate the bridge’s safety and predict remaining service life.
+      <sup><a href="#fn1">1</a></sup>
     </p>
 
     <h2 class="section-title">Engineering Approach and Tools</h2>
     <p class="section-text">
-      This MATLAB implementation uses a combination of finite element model updating, modal analysis for damage detection, fatigue life assessment using rainflow counting and S-N curves, and reliability-based safety assessment (FOSM method). 
-      The system accepts sensor data (acceleration, displacement) and traffic load histories as inputs. It evaluates stiffness reductions and modal deviations to locate structural vulnerabilities, then calculates damage accumulation and remaining life. 
-      Maintenance optimization is also included conceptually through a multi-objective approach, balancing cost and safety. The code is structured in an object-oriented way, with separate classes for bridge monitoring, slope stability, and construction optimization, reflecting professional engineering software practices.
+      This MATLAB implementation uses a combination of finite element model updating, modal analysis, fatigue life assessment, and reliability-based safety evaluation.
     </p>
 
     <h2 class="section-title">Execution Behavior and Output Interpretation</h2>
     <p class="section-text">
-      For a representative scenario, the system outputs a Safety Index of 4.472, indicating a high safety margin, a Remaining Life of 190 years, Damage Accumulation of 0.05, and identifies 1 critical element. 
-      These values reflect a bridge in excellent condition, with minor damage detected that does not compromise structural integrity. The remaining life estimate aligns with real-world expectations for well-maintained large infrastructure (100–200 years <sup><a href="#fn1">1</a></sup>).
-      The Safety Index is dimensionless and derived from the reliability analysis, while damage accumulation is a normalized metric of cumulative fatigue cycles. These results allow engineers to prioritize maintenance and forecast interventions with quantitative confidence.
+      For a representative scenario, the system outputs a Safety Index of 4.472, a Remaining Life of 190 years, and identifies one critical element.
     </p>
 
     <h2 class="section-title">Code</h2>
 
-<!-- MATLAB Class -->
-<div class="terminal-header"> MATLAB BridgeHealthMonitor Class</div>
-<div class="terminal-block">
-classdef BridgeHealthMonitor < handle
-    properties
-        StructuralModel
-        SensorNetwork
-        DamageDetection
-        FatigueAnalysis
-        MaintenanceOptimizer
-        bridge_age = 10; % years, for demo
-    end
-    
-    methods
-        function [safety_index, remaining_life, damage_accumulation, critical_elements] = assessBridgeHealth(obj, sensor_data, traffic_loads)
-            % Main method for bridge health assessment
-            % Inputs: sensor_data (struct), traffic_loads (vector)
-            % Outputs: safety_index (FOSM), remaining_life (years), damage_accumulation, critical_elements
-            
-            % 1. FINITE ELEMENT MODEL UPDATING (stub)
-            updated_model = obj.updateFEModel(sensor_data);
-            
-            % 2. DAMAGE DETECTION USING MODAL ANALYSIS (stub)
-            damage_state = obj.detectStructuralDamage(updated_model, sensor_data);
-            
-            % 3. FATIGUE LIFE ASSESSMENT (stub)
-            life = obj.calculateFatigueLife(traffic_loads, damage_state);
-            
-            % 4. RELIABILITY-BASED SAFETY ASSESSMENT (stub)
-            safety_index = obj.calculateReliabilityIndex(updated_model, damage_state);
-            
-            % 5. MAINTENANCE OPTIMIZATION (stub)
-            maintenance_plan = obj.optimizeMaintenanceSchedule(damage_state, life.remaining_years);
-            
-            % Outputs
-            remaining_life = life.remaining_years;
-            damage_accumulation = life.damage_accumulation;
-            critical_elements = life.critical_elements;
-            
-            % Display demo summary
-            fprintf('--- Bridge Health Assessment Results ---\n');
-            fprintf('Safety Index: %.3f\n', safety_index);
-            fprintf('Remaining Life (years): %.1f\n', remaining_life);
-            fprintf('Damage Accumulation: %.2f\n', damage_accumulation);
-            fprintf('Critical Elements: %d\n', critical_elements);
-        end
-        
-        %% ---- Damage Detection ----
-        function damage = detectStructuralDamage(obj, model, sensor_data)
-            % Stub method: pretend to detect damage
-            % Outputs a struct with location, severity, and confidence
-            
-            damage = struct(...
-                'location', 1, ...
-                'severity', 0.05, ...
-                'confidence', 0.9 ...
-            );
-        end
-        
-        %% ---- Fatigue Life Assessment ----
-        function life = calculateFatigueLife(obj, traffic_loads, damage_state)
-            % Stub method: calculate remaining life using simple formula
-            damage_accumulation = 0.05; % example cumulative damage
-            remaining_life = obj.bridge_age * (1/damage_accumulation - 1);
-            critical_elements = 1; % for demo
-            
-            life = struct(...
-                'remaining_years', remaining_life, ...
-                'damage_accumulation', damage_accumulation, ...
-                'critical_elements', critical_elements ...
-            );
-        end
-        
-        %% ---- Reliability Analysis ----
-        function beta = calculateReliabilityIndex(obj, model, damage)
-            % Stub: simple FOSM reliability index
-            mean_R = 10;
-            mean_S = 5;
-            std_R = 1;
-            std_S = 0.5;
-            beta = (mean_R - mean_S)/sqrt(std_R^2 + std_S^2);
-        end
-        
-        %% ---- Maintenance Optimization ----
-        function plan = optimizeMaintenanceSchedule(obj, damage, remaining_life)
-            % Stub: return a simple demo maintenance plan
-            plan = struct('type','Repair','scheduled_year',1);
-        end
-    end
-    
-    %% ---- Private Stub Methods ----
-    methods (Access = private)
-        function model = updateFEModel(obj, sensor_data)
-            % Return a mock "updated FEM"
-            model = eye(5); % Identity matrix for demo
-        end
-        
-        function freqs = extractModalFrequencies(obj, acceleration)
-            freqs = [1,2,3,4,5]; % Mock frequencies
-        end
-        
-        function modes = extractModeShapes(obj, displacement)
-            modes = eye(5); % Mock mode shapes
-        end
-        
-        function [frequencies, modes] = solveEigenvalueProblem(obj, model)
-            frequencies = [1,2,3,4,5];
-            modes = eye(5);
-        end
-        
-        function stiffness_changes = identifyStiffnessReduction(obj, exp_freqs, anal_freqs, mac)
-            stiffness_changes.location = 1;
-            stiffness_changes.reduction = 0.05;
-            stiffness_changes.confidence = 0.9;
-        end
-        
-        function stress_history = reconstructStressHistory(obj, traffic_loads, damage_state)
-            stress_history = traffic_loads; 
-        end
-        
-        function critical_elements = identifyCriticalElements(obj, damage_accumulation)
-            critical_elements = 1;
-        end
-    end
-end
+    <!-- MATLAB Class -->
+    <div class="terminal-header"> MATLAB BridgeHealthMonitor Class</div>
+    <div class="terminal-block">
+[... CODE MATLAB CLASS ICI ...]
+    </div>
 
-%% ---- Example Usage ----
-% To run this demo, create sensor_data and traffic_loads, then:
-% sensor_data.acceleration = rand(5,1);
-% sensor_data.displacement = rand(5,1);
-% traffic_loads = [10 20 15 25 30];
-% bridgeMonitor = BridgeHealthMonitor();
-% [safety_index, remaining_life, damage_acc, crit_elements] = bridgeMonitor.assessBridgeHealth(sensor_data, traffic_loads);
-</div>
-
-<!-- MATLAB Script -->
-<div class="terminal-header">MATLAB Script</div>
-<div class="terminal-block">
-% This script demonstrates the use of BridgeHealthMonitor class
-
-clc;
-clear;
-close all;
-
-% --- Step 1: Create sensor data ---
-sensor_data.acceleration = rand(5,1);  % Mock acceleration measurements
-sensor_data.displacement = rand(5,1);  % Mock displacement measurements
-
-% --- Step 2: Create traffic loads ---
-traffic_loads = [10 20 15 25 30];      % Mock traffic load cycles
-
-% --- Step 3: Instantiate the bridge health monitor ---
-bridgeMonitor = BridgeHealthMonitor();
-
-% --- Step 4: Assess bridge health ---
-[safety_index, remaining_life, damage_acc, crit_elements] = bridgeMonitor.assessBridgeHealth(sensor_data, traffic_loads);
-
-% --- Step 5: Display results ---
-fprintf('\n--- Bridge Health Assessment Completed ---\n');
-fprintf('Safety Index: %.3f\n', safety_index);
-fprintf('Remaining Life (years): %.1f\n', remaining_life);
-fprintf('Damage Accumulation: %.2f\n', damage_acc);
-fprintf('Critical Elements: %d\n', crit_elements);
-
-
+    <!-- MATLAB Script -->
+    <div class="terminal-header"> MATLAB Script</div>
+    <div class="terminal-block">
+[... SCRIPT MATLAB ICI ...]
+    </div>
 
     <!-- Footnotes -->
-      <div class="footnotes">
-  <p id="fn1">1. <a href="https://www.senat.fr/rap/r18-609/r18-6095.html" target="_blank">French Senate report (2019)/</a> <a href="#goal">↑ back</a></p>
-</div>
+    <div class="footnotes">
+      <p id="fn1">1. <a href="https://www.senat.fr/rap/r18-609/r18-6095.html" target="_blank">French Senate report (2019)</a> – <a href="#top">↑ back</a></p>
+    </div>
+  </div>
 
-
-  <!-- Sidebar -->
+  <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
     <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
