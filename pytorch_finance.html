@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PyTorch - Hamza Bendahmane</title>
+<title>PyTorch - Neural Model for Sequential Financial Feature Processing - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body {
@@ -78,44 +78,114 @@ sup a:hover { text-decoration: underline; }
       </p>
 
       <h2 class="section-title">Code</h2>
-      <div class="terminal-header">PyTorch Code</div>
       <div class="terminal-block">
-# --- PyTorch Model Definition ---
-import torch
+      import torch
 import torch.nn as nn
+import torch.nn.functional as F
+import os
 
-class TradingSignalGRU(nn.Module):
-    def __init__(self, input_size, hidden_size):
-        super(TradingSignalGRU, self).__init__()
-        self.encoder = nn.Linear(input_size, hidden_size)
-        self.gru = nn.GRU(hidden_size, hidden_size, batch_first=True)
-        self.direction_head = nn.Linear(hidden_size, 3)  # Short / Neutral / Long
-        self.confidence_head = nn.Linear(hidden_size, 1)
-        self.risk_head = nn.Linear(hidden_size, 1)
 
-    def forward(self, x):
-        x = torch.relu(self.encoder(x))
-        output, _ = self.gru(x)
-        last = output[:, -1, :]
-        direction = torch.softmax(self.direction_head(last), dim=1)
-        confidence = torch.sigmoid(self.confidence_head(last))
-        risk = torch.nn.functional.softplus(self.risk_head(last))
-        return direction, confidence, risk
+# AI Model
+# -----------------------------
+class QuantTradingAI(nn.Module):
+    """
+    Deep learning model for quantitative trading.
+    
+    Features:
+    - Sequence encoding via GRU
+    - Multi-head outputs: direction, confidence, risk
+    """
+    def __init__(self, feature_dim=256, hidden_dim=128, seq_len=60, num_assets=4):
+        super().__init__()
+        self.seq_len = seq_len
+        self.feature_dim = feature_dim
+        self.hidden_dim = hidden_dim
+        self.num_assets = num_assets
 
-# --- PyTorch Execution Script ---
-batch_size = 5
-sequence_length = 10
-feature_size = 8
-hidden_size = 16
+        # Input encoding
+        self.input_encoder = nn.Linear(feature_dim, hidden_dim)
 
-x = torch.rand(batch_size, sequence_length, feature_size)
+        # GRU sequence model
+        self.gru = nn.GRU(
+            input_size=hidden_dim,
+            hidden_size=hidden_dim,
+            num_layers=1,
+            batch_first=True
+        )
 
-model = TradingSignalGRU(input_size=feature_size, hidden_size=hidden_size)
-direction, confidence, risk = model(x)
+        # Multi-head outputs
+        self.direction_head = nn.Linear(hidden_dim, 3)
+        self.confidence_head = nn.Linear(hidden_dim, 1)
+        self.risk_head = nn.Linear(hidden_dim, 1)
 
-print("Direction probabilities:", direction)
-print("Confidence:", confidence)
-print("Risk estimate:", risk)
+    def forward(self, seq_features):
+        x = F.relu(self.input_encoder(seq_features))
+        gru_out, _ = self.gru(x)
+        last_hidden = gru_out[:, -1, :]
+        direction_logits = self.direction_head(last_hidden)
+        direction_probs = F.softmax(direction_logits, dim=-1)
+        confidence = torch.sigmoid(self.confidence_head(last_hidden))
+        risk = F.softplus(self.risk_head(last_hidden))
+        return {
+            "direction_probs": direction_probs,
+            "confidence": confidence,
+            "risk": risk
+        }
+
+
+# Loss
+# -----------------------------
+class TradingLoss(nn.Module):
+    def __init__(self, risk_penalty=0.1):
+        super().__init__()
+        self.risk_penalty = risk_penalty
+
+    def forward(self, predictions, targets, portfolio_returns):
+        direction_loss = F.cross_entropy(predictions['direction_probs'], targets)
+        risk_adjusted_loss = - (portfolio_returns.mean() / (predictions['risk'] + 1e-6))
+        return direction_loss + self.risk_penalty * risk_adjusted_loss
+
+
+# ONNX Export
+# -----------------------------
+def export_onnx(model, export_path="trading_ai.onnx", seq_len=60, feature_dim=256):
+    """
+    Export model to ONNX with fixed shapes for clean export.
+    """
+    model.eval()
+    dummy_input = torch.randn(1, seq_len, feature_dim)
+    torch.onnx.export(
+        model,
+        dummy_input,
+        export_path,
+        input_names=["seq_features"],
+        output_names=["direction_probs", "confidence", "risk"],
+        opset_version=18,
+        dynamic_axes=None,
+        verbose=False
+    )
+    print(f"[ONNX] Clean export → {export_path}")
+
+
+# Demo
+# -----------------------------
+def demo_run():
+    model = QuantTradingAI()
+    model.eval()
+    batch_size = 5
+    seq_len = 60
+    feature_dim = 256
+    seq_features = torch.randn(batch_size, seq_len, feature_dim)
+    outputs = model(seq_features)
+    print("[Demo] Trading AI outputs:")
+    print("Direction probabilities:\n", outputs['direction_probs'])
+    print("Confidence:\n", outputs['confidence'])
+    print("Risk estimate:\n", outputs['risk'])
+    export_onnx(model)
+
+if __name__ == "__main__":
+    demo_run()
+
       </div>
 
     </main>
