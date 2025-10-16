@@ -28,14 +28,15 @@ body {
 .content { margin-right: 25%; width: 75%; padding: 60px 40px; opacity: 0; transition: opacity 1s ease-in-out; min-height: 100vh; box-sizing: border-box; }
 .content.active { opacity: 1; }
 
+/* Back link */
 .back-link {
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
   display: inline-block;
   margin-bottom: 20px;
-  font-size: 0.95em;
-  text-decoration: none;
-  color: #eaeaea;
 }
-.back-link:hover { text-decoration: underline; }
+.back-link::before { content: "← "; }
 
 .terminal-header {
   background-color: #1c1c1c;
