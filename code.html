@@ -70,18 +70,37 @@ body {
     <h1 class="page-title">Geospatial Data Comparison Metrics — Extract</h1>
 
     <p>
-      This page presents an extract of the Python implementation developed as part of my work with <strong>NASA Harvest</strong>.  
-      For a full overview of the <em>context, approach, and results</em>, see  
-      <a href="nasa.html" style="color:#cfcfcf; text-decoration:none;">nasa.html ↗</a>
+      This page presents an extract of the Python implementation developed as part of my work within the NASA Harvest program.
+      <a href="nasa.html" style="color:#cfcfcf; text-decoration:none;">Context, approach, and results ↗</a>
     </p>
 
     <!-- Terminal-like block -->
-    <div class="terminal-header">PYTHON TERMINAL — EXTRACT</div>
     <div class="terminal-block">
-# Your Python extract starts here
-# Example prompt style:
->>> # import necessary geospatial libraries
->>> # ...
+    def IoU(Algo,Ref):
+
+    # Calculates the Intersection over Union (IoU) between "Algo" and "Ref" dataframes. For each polygon in "Algo", 
+    # it finds the matching polygon in "Ref" with the "id_Ref_Inter" column, and calculates the IoU between the two polyggons. 
+    # If the IoU value is greater than "crit", the IoU value is stored in the 
+    # "IoU_val" array. Finally, a new column "IoU_val" is added to the "NEW" to store these calculated IoU values.
+  
+    #IoU_all creates a new column with each IoU values
+
+    IoU_all=[0 for i in range(len(Algo.geometry))]
+    j=0
+    for i in range(len(Algo.geometry)):
+        if Algo.id_Ref_Inter[i]!='Nan':
+            A_field = Algo.geometry[i]
+            Ref_Id = Algo.id_Ref_Inter[i]    
+            R_field = Ref.geometry[Ref_Id]
+            I_area = R_field.intersection(A_field).area          
+            U_area = R_field.union(A_field).area
+            IoU = I_area/U_area
+            IoU_all[i]=IoU
+            j+=1
+        else:
+            IoU_all[i]='Nan'
+
+    Algo['IoU_all']=IoU_all  
     </div>
 
   </div>
