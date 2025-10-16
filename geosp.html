@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Geospatial Metrics Code Extract - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.back-link { display:inline-block; margin-bottom:15px; text-decoration:none; color:#cfcfcf; font-size:0.9em; }
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  background-color: #0a1f44;
+}
+.container { display: flex; min-height: 100vh; }
+.sidebar { width: 25%; min-width: 220px; background: url("earth-11595(1).jpg") no-repeat center center; background-size: cover; position: fixed; top: 0; right: -25%; height: 100%; padding: 20px; box-sizing: border-box; transition: right 1s ease-in-out; color: #ffffff; display: flex; flex-direction: column; z-index: 2; }
+.sidebar::before { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.55); z-index:-1; }
+.sidebar.active { right:0; }
+.sidebar h1 { font-size:2.2em; margin-bottom:8px; }
+.sidebar h2 { font-size:1em; margin-bottom:20px; font-weight:400; }
+.sidebar blockquote { font-style:italic; font-size:1em; line-height:1.4; margin-bottom:20px; color:#ffffff; }
+.sidebar nav a { margin-bottom:10px; text-decoration:none; color:#ffffff; font-weight:bold; font-size:0.95em; }
+.sidebar nav a.current { opacity:0.5; pointer-events:none; }
+.sidebar nav a:hover:not(.current) { text-decoration:underline; }
+.content { margin-right:25%; width:75%; padding:60px 40px; background-color:#0a1f44; min-height:100vh; box-sizing:border-box; position:relative; opacity:0; transition:opacity 0.9s ease-in-out; }
+.content.active { opacity:1; }
+h2.page-title { margin:0 0 24px 0; font-size:1.8em; color:#ffffff; }
+.section-text { font-size:1em; line-height:1.6; color:#eaeaea; margin-bottom:20px; }
+.link-ref { color:#cfcfcf; text-decoration:none; font-size:0.95em; }
+.link-ref::after { content:" ↗"; font-size:0.85em; opacity:0.8; margin-left:4px; }
+.code-placeholder { margin-top:30px; padding:15px; border:1px dashed #ffffff; color:#cfcfcf; font-size:0.95em; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="content" id="content">
+    <main>
+      <a href="code.html" class="back-link">&#8592; Back to Code and Software Demo</a>
+      <h2 class="page-title">Geospatial Metrics – Extract</h2>
+      <p class="section-text">This page presents an extract of the code implemented as part of my work with NASA Harvest. For full context and detailed explanation of the <strong>methodology, approach, and results</strong>, please refer to the dedicated section here: <a class="link-ref" href="nasa.html">Context, Approach, Results</a>.</p>
+      <div class="code-placeholder">def IoU(Algo,Ref):
+
+    # Calculates the Intersection over Union (IoU) between "Algo" and "Ref" dataframes. For each polygon in "Algo", 
+    # it finds the matching polygon in "Ref" with the "id_Ref_Inter" column, and calculates the IoU between the two polyggons. 
+    # If the IoU value is greater than "crit", the IoU value is stored in the 
+    # "IoU_val" array. Finally, a new column "IoU_val" is added to the "NEW" to store these calculated IoU values.
+  
+    #IoU_all creates a new column with each IoU values
+
+    IoU_all=[0 for i in range(len(Algo.geometry))]
+    j=0
+    for i in range(len(Algo.geometry)):
+        if Algo.id_Ref_Inter[i]!='Nan':
+            A_field = Algo.geometry[i]
+            Ref_Id = Algo.id_Ref_Inter[i]    
+            R_field = Ref.geometry[Ref_Id]
+            I_area = R_field.intersection(A_field).area          
+            U_area = R_field.union(A_field).area
+            IoU = I_area/U_area
+            IoU_all[i]=IoU
+            j+=1
+        else:
+            IoU_all[i]='Nan'
+
+    Algo['IoU_all']=IoU_all  .</div>
+    </main>
+  </div>
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a href="code.html" class="current">Code and Software Demo</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+</div>
+<script>
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content.classList.add('active');
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else { sidebar.style.right='0'; }
+});
+</script>
+</body>
+</html>
