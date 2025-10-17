@@ -38,7 +38,7 @@ body {
 .back-link::before { content: "← "; }
 h1.page-title { font-size:2em; margin-bottom:6px; }
 h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:10px; color:#ffffff; }
-p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; }
+p.section-text { font-size:1em; line-height:1.8; margin-bottom:20px; color:#ffffff; }
 .terminal-header { background-color: #1c1c1c; padding: 8px 12px; font-size: 0.95em; font-weight: bold; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom: 1px solid #333; margin-top:20px; }
 .terminal-block { background-color: #0d0d0d; padding: 18px; font-family: Consolas, Menlo, monospace; font-size: 0.95em; line-height:1.5; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; white-space: pre; overflow-x: auto; margin-top:10px; }
 sup a { font-size:0.95em; font-family: inherit; vertical-align: super; color: #ffffff; text-decoration: none; }
@@ -58,31 +58,42 @@ sup a:hover { text-decoration: underline; }
 
     <h2 class="section-title">Goal</h2>
     <p class="section-text">
-      The goal of this project is to design a Water Treatment Controller that monitors real-time water quality using turbidity, pH, chlorine, and flow rate sensors. The system generates multi-level alerts (Normal, Level 1, Level 2, Level 3) based on an internal water quality score computed from the sensor readings. This project demonstrates the ability to design modular, robust VHDL architectures suitable for industrial water monitoring, with configurable thresholds for proactive safety management.
+      The goal of this project is to design a Water Treatment Controller that monitors real-time water quality using turbidity, pH, chlorine, and flow rate sensors.  
+
+      The system generates multi-level alerts (Normal, Level 1, Level 2, Level 3) based on an internal water quality score computed from the sensor readings.  
+
+      This project demonstrates the ability to design modular, robust VHDL architectures suitable for industrial water monitoring, with configurable thresholds for proactive safety management.
     </p>
 
     <h2 class="section-title">Engineering Approach and Tools</h2>
     <p class="section-text">
-      The system is implemented in VHDL, simulated using GHDL. Sensor inputs and control outputs are modeled with std_logic_vector signals, and score calculations are handled using unsigned arithmetic to avoid overflow. The design consists of three main processes:
-      <ul>
-        <li><b>Quality Score Calculation:</b> A combinational process sums the most significant bits of the sensor readings to compute an internal water quality score.</li>
-        <li><b>Alert Detection:</b> Another combinational process translates the score into a 2-bit alert level, representing Normal, Level 1, Level 2, and Level 3 conditions.</li>
-        <li><b>Synchronous Control Outputs:</b> A clocked process updates outputs such as coagulant_dose, chlorine_dose, pump_speed, and filter_backwash, and also reports the score and alert level during simulation for verification.</li>
-      </ul>
+      The system is implemented in VHDL, simulated using GHDL. Sensor inputs and control outputs are modeled with std_logic_vector signals, and score calculations are handled using unsigned arithmetic to avoid overflow.  
+
+      The design consists of three main processes:
+    </p>
+    <ul class="section-text" style="margin-left:20px; margin-bottom:20px;">
+      <li><b>Quality Score Calculation:</b> A combinational process sums the most significant bits of the sensor readings to compute an internal water quality score.</li>
+      <li><b>Alert Detection:</b> Another combinational process translates the score into a 2-bit alert level, representing Normal, Level 1, Level 2, and Level 3 conditions.</li>
+      <li><b>Synchronous Control Outputs:</b> A clocked process updates outputs such as coagulant_dose, chlorine_dose, pump_speed, and filter_backwash, and also reports the score and alert level during simulation for verification.</li>
+    </ul>
+    <p class="section-text">
       The testbench applies realistic sensor values representing normal conditions, Level 1, Level 2, Level 3 alerts, and a recovery scenario, ending with a controlled assert false statement to mark the simulation end.
     </p>
 
     <h2 class="section-title">Simulation Results</h2>
     <p class="section-text">
       Simulation confirms correct functionality:
-      <ul>
-        <li>The internal quality scores correspond to expectations: 31 (Normal), 65 (Level 1), 276–285 (Level 2), and 21 (Normal after recovery).</li>
-        <li>Alert levels are triggered correctly according to thresholds: Level 2 activates when the score exceeds 225. Level 3 is ready to trigger if scores exceed 300.</li>
-        <li>Control outputs (filter_backwash, pump_speed, coagulant_dose, chlorine_dose) respond accurately to the alert level and sensor inputs.</li>
-        <li>Simulation log clearly reports the score and alert level at each step, making verification straightforward and suitable for professional portfolio documentation.</li>
-      </ul>
+    </p>
+    <ul class="section-text" style="margin-left:20px; margin-bottom:20px;">
+      <li>The internal quality scores correspond to expectations: 31 (Normal), 65 (Level 1), 276–285 (Level 2), and 21 (Normal after recovery).</li>
+      <li>Alert levels are triggered correctly according to thresholds: Level 2 activates when the score exceeds 225. Level 3 is ready to trigger if scores exceed 300.</li>
+      <li>Control outputs (filter_backwash, pump_speed, coagulant_dose, chlorine_dose) respond accurately to the alert level and sensor inputs.</li>
+      <li>Simulation log clearly reports the score and alert level at each step, making verification straightforward and suitable for professional portfolio documentation.</li>
+    </ul>
+    <p class="section-text">
       The simulation ends intentionally with END OF SIMULATION, which is standard in GHDL and indicates controlled termination rather than an error.
     </p>
+
 
     <h2 class="section-title">Code Cells</h2>
 
