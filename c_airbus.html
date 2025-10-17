@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>C – Airbus Fly-by-Wire Control Simulation - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  overflow-x: hidden;
+  background-color: #0a1f44;
+}
+
+/* Container */
+.container { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: 25%; min-width: 220px;
+  background: url("earth-11595(1).jpg") no-repeat center center;
+  background-size: cover;
+  position: fixed; top: 0; right: -25%;
+  height: 100%; padding: 20px;
+  box-sizing: border-box; transition: right 1s ease-in-out;
+  color: #ffffff; display: flex; flex-direction: column; justify-content: flex-start; z-index: 2;
+}
+.sidebar::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.55); z-index: -1; }
+.sidebar.active { right:0; }
+.sidebar h1 { font-size:2.2em; margin-bottom:8px; }
+.sidebar h2 { font-size:1em; margin-bottom:20px; font-weight:400; }
+.sidebar blockquote { font-style: italic; font-size:1em; line-height:1.4; margin-bottom:20px; color:#ffffff; }
+.sidebar nav { display:flex; flex-direction:column; }
+.sidebar nav a { margin-bottom:10px; text-decoration:none; color:#ffffff; font-weight:bold; font-size:0.95em; }
+.sidebar nav a.current { opacity:0.5; pointer-events:none; }
+.sidebar nav a:hover:not(.current) { text-decoration:underline; }
+
+/* Content */
+.content { margin-right:25%; width:75%; padding:60px 40px; opacity:0; transition:opacity 1s ease-in-out; min-height:100vh; box-sizing:border-box; }
+.content.active { opacity:1; }
+
+/* Back link */
+.back-link {
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.back-link::before { content: "← "; }
+
+/* Titles and sections */
+h1.page-title { font-size:2em; margin-bottom:6px; }
+h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:10px; color:#ffffff; }
+p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; }
+
+/* Terminal block */
+.terminal-header {
+  background-color: #1c1c1c;
+  padding: 8px 12px;
+  font-size: 0.95em;
+  font-weight: bold;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 1px solid #333;
+}
+.terminal-block {
+  background-color: #0d0d0d;
+  padding: 18px;
+  font-family: Consolas, Menlo, monospace;
+  font-size: 0.95em;
+  line-height:1.5;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  white-space: pre;
+  overflow-x: auto;
+  margin-top:10px;
+}
+
+/* Footnote indices (uniform size) */
+sup a {
+  font-size:0.95em;
+  font-family: inherit;
+  vertical-align: super;
+  color: #ffffff;
+  text-decoration: none;
+}
+sup a:hover { text-decoration: underline; }
+
+/* Footnotes */
+.footnotes { margin-top:28px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.06); color:#cfcfcf; font-size:0.95em; line-height:1.5; }
+.footnotes p { margin:10px 0; }
+.footnotes a { color:#ffffff; text-decoration:none; }
+.footnotes a::after { content:" ↗"; font-size:0.85em; opacity:0.9; margin-left:4px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="content" id="content">
+    <a href="code.html" class="back-link">Back to Code and Software Demo</a>
+    <h1 class="page-title">C – Airbus Fly-by-Wire Control Simulation</h1>
+
+    <h2 class="section-title">Goal</h2>
+    <p class="section-text">
+      This project simulates the core control logic of an Airbus-style Fly-by-Wire flight control system. The goal is to reproduce, in a clean and demonstrative format, a simplified real-time flight control loop that converts pilot inputs (sidestick, rudder pedals) into surface deflections (elevator, ailerons, rudder) while integrating automatic flight envelope protections such as alpha-floor, high-speed protection, and g-load limiting. The simulation highlights the philosophy behind digital flight control laws, where the pilot no longer directly drives the control surfaces — instead, the aircraft interprets pilot intent and enforces safe behavior.
+    </p>
+
+    <h2 class="section-title">Engineering Approach and Tools</h2>
+    <p class="section-text">
+      The system is designed using a structured, avionics-inspired architecture: sensor acquisition, pilot input processing, control law computation, protection logic, and virtual actuator dispatch. Protections are represented using a bitmask flag system (0x01, 0x02, 0x04), mimicking how real aircraft systems encode status and fault conditions. Mechanical constraints and authority limits are applied to all commands to reflect actuator boundaries found in real flight control surfaces. The simulation uses controlled pseudo-random variation to generate different flight situations while preserving deterministic behavior — a common method in embedded aerospace testing environments.
+    </p>
+
+    <h2 class="section-title">Execution Behavior and Output Interpretation</h2>
+    <p class="section-text">
+      During execution, each cycle outputs the computed surface commands along with a binary protection status flag, allowing clear visualization of when the Fly-by-Wire logic takes corrective action. Some cycles show raw pilot authority, while others demonstrate automatic intervention when flight limits are exceeded. This behavior effectively showcases how modern airliners intelligently filter and modify pilot commands to ensure flight safety. The result is a convincing demonstration of real-world flight computer behavior — precisely the kind of logic expected in professional aerospace simulation systems.
+    </p>
+
+    <h2 class="section-title">Code</h2>
+    <div class="terminal-block">
+// fly_by_wire.c - Airbus A320 Flight Control Laws (Demo)
+// This demo simulates a simplified fly-by-wire system.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <math.h>
+#include <time.h>
+
+// ---------------- Sensors ----------------
+typedef struct {
+    float pitch_angle;      // Aircraft pitch angle (degrees)
+    float roll_angle;       // Aircraft roll angle (degrees)
+    float yaw_angle;        // Aircraft yaw angle (degrees)
+    float airspeed;         // Aircraft airspeed (knots)
+    float angle_of_attack;  // Angle of attack (degrees)
+    float load_factor;      // G-load (g)
+} Sensors;
+
+// ---------------- Pilot Inputs ----------------
+typedef struct {
+    float sidestick_pitch;  // Pilot input on pitch
+    float sidestick_roll;   // Pilot input on roll
+    float rudder;           // Pilot input on rudder
+} PilotInput;
+
+// ---------------- Control Outputs ----------------
+typedef struct {
+    float elevator;         // Command to elevator (degrees)
+    float aileron;          // Command to aileron (degrees)
+    float rudder;           // Command to rudder (degrees)
+    uint8_t protections;    // Active protections (bitfield):
+                            // bit0: alpha-floor, bit1: high-speed, bit2: g-limit
+} ControlOutput;
+
+// ---------------- Protection Limits ----------------
+#define MAX_ALPHA 15.0f       // Max safe angle of attack (stall protection)
+#define MAX_SPEED 350.0f      // Max safe airspeed (knots)
+#define MAX_G 2.5f            // Max positive G load
+#define MIN_G -1.0f           // Max negative G load
+#define MAX_ELEVATOR 30.0f    // Mechanical limit for elevator
+#define MAX_AILERON 25.0f     // Mechanical limit for aileron
+#define MAX_RUDDER 30.0f      // Mechanical limit for rudder
+
+// ---------------- Utility Functions ----------------
+// Generate a random float in the range [min, max]
+float randFloat(float min, float max) {
+    return min + ((float)rand() / (float)RAND_MAX) * (max - min);
+}
+
+// ---------------- Sensor Reading Simulation ----------------
+void readSensors(Sensors* s) {
+    // Populate sensor values with realistic random numbers for demo
+    s->pitch_angle = randFloat(-5.0f, 5.0f);       // Pitch in degrees
+    s->roll_angle  = randFloat(-3.0f, 3.0f);       // Roll in degrees
+    s->yaw_angle   = randFloat(-2.0f, 2.0f);       // Yaw in degrees
+    s->airspeed    = randFloat(230.0f, 370.0f);    // Airspeed (knots)
+    s->angle_of_attack = randFloat(0.0f, 20.0f);   // Angle of attack (deg)
+    s->load_factor = randFloat(-1.5f, 3.5f);       // G-load (g)
+}
+
+// ---------------- Pilot Input Simulation ----------------
+void readPilot(PilotInput* p) {
+    // Populate pilot inputs with small random values for demo
+    p->sidestick_pitch = randFloat(-2.0f, 2.0f);   // Pitch input
+    p->sidestick_roll  = randFloat(-1.5f, 1.5f);   // Roll input
+    p->rudder         = randFloat(-0.5f, 0.5f);    // Rudder input
+}
+
+// ---------------- Compute Control Outputs ----------------
+void computeControl(const Sensors* s, const PilotInput* p, ControlOutput* out) {
+    float pitch = p->sidestick_pitch;  // Start with raw pilot input
+    float roll  = p->sidestick_roll;
+    float rud   = p->rudder;
+    uint8_t prot = 0;                  // Protection bits initially zero
+
+    // --- Alpha-Floor Protection (prevent stall) ---
+    if(s->angle_of_attack > MAX_ALPHA) {
+        pitch -= 0.5f * (s->angle_of_attack - MAX_ALPHA); // Reduce pitch if above safe alpha
+        prot |= 0x01; // Activate alpha-floor bit
+    }
+
+    // --- High-Speed Protection ---
+    if(s->airspeed > MAX_SPEED) {
+        pitch += 0.3f * (s->airspeed - MAX_SPEED);        // Adjust pitch to limit speed
+        prot |= 0x02; // Activate high-speed bit
+    }
+
+    // --- G-Load Protection ---
+    if(s->load_factor > MAX_G) {
+        pitch -= 0.5f * (s->load_factor - MAX_G);        // Reduce pitch for high G
+        prot |= 0x04; // Activate G-limit bit
+    } else if(s->load_factor < MIN_G) {
+        pitch += 0.5f * (MIN_G - s->load_factor);        // Increase pitch for negative G
+        prot |= 0x04; // Activate G-limit bit
+    }
+
+    // --- Mechanical Limits ---
+    if(pitch > MAX_ELEVATOR) pitch = MAX_ELEVATOR;
+    if(pitch < -MAX_ELEVATOR) pitch = -MAX_ELEVATOR;
+    if(roll > MAX_AILERON) roll = MAX_AILERON;
+    if(roll < -MAX_AILERON) roll = -MAX_AILERON;
+    if(rud > MAX_RUDDER) rud = MAX_RUDDER;
+    if(rud < -MAX_RUDDER) rud = -MAX_RUDDER;
+
+    // Store final control outputs
+    out->elevator = pitch;
+    out->aileron  = roll;
+    out->rudder   = rud;
+    out->protections = prot;
+}
+
+// ---------------- Send Outputs to Actuators ----------------
+void sendToActuators(const ControlOutput* out) {
+    // Print actuator commands and active protection flags
+    printf("Elevator: %6.2f | Aileron: %6.2f | Rudder: %6.2f | Protections: 0x%02X\n",
+           out->elevator, out->aileron, out->rudder, out->protections);
+}
+
+// ---------------- Main Flight Loop ----------------
+void flightLoop(void) {
+    Sensors s;
+    PilotInput p;
+    ControlOutput out;
+
+    readSensors(&s);          // 1. Sample sensors
+    readPilot(&p);            // 2. Sample pilot inputs
+    computeControl(&s, &p, &out); // 3. Compute outputs with protections
+    sendToActuators(&out);    // 4. Output results
+}
+
+// ---------------- Main Program ----------------
+int main() {
+    srand((unsigned int)time(NULL)); // Seed RNG
+    printf("Fly-by-wire demo started\n\n");
+
+    // Run 5 simulation cycles
+    for(int i = 0; i < 5; i++){
+        printf("Cycle %d:\n", i + 1);
+        flightLoop();
+        printf("\n");
+    }
+
+    printf("Fly-by-wire demo finished\n");
+    return 0;
+}
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a class="current" href="code.html">Code and Software Demo</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content.classList.add('active');
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else { sidebar.style.right='0'; }
+});
+</script>
+
+</body>
+</html>
