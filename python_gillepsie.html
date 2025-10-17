@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Python – Stochastic Repressilator Gene Network Using the Gillespie Algorithm - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  overflow-x: hidden;
+  background-color: #0a1f44;
+}
+
+/* Container */
+.container { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: 25%; min-width: 220px;
+  background: url("earth-11595(1).jpg") no-repeat center center;
+  background-size: cover;
+  position: fixed; top: 0; right: -25%;
+  height: 100%; padding: 20px;
+  box-sizing: border-box; transition: right 1s ease-in-out;
+  color: #ffffff; display: flex; flex-direction: column; justify-content: flex-start; z-index: 2;
+}
+.sidebar::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.55); z-index: -1; }
+.sidebar.active { right:0; }
+.sidebar h1 { font-size:2.2em; margin-bottom:8px; }
+.sidebar h2 { font-size:1em; margin-bottom:20px; font-weight:400; }
+.sidebar blockquote { font-style: italic; font-size:1em; line-height:1.4; margin-bottom:20px; color:#ffffff; }
+.sidebar nav { display:flex; flex-direction:column; }
+.sidebar nav a { margin-bottom:10px; text-decoration:none; color:#ffffff; font-weight:bold; font-size:0.95em; }
+.sidebar nav a.current { opacity:0.5; pointer-events:none; }
+.sidebar nav a:hover:not(.current) { text-decoration:underline; }
+
+/* Content */
+.content { margin-right:25%; width:75%; padding:60px 40px; opacity:0; transition:opacity 1s ease-in-out; min-height:100vh; box-sizing:border-box; }
+.content.active { opacity:1; }
+
+/* Back link */
+.back-link {
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.back-link::before { content: "← "; }
+
+/* Titles and sections */
+h1.page-title { font-size:2em; margin-bottom:6px; }
+h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:10px; color:#ffffff; }
+p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; }
+
+/* Terminal block */
+.terminal-header {
+  background-color: #1c1c1c;
+  padding: 8px 12px;
+  font-size: 0.95em;
+  font-weight: bold;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 1px solid #333;
+}
+.terminal-block {
+  background-color: #0d0d0d;
+  padding: 18px;
+  font-family: Consolas, Menlo, monospace;
+  font-size: 0.95em;
+  line-height:1.5;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  white-space: pre;
+  overflow-x: auto;
+  margin-top:10px;
+}
+
+/* Footnote indices (uniform size) */
+sup a {
+  font-size:0.95em;
+  font-family: inherit;
+  vertical-align: super;
+  color: #ffffff;
+  text-decoration: none;
+}
+sup a:hover { text-decoration: underline; }
+
+/* Footnotes */
+.footnotes { margin-top:28px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.06); color:#cfcfcf; font-size:0.95em; line-height:1.5; }
+.footnotes p { margin:10px 0; }
+.footnotes a { color:#ffffff; text-decoration:none; }
+.footnotes a::after { content:" ↗"; font-size:0.85em; opacity:0.9; margin-left:4px; }
+
+/* Result image */
+.result-img { width: 100%; max-width: 900px; display:block; margin-top:20px; border-radius:6px; box-shadow:0 0 12px rgba(0,0,0,0.5);}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="content" id="content">
+    <a href="code.html" class="back-link">Back to Code and Software Demo</a>
+    <h1 class="page-title">Python – Stochastic Repressilator Gene Network Using the Gillespie Algorithm</h1>
+
+    <h2 class="section-title">Goal</h2>
+    <p class="section-text">
+      This simulation models a stochastic repressilator gene network using the Gillespie SSA. It captures molecular noise and random fluctuations at the single-cell level, highlighting oscillatory behavior emerging from stochastic reaction dynamics within a three-gene inhibitory loop.
+    </p>
+
+    <h2 class="section-title">Implementation Steps</h2>
+
+    <div class="terminal-header">Imports</div>
+    <div class="terminal-block">
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+    </div>
+
+    <div class="terminal-header">Definition of Rate Constants</div>
+    <div class="terminal-block">
+ki1=ki2=ki3=0.1
+kM1=kM2=kM3= 5.0
+kP1= 1.0
+kP2=10.0
+kP3=100.0
+dM1=dM2=dM3= 0.1
+dP1=dP2=dP3= 0.1
+ka1=ka2=ka3=0.01
+    </div>
+
+    <div class="terminal-header">Codify Rules in a Matrix (shape = rules x species)</div>
+    <div class="terminal-block">
+#          Ga1  Gi1  M1  P1  Ga2 Gi2 M2  P2 Ga3   Gi3  M3 P3
+matrix = [[ 0,  0,   0, -2,  -1,  1, 0,  0,  0,    0,  0,  0],   #2P1+Ga2->Gi2
+          [ 0,  0,   0,  0,   0,  0, 0, -2, -1,    1,  0,  0],   #2P2+Ga3->Gi3 
+          [-1,  1,   0,  0,   0,  0, 0,  0,  0,    0,  0, -2],   #2P3+Ga1->Gi1     
+          [ 0,  0,   1,  0,   0,  0, 0,  0,  0,    0,  0,  0],   #Ga1->Ga1+M1      
+          [ 0,  0,   0,  0,   0,  0, 2,  0,  0,    0,  0,  0],   #Ga2->Ga2+M2      
+          [ 0,  0,   0,  0,   0,  0, 0,  0,  0,    0,  1,  0],   #Ga3->Ga3+M3      
+          [ 0,  0,   0,  1,   0,  0, 0,  0,  0,    0,  0,  0],   #M1->M1+P1        
+          [ 0,  0,   0,  0,   0,  0, 0,  1,  0,    0,  0,  0],   #M2->M2+P2        
+          [ 0,  0,   0,  0,   0,  0, 0,  0,  0,    0,  0,  1],   #M3->M3+P3       
+          [ 0,  0,  -1,  0,   0,  0, 0,  0,  0,    0,  0,  0],   #M1->0            
+          [ 0,  0,   0,  0,   0,  0,-1,  0,  0,    0,  0,  0],   #M2->0            
+          [ 0,  0,   0,  0,   0,  0, 0,  0,  0,    0, -1,  0],   #M3->0           
+          [ 0,  0,   0, -1,   0,  0, 0,  0,  0,    0,  0,  0],   #P1->0           
+          [ 0,  0,   0,  0,   0,  0, 0, -1,  0,    0,  0,  0],   #P2->0            
+          [ 0,  0,   0,  0,   0,  0, 0,  0,  0,    0,  0, -1],   #P3->0            
+          [ 1, -1,   0,  0,   0,  0, 0,  0,  0,    0,  0,  0],   #Gi1->Ga1         
+          [ 0,  0,   0,  0,   1, -1, 0,  0,  0,    0,  0,  0],   #Gi2->Ga2         
+          [ 0,  0,   0,  0,   0,  0, 0,  0,  1,    -1,  0,  0]]   #Gi3->Ga3
+    </div>
+
+    <div class="terminal-header">Definition of Propensities</div>
+    <div class="terminal-block">
+def propensities(species, ki1, kM1, kP1, dM1, dP1, ka1,ki2, kM2, kP2, dM2, dP2, ka2,ki3, kM3, kP3, dM3, dP3, ka3):
+    Ga1, Gi1, M1, P1, Ga2, Gi2, M2, P2, Ga3, Gi3, M3, P3= species
+    prop = np.zeros(shape=18)
+    prop[0] = ki2*Ga2*(P1**2)#2P1+Ga2->Gi2
+    prop[1] = ki3*Ga3*(P2**2)#2P2+Ga3->Gi3 
+    prop[2] = ki1*Ga1*(P3**2)#2P3+Ga1->Gi1     
+    prop[3] = kM1*Ga1        #Ga1->Ga1+M1      
+    prop[4] = kM2*Ga2        #Ga2->Ga2+M2      
+    prop[5] = kM3*Ga3        #Ga3->Ga3+M3      
+    prop[6] = kP1*M1         #M1->M1+P1        
+    prop[7] = kP2*M2         #M2->M2+P2        
+    prop[8] = kP3*M3         #M3->M3+P3       
+    prop[9] = dM1*M1         #M1->0            
+    prop[10]= dM2*M2         #M2->0            
+    prop[11] =dM3*M3         #M3->0           
+    prop[12] =dP1*P1         #P1->0           
+    prop[13] =dP2*P2         #P2->0            
+    prop[14] =dP3*P3         #P3->0            
+    prop[15] =ka1*Gi1        #Gi1->Ga1         
+    prop[16] =ka2*Gi2        #Gi2->Ga2         
+    prop[17] =ka3*Gi3        #Gi3->Ga3
+    return prop              
+    </div>
+
+    <div class="terminal-header">Update Species</div>
+    <div class="terminal-block">
+def update_species(species, rule):
+    Ga1, Gi1, M1, P1, Ga2, Gi2, M2, P2, Ga3, Gi3, M3, P3= species
+    if rule==0: 
+        Ga2-=1
+        Gi2+=1
+        P1=P1-2
+    elif rule==1:
+        Ga3-=1
+        Gi3+=1
+        P2=P2-2
+    elif rule==2:
+        Ga1-=1
+        Gi1+=1
+        P3=P3-2
+    elif rule==3:
+        M1+=1
+    elif rule==4:
+        M2+=1
+    elif rule==5:
+        M3+=1
+    elif rule==6:
+        P1+=1    
+    elif rule==7:
+        P2+=1  
+    elif rule==8:
+        P3+=1  
+    elif rule==9:
+        M1-=1
+    elif rule==10:
+        M2-=1 
+    elif rule==11:
+        M3-=1 
+    elif rule==12:
+        P1-=1   
+    elif rule==13:
+        P2-=1 
+    elif rule==14:
+        P3-=1 
+    elif rule==15:
+        Ga1+=1
+        Gi1-=1
+    elif rule==16:
+        Ga2+=1
+        Gi2-=1
+    elif rule==17:
+        Ga3+=1
+        Gi3-=1
+    else:
+        raise ValueError('Invalid rule selection')
+    species = [Ga, Gi, M, P]
+    return species
+
+#We add all the values obtained in a compact ensemble
+def update_species_compact(species, rule):
+    
+    species = np.asarray(species) + np.asarray(matrix[rule])
+    
+    return list(species)
+    </div>
+
+    <div class="terminal-header">Gillespie SSA Simulation</div>
+    <div class="terminal-block">
+# Initlialization
+Ga1, Gi1, M1, P1, Ga2, Gi2, M2, P2, Ga3, Gi3, M3, P3= 1, 0, 0, 0,1, 0, 0, 0,1, 0, 0, 0
+species = [Ga1, Gi1, M1, P1, Ga2, Gi2, M2, P2, Ga3, Gi3, M3, P3]
+
+# Simulation
+t = 0
+tstop = 1000
+state = []
+time = []
+while (t<tstop):
+    
+    # store the system state'
+    state.append(species)
+    time.append(t)
+    
+    # calculate propensitites
+    prop = propensities(species,ki1, kM1, kP1, dM1, dP1, ka1,ki2, kM2, kP2, dM2, dP2, ka2,ki3, kM3, kP3, dM3, dP3, ka3)
+    
+    # random time for each reach
+    T = np.random.exponential(scale=10/prop)
+    
+    # choose the "fastest" reaction
+    rule = np.argsort(T)[0]
+    
+    # update species
+    #species = update_species(species, rule)
+    species = update_species_compact(species, rule)
+    
+    # update time
+    t+=np.sort(T)[0]
+
+    sns.set(style="ticks", font_scale=1.5,
+       rc={'axes.linewidth':2,
+           "axes.spines.right":True, "axes.spines.top":False,
+           'xtick.direction':'in','ytick.direction':'in'})
+state = np.asarray(state)
+time = np.asarray(time)
+
+ax1 = plt.gca()
+ax1.plot(time, state[:,2], c=sns.color_palette()[0], label=r'$M1$')
+ax1.plot(time, state[:,3], c=sns.color_palette()[1], label=r'$P1$')
+ax1.plot(time, state[:,6], c=sns.color_palette()[2], label=r'$M2$')
+ax1.plot(time, state[:,7], c=sns.color_palette()[3], label=r'$P2$')
+ax1.plot(time, state[:,10], c=sns.color_palette()[4], label=r'$M3$')
+ax1.plot(time, state[:,11], c=sns.color_palette()[5], label=r'$P3$')
+plt.legend(loc=(0.0, 1), ncol=4, frameon=False)
+ax1.set_xlabel(r"time")
+ax1.set_ylabel("Proteins per cell")
+
+ax2 = ax1.twinx()
+ax2.plot(time, state[:,0], '.', c=sns.color_palette("tab20",20)[6], label=r'$G_a1$')
+ax2.plot(time, state[:,1], '.', c=sns.color_palette("tab20",20)[7], label=r'$G_i1$')
+ax2.plot(time, state[:,4], '.', c=sns.color_palette("tab20",20)[8], label=r'$G_a2$')
+ax2.plot(time, state[:,5], '.', c=sns.color_palette("tab20",20)[9], label=r'$G_i2$')
+ax2.plot(time, state[:,8], '.', c=sns.color_palette("tab20",20)[10], label=r'$G_a3$')
+ax2.plot(time, state[:,9], '.', c=sns.color_palette("tab20",20)[11], label=r'$G_i3$')
+plt.legend(loc=(0.5, 1), ncol=4, frameon=False)
+
+plt.figtext(1.5, 0.01, 'Gillepsie algorithm for a three genes represillator', ha='center', va='center')
+ax2.set_ylabel("Genes")
+
+plt.show()
+    </div>
+
+    <h2 class="section-title">Execution Results</h2>
+    <img src="gillespie.jpg" alt="Gillespie SSA Results" class="result-img">
+
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a class="current" href="code.html">Code and Software Demo</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content.classList.add('active');
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else { sidebar.style.right='0'; }
+});
+</script>
+
+</body>
+</html>
