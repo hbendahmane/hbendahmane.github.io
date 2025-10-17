@@ -116,6 +116,7 @@ sup a:hover { text-decoration: underline; }
 
     <div class="terminal-header">Imports</div>
 <div class="terminal-block">
+# Author: Hamza Bendahmane
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -125,6 +126,7 @@ warnings.filterwarnings('ignore')
 
 <div class="terminal-header">Definition of Rate Constants</div>
 <div class="terminal-block">
+# Author: Hamza Bendahmane
 ki1 = ki2 = ki3 = 0.1
 kM1 = kM2 = kM3 = 5.0
 kP1 = 1.0
@@ -137,6 +139,7 @@ ka1 = ka2 = ka3 = 0.01
 
 <div class="terminal-header">Codify Rules in a Matrix (shape = rules x species)</div>
 <div class="terminal-block">
+# Author: Hamza Bendahmane
 #          Ga1  Gi1  M1  P1  Ga2 Gi2 M2  P2 Ga3 Gi3 M3 P3
 matrix = [[ 0,  0,   0, -2,  -1,  1, 0,  0,  0, 0,  0,  0], #2P1+Ga2->Gi2
           [ 0,  0,   0,  0,   0,  0, 0, -2, -1, 1,  0,  0], #2P2+Ga3->Gi3
@@ -160,6 +163,7 @@ matrix = [[ 0,  0,   0, -2,  -1,  1, 0,  0,  0, 0,  0,  0], #2P1+Ga2->Gi2
 
 <div class="terminal-header">Definition of Propensities</div>
 <div class="terminal-block">
+  # Author: Hamza Bendahmane
 def propensities(species, ki1,kM1,kP1,dM1,dP1,ka1, ki2,kM2,kP2,dM2,dP2,ka2, ki3,kM3,kP3,dM3,dP3,ka3):
     Ga1, Gi1, M1, P1, Ga2, Gi2, M2, P2, Ga3, Gi3, M3, P3 = species
     prop = np.zeros(18)
@@ -186,6 +190,7 @@ def propensities(species, ki1,kM1,kP1,dM1,dP1,ka1, ki2,kM2,kP2,dM2,dP2,ka2, ki3,
 
 <div class="terminal-header">Update Species</div>
 <div class="terminal-block">
+# Author: Hamza Bendahmane
 def update_species_compact(species, rule):
     species = np.asarray(species) + np.asarray(matrix[rule])
     return list(species)
@@ -193,6 +198,8 @@ def update_species_compact(species, rule):
 
 <div class="terminal-header">Gillespie SSA Simulation</div>
 <div class="terminal-block">
+# Author: Hamza Bendahmane
+  
 # Initialization
 species = [1,0,0,0, 1,0,0,0, 1,0,0,0]  # Ga1,Gi1,M1,P1,Ga2,...
 t = 0
