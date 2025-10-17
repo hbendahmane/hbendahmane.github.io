@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Python – Stochastic Repressilator Gene Network Using the Gillespie Algorithm</title>
+<style>
+body { background:#0e0e0e; color:#e5e5e5; font-family:Arial, sans-serif; }
+.section-title { margin-top:40px; font-size:1.4em; font-weight:700; }
+.terminal-block { background:#1a1a1a; padding:15px; margin-top:20px; border-radius:6px; font-family:monospace; white-space:pre; }
+img { display:block; margin:20px auto; max-width:80%; }
+</style>
+</head>
+<body>
+<a href="code_and_software_demo.html" class="back-link">Back to Code and Software Demo</a>
+<h1>Python – Stochastic Repressilator Gene Network Using the Gillespie Algorithm</h1>
+
+<h2 class="section-title">Goal</h2>
+<p>The goal of this simulation is to model a stochastic repressilator gene network using the Gillespie SSA (Stochastic Simulation Algorithm). Unlike deterministic differential equation models, this implementation captures molecular noise and random fluctuations in gene expression at the single-cell scale. The objective is to observe how oscillatory behavior in mRNA (Mi) and protein (Pi) levels can emerge purely from stochastic reaction dynamics within a three-gene inhibitory loop.</p>
+
+<h2 class="section-title">Engineering Approach and Tools</h2>
+<p>The biological system is encoded as a reaction transition matrix, where each row corresponds to a chemical reaction and each column represents a molecular species (active/inactive gene states, mRNA, proteins). At each simulation step, reaction propensities are computed based on kinetic parameters such as transcription, translation, repression, and degradation rates. The Gillespie algorithm is then used to randomly select the next reaction and its stochastic time increment using exponential sampling. The system state evolves step-by-step, and trajectories for gene state switching (Ga/Gi), mRNA synthesis (Mi), and protein production (Pi) are visualized using matplotlib.</p>
+
+<h2 class="section-title">Execution Behavior and Output Interpretation</h2>
+<p>The execution produces clear stochastic oscillations in the expression levels of M1, M2, M3 and P1, P2, P3. These oscillations emerge without any deterministic enforcement, driven solely by intrinsic biochemical noise. The plots reveal alternating repression and activation cycles across the three genes, confirming that stochasticity alone can generate oscillatory gene expression patterns in a minimalist feedback network. This behavior closely aligns with biological observations where noise is not a disturbance, but a fundamental driver of dynamic regulation in living systems.</p>
+<img src="gillepsie.jpg" alt="Gillespie Simulation Output">
+
+<h2 class="section-title">Code</h2>
+<div class="terminal-block"># Imports
+</div>
+<div class="terminal-block"># Definition of the rates constants
+</div>
+<div class="terminal-block"># Codify the rules in matrix shape=(rules, species)
+</div>
+<div class="terminal-block"># Definition of the propensities
+</div>
+<div class="terminal-block"># Update of species
+</div>
+<div class="terminal-block"># Implement the Gillespie SSA algorithm
+</div>
+</body>
+</html>
