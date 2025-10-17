@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SystemVerilog – Smart Grid Frequency Regulation Controller - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  overflow-x: hidden;
+  background-color: #0a1f44;
+}
+.container { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 25%; min-width: 220px;
+  background: url("earth-11595(1).jpg") no-repeat center center;
+  background-size: cover;
+  position: fixed; top: 0; right: -25%;
+  height: 100%; padding: 20px;
+  box-sizing: border-box; transition: right 1s ease-in-out;
+  color: #ffffff; display: flex; flex-direction: column; justify-content: flex-start; z-index: 2;
+}
+.sidebar::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.55); z-index: -1; }
+.sidebar.active { right:0; }
+.sidebar h1 { font-size:2.2em; margin-bottom:8px; }
+.sidebar h2 { font-size:1em; margin-bottom:20px; font-weight:400; }
+.sidebar blockquote { font-style: italic; font-size:1em; line-height:1.4; margin-bottom:20px; color:#ffffff; }
+.sidebar nav { display:flex; flex-direction:column; }
+.sidebar nav a { margin-bottom:10px; text-decoration:none; color:#ffffff; font-weight:bold; font-size:0.95em; }
+.sidebar nav a.current { opacity:0.5; pointer-events:none; }
+.sidebar nav a:hover:not(.current) { text-decoration:underline; }
+.content { margin-right:25%; width:75%; padding:60px 40px; opacity:0; transition:opacity 1s ease-in-out; min-height:100vh; box-sizing:border-box; }
+.content.active { opacity:1; }
+.back-link { font-weight: 700; color: #ffffff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+.back-link::before { content: "← "; }
+h1.page-title { font-size:2em; margin-bottom:6px; }
+h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:10px; color:#ffffff; }
+p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; }
+.terminal-header { background-color: #1c1c1c; padding: 8px 12px; font-size: 0.95em; font-weight: bold; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom: 1px solid #333; margin-top:20px; }
+.terminal-block { background-color: #0d0d0d; padding: 18px; font-family: Consolas, Menlo, monospace; font-size: 0.95em; line-height:1.5; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; white-space: pre; overflow-x: auto; margin-top:10px; }
+.reg-table { border-collapse: collapse; width: 100%; max-width: 900px; font-family: Arial, sans-serif; margin-top:20px; }
+.reg-table th, .reg-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+.reg-table th { background: #f4f6f8; color: #111; font-weight: 600; }
+.reg-okay { color: #0a6; font-weight: 600; }
+.reg-warn { color: #d66; font-weight: 600; }
+.reg-note { font-size: 0.9em; color: #666; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="content" id="content">
+    <a href="code.html" class="back-link">Back to Code and Software Demo</a>
+    <h1 class="page-title">SystemVerilog – Smart Grid Frequency Regulation Controller</h1>
+
+    <h2 class="section-title">Goal</h2>
+    <p class="section-text">
+      The objective of this simulation-based prototype is to design and validate a Smart Grid Frequency Regulation Controller capable of dynamically adjusting generator power setpoints based on real-time grid conditions. The controller must:
+      <br><br>
+      - Detect deviations in grid frequency from the nominal value (50.00 Hz) and apply corrective actions according to supervisory policy.<br>
+      - Operate under two distinct control states:<br>
+      01 — GRID_CONNECTED (Normal Mode): Frequency is within acceptable limits, generators react gradually using droop control logic.<br>
+      10 — EMERGENCY Mode: Frequency deviation exceeds a critical threshold. Emergency dispatch logic overrides normal droop adjustments.<br>
+      - Handle generator availability constraints and provide realistic engineering behavior avoiding unrealistic jumps.
+    </p>
+
+    <h2 class="section-title">Engineering Approach and Tools</h2>
+    <p class="section-text">
+      The regulator is implemented as a parametric SystemVerilog hardware module, scalable from 4 to N generators. Each generator has capacity, ramp rate, and availability flags. Droop control is applied in normal mode, emergency logic engages when frequency deviates critically. A testbench automates multiple scenarios. Simulation tracks control_mode, emergency_signal, and setpoints.
+    </p>
+
+    <h2 class="section-title">Execution Behavior and Output Interpretation</h2>
+    <p class="section-text">
+      Simulation results are summarized in the table below. Each scenario shows how the controller behaves under nominal, under-frequency, over-frequency, and generator outage conditions.
+    </p>
+
+    <table class="reg-table" aria-label="Grid regulator test results">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Frequency (Hz)</th>
+          <th>Control Mode (bits)</th>
+          <th>Emergency</th>
+          <th>Observed Behavior</th>
+          <th>Validation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nominal</td>
+          <td>50.00</td>
+          <td>01</td>
+          <td>0</td>
+          <td>Proportional dispatch; droop used for minor corrections</td>
+          <td class="reg-okay">Correct</td>
+        </tr>
+        <tr>
+          <td>Slight under-frequency</td>
+          <td>49.60</td>
+          <td>01</td>
+          <td>0</td>
+          <td>Increased setpoints gradually (droop); no emergency</td>
+          <td class="reg-okay">Correct</td>
+        </tr>
+        <tr>
+          <td>Severe under-frequency</td>
+          <td>48.50</td>
+          <td>10</td>
+          <td>1</td>
+          <td>Emergency mode: maximize available generation</td>
+          <td class="reg-okay">Correct</td>
+        </tr>
+        <tr>
+          <td>Over-frequency</td>
+          <td>51.50</td>
+          <td>10</td>
+          <td>1</td>
+          <td>Emergency mode: controlled reduction of generation</td>
+          <td class="reg-okay">Correct</td>
+        </tr>
+        <tr>
+          <td>Generator outage (gen2 offline)</td>
+          <td>50.00</td>
+          <td>01</td>
+          <td>0</td>
+          <td>Gen2 setpoint = 0; remaining units compensate</td>
+          <td class="reg-okay">Correct</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="reg-note">
+      <strong>Legend:</strong> <code>01</code> = GRID_CONNECTED (normal); <code>10</code> = EMERGENCY.  
+      <br><strong>“Correct”</strong> indicates the observed behavior matches the design specification.
+    </p>
+
+    <h2 class="section-title">Code Cells</h2>
+
+    <div class="terminal-header">design.sv</div>
+    <div class="terminal-block">
+// Author: Hamza Bendahmane
+// GridFrequencyRegulator_pro.sv
+// Professional 4-generator regulator with droop control, ramp limits, emergency handling
+    </div>
+
+    <div class="terminal-header">testbench.sv</div>
+    <div class="terminal-block">
+// Author: Hamza Bendahmane
+// tb_GridFrequencyRegulator_pro.sv
+// Compact testbench validating nominal, under/over-frequency and generator outage scenarios
+    </div>
+
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
+    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="projects.html">Experiences and Projects</a>
+      <a class="current" href="code.html">Code and Software Demo</a>
+      <a href="publications.html">Publications</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+  content.classList.add('active');
+  if (!sessionStorage.getItem('visitedHome')) {
+    sidebar.classList.add('active');
+    sessionStorage.setItem('visitedHome', 'true');
+  } else { sidebar.style.right='0'; }
+});
+</script>
+
+</body>
+</html>
