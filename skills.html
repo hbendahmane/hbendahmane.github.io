@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skills - Hamza Bendahmane</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Merriweather', serif; margin: 0; padding: 0; color: #ffffff; overflow-x: hidden; background-color: #0a1f44; }
+.container { display: flex; min-height: 100vh; }
+.sidebar { width: 25%; min-width: 220px; background: url("earth-11595(1).jpg") no-repeat center center; background-size: cover; position: fixed; top: 0; right: -25%; height: 100%; padding: 20px; box-sizing: border-box; transition: right 1s ease-in-out; color: #ffffff; display: flex; flex-direction: column; justify-content: flex-start; z-index: 2; }
+.sidebar::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.55); z-index: -1; }
+.sidebar.active { right:0; }
+.sidebar h1 { font-size:2.2em; margin-bottom:8px; }
+.sidebar h2 { font-size:1em; margin-bottom:20px; font-weight:400; }
+.sidebar nav { display:flex; flex-direction:column; }
+.sidebar nav a { margin-bottom:10px; text-decoration:none; color:#ffffff; font-size:0.95em; }
+.sidebar nav a.current { opacity:0.5; pointer-events:none; }
+.sidebar nav a:hover:not(.current) { text-decoration:underline; }
+.content { margin-right:25%; width:75%; padding:60px 40px; opacity:0; transition:opacity 1s ease-in-out; min-height:100vh; box-sizing:border-box; }
+.content.active { opacity:1; }
+.back-link { font-weight: 700; color: #ffffff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+.back-link::before { content: "← "; }
+h1.page-title { font-size:2em; margin-bottom:6px; }
+h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:18px; color:#ffffff; }
+p.section-text { font-size:1em; line-height:1.7; margin-bottom:18px; color:#ffffff; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="content" id="content">
+    <a href="index.html" class="back-link">Back to Home</a>
+    <h1 class="page-title">Skills</h1>
+
+    <h2 class="section-title">Physics, Fluid & Earth Sciences</h2>
+    <p class="section-text">
+      Point and fluid mechanics: fundamental laws, equations, interactions.
+      Wave and signal physics: propagation, interface between two media, random and digital signal processing.
+      Electromagnetism and magnetism: properties, forces, atomic origin.
+      Energy studies: fundamental principles, equations of state, statistical physics.
+      Structure of the atom: quantum mechanics, atomic and molecular orbitals.
+      Geophysics: subsurface modeling, wave propagation in geological media.
+    </p>
+
+    <h2 class="section-title">Chemistry & Molecular Sciences</h2>
+    <p class="section-text">
+      Synthesis techniques, strategies and mechanisms in organic chemistry.
+      Chemical kinetics and thermodynamics: orders, laws, experimental techniques.
+      Molecular structure interpretation and reaction pathway understanding.
+    </p>
+
+    <h2 class="section-title">Computer Science & Applied Mathematics</h2>
+    <p class="section-text">
+      Programming languages: Python, SQL, C, C++, Labview and MATLAB.
+      Problem-solving in physics and image processing.
+      Differential and integral calculus, asymptotic analysis of functions, study of series.
+      Algebra of matrices, linear systems and vector spaces.
+      Demonstration techniques, statistics and probability studies.
+    </p>
+
+    <h2 class="section-title">Electronics & Embedded Systems</h2>
+    <p class="section-text">
+      Filtering and oscillator setups.
+      VHDL, Verilog, Arduino languages: system controls during practical works.
+      Analog and digital electronics: theoretical and practical study.
+    </p>
+
+  </div>
+</div>
+<script>
+window.onload = function() { document.querySelector('.sidebar').classList.add('active'); document.querySelector('.content').classList.add('active'); };
+</script>
+</body>
+</html>
