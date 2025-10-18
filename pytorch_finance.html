@@ -120,17 +120,17 @@ sup a:hover { text-decoration: underline; }
     <a href="code.html" class="back-link">Back to Code and Software Demo</a>
     <h1 class="page-title">PyTorch – Neural Model for Sequential Financial Feature Processing</h1>
 
-    <h2 class="section-title">Objective</h2>
+    <h2 class="section-title">Goal</h2>
     <p class="section-text">
       The objective of this module is to demonstrate a clean, production-aligned inference pipeline for an AI-driven trading signal generator. The goal is to structure a neural model capable of processing sequential market features and outputting three key metrics expected in a quantitative decision system: directional probabilities (Short / Neutral / Long), a confidence score to scale exposure, and a risk estimate to constrain position sizing. This positions the code as a foundation for a future learning-based trading engine while remaining lightweight and deterministic for demonstration and integration purposes.
 
 
-    <h2 class="section-title">Methods and Tools Used</h2>
+    <h2 class="section-title">Engineering Approach and Tools</h2>
     <p class="section-text">
       The implementation uses PyTorch to define a GRU-based neural network that processes sequences of synthetic feature vectors. The model architecture includes an input encoder layer, a recurrent GRU block for temporal pattern extraction, and three dedicated output heads. Each head produces a specific signal component with appropriate activation functions: Softmax for direction probabilities, Sigmoid for confidence scaling, and Softplus for positive risk estimation. Data is generated using random tensors to simulate a batch of market sequences, and the model is executed in inference mode without parameter updates. The inference output is then packaged and the model is exported to ONNX, enabling compatibility with deployment environments and real-time execution engines.
     </p>
 
-    <h2 class="section-title">Execution Results</h2>
+    <h2 class="section-title">Execution Behavior and Output Interpretation</h2>
     <p class="section-text">
       The execution produces structured outputs for a batch of five simulated sequences. The direction probabilities tensor shows a balanced distribution across Short, Neutral, and Long states, confirming consistent Softmax normalization. The confidence values remain close to 0.5, indicating neutral conviction due to the absence of trained weights. The risk estimate output returns positive scalar values around 0.59–0.60, as enforced by the Softplus activation. These outputs confirm that the architecture is functioning correctly, forward propagation is valid, and the model produces coherent tensors ready for downstream consumption in a trading pipeline or ONNX runtime environment.
 
