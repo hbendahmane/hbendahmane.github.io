@@ -47,6 +47,11 @@ sup a:hover { text-decoration: underline; }
 .footnotes p { margin:10px 0; }
 .footnotes a { color:#ffffff; text-decoration:none; }
 .footnotes a::after { content:" ↗"; font-size:0.85em; opacity:0.9; margin-left:4px; }
+.spaced-list li {
+  margin-bottom: 28px;
+  line-height: 1.9;
+}
+
 </style>
 </head>
 <body>
@@ -71,24 +76,50 @@ sup a:hover { text-decoration: underline; }
 
       The design consists of three main processes:
     </p>
-    <ul class="section-text" style="margin-left:20px; margin-bottom:20px;">
-      <li><b>Quality Score Calculation:</b> A combinational process sums the most significant bits of the sensor readings to compute an internal water quality score.</li>
-      <li><b>Alert Detection:</b> Another combinational process translates the score into a 2-bit alert level, representing Normal, Level 1, Level 2, and Level 3 conditions.</li>
-      <li><b>Synchronous Control Outputs:</b> A clocked process updates outputs such as coagulant_dose, chlorine_dose, pump_speed, and filter_backwash, and also reports the score and alert level during simulation for verification.</li>
+    <ul class="section-text spaced-list">
+  <li>
+    <b>Quality Score Calculation:</b><br>
+    A combinational process sums the most significant bits of the sensor readings to compute an internal water quality score.
+  </li>
+   
+  <li>
+    <b>Alert Detection:</b><br>
+    Another combinational process translates the score into a 2-bit alert level, representing Normal, Level 1, Level 2, and Level 3 conditions.
+  </li>
+
+  <li>
+    <b>Synchronous Control Outputs:</b><br>
+    A clocked process updates outputs such as coagulant_dose, chlorine_dose, pump_speed, and filter_backwash, and also reports the score and alert level during simulation for verification.
+  </li>
+</ul>
+
     </ul>
     <p class="section-text">
       The testbench applies realistic sensor values representing normal conditions, Level 1, Level 2, Level 3 alerts, and a recovery scenario, ending with a controlled assert false statement to mark the simulation end.
     </p>
 
-    <h2 class="section-title">Simulation Results</h2>
+    <h2 class="section-title">Execution Behavior and Output Interpretation</h2>
     <p class="section-text">
       Simulation confirms correct functionality:
     </p>
-    <ul class="section-text" style="margin-left:20px; margin-bottom:20px;">
-      <li>The internal quality scores correspond to expectations: 31 (Normal), 65 (Level 1), 276–285 (Level 2), and 21 (Normal after recovery).</li>
-      <li>Alert levels are triggered correctly according to thresholds: Level 2 activates when the score exceeds 225. Level 3 is ready to trigger if scores exceed 300.</li>
-      <li>Control outputs (filter_backwash, pump_speed, coagulant_dose, chlorine_dose) respond accurately to the alert level and sensor inputs.</li>
-      <li>Simulation log clearly reports the score and alert level at each step, making verification straightforward and suitable for professional portfolio documentation.</li>
+    <ul class="section-text spaced-list">
+  <li>
+    The internal quality scores correspond to expectations: 31 (Normal), 65 (Level 1), 276–285 (Level 2), and 21 (Normal after recovery).
+  </li>
+
+  <li>
+    Alert levels are triggered correctly according to thresholds: Level 2 activates when the score exceeds 225. Level 3 is ready to trigger if scores exceed 300.
+  </li>
+
+  <li>
+    Control outputs (filter_backwash, pump_speed, coagulant_dose, chlorine_dose) respond accurately to the alert level and sensor inputs.
+  </li>
+
+  <li>
+    Simulation log clearly reports the score and alert level at each step, making verification straightforward and suitable for professional portfolio documentation.
+  </li>
+</ul>
+
     </ul>
     <p class="section-text">
       The simulation ends intentionally with END OF SIMULATION, which is standard in GHDL and indicates controlled termination rather than an error.
