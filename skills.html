@@ -13,7 +13,7 @@ body { font-family: 'Merriweather', serif; margin: 0; padding: 0; color: #ffffff
 .sidebar h1 { font-size:2.2em; margin-bottom:8px; }
 .sidebar h2 { font-size:1em; margin-bottom:20px; font-weight:400; }
 .sidebar nav { display:flex; flex-direction:column; }
-.sidebar nav a { margin-bottom:10px; text-decoration:none; color:#ffffff; font-size:0.95em; }
+.sidebar nav a { margin-bottom:10px; text-decoration:none; color:#ffffff; font-weight:bold; font-size:0.95em; }
 .sidebar nav a.current { opacity:0.5; pointer-events:none; }
 .sidebar nav a:hover:not(.current) { text-decoration:underline; }
 .content { margin-right:25%; width:75%; padding:60px 40px; opacity:0; transition:opacity 1s ease-in-out; min-height:100vh; box-sizing:border-box; }
@@ -21,54 +21,60 @@ body { font-family: 'Merriweather', serif; margin: 0; padding: 0; color: #ffffff
 .back-link { font-weight: 700; color: #ffffff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
 .back-link::before { content: "← "; }
 h1.page-title { font-size:2em; margin-bottom:6px; }
-h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:18px; color:#ffffff; }
-p.section-text { font-size:1em; line-height:1.7; margin-bottom:18px; color:#ffffff; }
+h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:10px; color:#ffffff; }
+p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; }
 </style>
 </head>
 <body>
 <div class="container">
-
+  <div class="sidebar" id="sidebar">
+    <h1>Hamza Bendahmane</h1>
+    <h2>Portfolio</h2>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="code.html">Code & Demos</a>
+      <a href="skills.html" class="current">Skills</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
   <div class="content" id="content">
     <a href="index.html" class="back-link">Back to Home</a>
     <h1 class="page-title">Skills</h1>
 
-    <h2 class="section-title">Physics, Fluid & Earth Sciences</h2>
+    <h2 class="section-title">Physics, Geo-Physics & Engineering Foundations</h2>
     <p class="section-text">
-      Point and fluid mechanics: fundamental laws, equations, interactions.
-      Wave and signal physics: propagation, interface between two media, random and digital signal processing.
-      Electromagnetism and magnetism: properties, forces, atomic origin.
-      Energy studies: fundamental principles, equations of state, statistical physics.
+      Point and fluid mechanics: fundamental laws, equations, interactions.<br><br>
+      Wave and signal physics: propagation, interface between two media, random and digital signal processing.<br><br>
+      Electromagnetism and magnetism: properties, forces, atomic origin.<br><br>
+      Energy studies: fundamental principles, equations of state, statistical physics.<br><br>
       Structure of the atom: quantum mechanics, atomic and molecular orbitals.
-      Geophysics: subsurface modeling, wave propagation in geological media.
     </p>
 
-    <h2 class="section-title">Chemistry & Molecular Sciences</h2>
+    <h2 class="section-title">Chemistry & Life Sciences</h2>
     <p class="section-text">
-      Synthesis techniques, strategies and mechanisms in organic chemistry.
-      Chemical kinetics and thermodynamics: orders, laws, experimental techniques.
-      Molecular structure interpretation and reaction pathway understanding.
+      Synthesis techniques, strategies and mechanisms in organic chemistry.<br><br>
+      Chemical kinetics and thermodynamics: orders, laws, experimental techniques.<br><br>
+      Cell architecture and life cycle, tissue organization.
     </p>
 
-    <h2 class="section-title">Computer Science & Applied Mathematics</h2>
+    <h2 class="section-title">Computer Science & Mathematics</h2>
     <p class="section-text">
-      Programming languages: Python, SQL, C, C++, Labview and MATLAB.
-      Problem-solving in physics and image processing.
-      Differential and integral calculus, asymptotic analysis of functions, study of series.
-      Algebra of matrices, linear systems and vector spaces.
+      Programming languages: Python, SQL, C, C++, Labview and MATLAB.<br><br>
+      Problem-solving in physics and image processing.<br><br>
+      Differential and integral calculus, asymptotic analysis of functions, study of series.<br><br>
+      Algebra of matrices, linear systems and vector spaces.<br><br>
       Demonstration techniques, statistics and probability studies.
     </p>
 
-    <h2 class="section-title">Electronics & Embedded Systems</h2>
+    <h2 class="section-title">Electronics</h2>
     <p class="section-text">
-      Filtering and oscillator setups.
-      VHDL, Verilog, Arduino languages: system controls during practical works.
+      Filtering and oscillator setups. VHDL, Verilog, Arduino languages: system controls during practical works.<br><br>
       Analog and digital electronics: theoretical and practical study.
     </p>
-
   </div>
 </div>
 <script>
-window.onload = function() { document.querySelector('.sidebar').classList.add('active'); document.querySelector('.content').classList.add('active'); };
+window.onload = function() { document.getElementById('sidebar').classList.add('active'); document.getElementById('content').classList.add('active'); };
 </script>
 </body>
 </html>
