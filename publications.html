@@ -72,6 +72,25 @@ sup a:hover { text-decoration: underline; }
 .footnotes p { margin:10px 0; }
 .footnotes a { color:#ffffff; text-decoration:none; }
 .footnotes a::after { content:" ↗"; font-size:0.85em; opacity:0.9; margin-left:4px; }
+
+/* Liens "See more" et similaires */
+.see-more {
+  display: inline-block;
+  margin-top: 6px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95em;
+}
+.see-more::after {
+  content: " ↗";
+  font-size: 0.85em;
+  vertical-align: super;
+  opacity: 0.9;
+}
+.see-more:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
