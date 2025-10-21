@@ -41,38 +41,22 @@ body {
 .content { margin-right:25%; width:75%; padding:60px 40px; opacity:0; transition:opacity 1s ease-in-out; min-height:100vh; box-sizing:border-box; }
 .content.active { opacity:1; }
 
-/* Back link */
-.back-link {
-  font-weight: 700;
-  color: #ffffff;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-.back-link::before { content: "← "; }
-
 /* Titles and sections */
 h1.page-title { font-size:2em; margin-bottom:6px; }
 h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:10px; color:#ffffff; }
-p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; }
-ul.skill-list { margin-left: 20px; margin-bottom: 20px; }
+ul.skill-list { margin-left: 20px; margin-bottom: 20px; line-height: 1.6; }
 ul.skill-list li { margin-bottom: 12px; }
 
-/* Footnote indices (uniform size) */
-sup a {
-  font-size:0.95em;
-  font-family: inherit;
-  vertical-align: super;
-  color: #ffffff;
-  text-decoration: none;
+/* Footer */
+.footnotes {
+  margin-top:28px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  color:#cfcfcf;
+  font-size:0.9em;
+  text-align:center;
+  opacity:0.8;
 }
-sup a:hover { text-decoration: underline; }
-
-/* Footnotes */
-.footnotes { margin-top:28px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.06); color:#cfcfcf; font-size:0.95em; line-height:1.5; }
-.footnotes p { margin:10px 0; }
-.footnotes a { color:#ffffff; text-decoration:none; }
-.footnotes a::after { content:" ↗"; font-size:0.85em; opacity:0.9; margin-left:4px; }
 </style>
 </head>
 <body>
@@ -83,40 +67,54 @@ sup a:hover { text-decoration: underline; }
 
     <h2 class="section-title">Physics</h2>
     <ul class="skill-list">
-      <li>Point and fluid mechanics: fundamental laws, equations, interactions, geophysics.</li>
-      <li>Wave and signal physics: propagation, interface between two media, random and digital signal processing.</li>
-      <li>Electromagnetism and magnetism: properties, forces, atomic origin.</li>
-      <li>Energy studies: fundamental principles, equations of state, statistical physics.</li>
-      <li>Structure of the atom: quantum mechanics, atomic and molecular orbitals.</li>
+      <li>Classical and Continuum Mechanics – Newtonian and Lagrangian formulations, conservation laws, rigid-body dynamics, and central-force orbital motion.</li>
+      <li>Thermodynamics and Statistical Mechanics – State functions, thermodynamic potentials, equations of state, phase transitions, and microscopic derivation of macroscopic laws.</li>
+      <li>Electromagnetism and Wave Physics – Maxwell’s equations, electromagnetic induction, field interactions, optics, and wave propagation at material interfaces.</li>
+      <li>Quantum and Modern Physics – Schrödinger equation, quantum states and operators, atomic orbitals, spin, and introduction to solid-state and semiconductor physics.</li>
+      <li>Geophysics and Fluid Dynamics – Fundamental equations of hydrodynamics and thermodynamics applied to natural systems; transport and diffusion in fluids and porous media.</li>
     </ul>
 
-    <h2 class="section-title">Chemistry & Life Sciences</h2>
+    <h2 class="section-title">Chemistry</h2>
     <ul class="skill-list">
-      <li>Synthesis techniques, strategies and mechanisms in organic chemistry.</li>
-      <li>Chemical kinetics and thermodynamics: orders, laws, experimental techniques.</li>
-      <li>Cell,proteins, DNA, tissue architecture, tissue, proteins organization.</li>
+      <li>Quantum Chemistry and Molecular Reactivity – Orbital theory, electronic structure, and predictive modeling of molecular reactivity using frontier orbitals and catalytic cycles.</li>
+      <li>Thermodynamics and Chemical Kinetics – Energy transformations, reaction equilibria, rate laws, and catalytic efficiency in energy and industrial systems.</li>
+      <li>Electrochemistry and Energy Storage – Design and optimization of batteries, fuel cells, and electrolyzers; current–potential curve analysis for reaction kinetics.</li>
+      <li>Synthetic and Supramolecular Chemistry – Multi-step synthesis, stereochemical control, and molecular design for advanced materials and polymers.</li>
+      <li>Analytical and Physical Chemistry Techniques – Spectrophotometry, calorimetry, and chromatography for quantitative system characterization.</li>
     </ul>
 
-    <h2 class="section-title">Mathematics & Computer Science</h2>
+    <h2 class="section-title">Life Sciences</h2>
     <ul class="skill-list">
-      <li>Programming languages: Python, SQL, C, C++, Labview and MATLAB.</li>
-      <li>Problem-solving in physics and image processing.</li>
-      <li>Differential and integral calculus, asymptotic analysis of functions, study of series.</li>
-      <li>Algebra of matrices, linear systems and vector spaces.</li>
-      <li>Demonstration techniques, statistics and probability studies.</li>
+      <li>Cellular and Molecular Biophysics – Quantitative study of motility, cytoskeleton dynamics, and force generation; fluorescence imaging (actin, vinculin).</li>
+      <li>Systems Biology and Network Modeling – Analysis of signaling networks, stochastic gene expression, and modeling of regulatory motifs from omics data.</li>
+      <li>Microfluidics and Bioengineering – Droplet-based quantification of <i>E. coli</i>, enzymatic assays, PDMS chip fabrication via lithography, and plasma bonding.</li>
+      <li>Synthetic Biology and Bioelectronics – Electronic modeling of genetic circuits (toggle switch, repressilator); integration of feedback control and synchronization systems.</li>
+      <li>Biomaterials and Biointerfaces – Surface functionalization and fluorescent probes for biosensing and bioimaging applications.</li>
     </ul>
 
-    <h2 class="section-title">Electronics</h2>
+    <h2 class="section-title">Mathematics</h2>
     <ul class="skill-list">
-      <li>Filtering and oscillator setups. VHDL, Verilog, Arduino languages: system controls during practical works.</li>
-      <li>Analog and digital electronics: theoretical and practical study.</li>
+      <li>Advanced Calculus and Optimization – Multivariable functions, constrained optimization, and sensitivity analysis for physical and engineering systems.</li>
+      <li>Linear Algebra and Functional Analysis – Diagonalization, spectral theorem, and applications to dynamical systems and quantum mechanics.</li>
+      <li>Probability and Stochastic Modeling – Random processes, convergence laws, and stochastic simulations for physics and biological modeling.</li>
+      <li>Differential Equations and Modeling – Analytical and numerical resolution of ODEs/PDEs applied to transport, thermodynamics, and control systems.</li>
+      <li>Numerical Methods and Computational Physics – Finite element and finite volume methods for complex systems and data-driven simulations.</li>
     </ul>
 
-  <div class="footnotes">
-    <footer style="margin-top:60px; font-size:0.8em; opacity:0.7; text-align:center;">
-  © 2025 – Hamza Bendahmane. All rights reserved.
+    <h2 class="section-title">Electronics & Computer Sciences</h2>
+    <ul class="skill-list">
+      <li>Analog and Digital Electronics – Circuit design, filtering, oscillators, VHDL/Verilog implementation, and embedded system control.</li>
+      <li>Signal and Image Processing – Advanced feature extraction, computer vision, and real-time analysis using C++ and MATLAB.</li>
+      <li>Applied Instrumentation – Semiconductor physics, photonics, and experimental instrumentation for precise physical measurements.</li>
+      <li>Control Systems and Robotics – Closed-loop regulation, control theory, and mechatronic design for intelligent autonomous systems.</li>
+      <li>Scientific Computing and Data Science – Strong programming foundation in Python, C++, MATLAB, with experience in simulation, modeling, and data processing.</li>
+    </ul>
+
+    <div class="footnotes">
+      © 2025 – Hamza Bendahmane. All rights reserved.
+    </div>
+
   </div>
-  
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
@@ -127,7 +125,7 @@ sup a:hover { text-decoration: underline; }
       <a href="about.html">About</a>
       <a href="education.html">Education</a>
       <a class="current" href="#">Skills</a>
-      <a href="professional.html">Professionnal Experiences</a>
+      <a href="professional.html">Professional Experiences</a>
       <a href="code.html">Code and Software Demo</a>
       <a href="publications.html">Publications</a>
       <a href="legal.html">Contact &amp; Legal Notices</a>
