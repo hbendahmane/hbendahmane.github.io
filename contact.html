@@ -38,52 +38,64 @@ body {
 .sidebar nav a:hover:not(.current) { text-decoration:underline; }
 
 /* Content */
-.content { margin-right:25%; width:75%; padding:60px 40px; opacity:0; transition:opacity 1s ease-in-out; min-height:100vh; box-sizing:border-box; }
+.content {
+  margin-right:25%;
+  width:75%;
+  padding:60px 40px;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+  min-height:100vh;
+  box-sizing:border-box;
+  text-align: justify;
+}
 .content.active { opacity:1; }
 
-/* Titles and sections */
-h1.page-title { font-size:2em; margin-bottom:6px; text-align:center; }
-h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:12px; color:#ffffff; text-align:center; }
-p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; text-align:center; }
+/* Titles */
+h1.page-title { font-size:2em; margin-bottom:6px; }
+h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:12px; color:#ffffff; }
+p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; text-align: justify; }
 
-/* Contact icons centered */
+/* Contact icons */
 .contact-links {
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 40px;
+  align-items: center;
   margin: 30px 0 50px 0;
 }
 
-.contact-links a {
-  position: relative;
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-item a {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #111;
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   text-decoration: none;
   transition: background-color 0.3s;
 }
-.contact-links a:hover {
+.contact-item a:hover {
   background-color: #2e5fff;
 }
-.contact-links a::after {
-  content: "↗";
-  position: absolute;
-  right: -12px;
-  bottom: -6px;
-  font-size: 0.85em;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-.contact-links a:hover::after {
-  opacity: 1;
-}
-.contact-links img {
+.contact-item img {
   width: 26px;
   height: 26px;
+  filter: invert(1);
+}
+.contact-item::after {
+  content: " ↗";
+  font-size: 0.9em;
+  opacity: 0.9;
+  color: #ffffff;
+  position: relative;
+  top: 1px;
 }
 
 /* Footer */
@@ -107,12 +119,16 @@ footer {
     </p>
 
     <div class="contact-links">
-      <a href="mailto:hbendahmane.engineer@gmail.com" title="Email">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Mail icon">
-      </a>
-      <a href="https://www.linkedin.com/in/hamza-bendahmane-072a54316" target="_blank" title="LinkedIn">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn icon" style="filter: invert(1);">
-      </a>
+      <div class="contact-item">
+        <a href="mailto:hbendahmane.engineer@gmail.com" title="Email">
+          <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Mail icon">
+        </a>
+      </div>
+      <div class="contact-item">
+        <a href="https://www.linkedin.com/in/hamza-bendahmane-072a54316" target="_blank" title="LinkedIn">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn icon">
+        </a>
+      </div>
     </div>
 
     <!-- LEGAL NOTICES -->
@@ -122,13 +138,14 @@ footer {
     </p>
 
     <p class="section-text">
-      The background image used is royalty-free.<br>
+      The background image used is royalty-free.  
       Logos of companies, universities, or institutions displayed on this website are shown for illustrative purposes only and remain the exclusive property of their respective entities.
     </p>
 
     <footer>
       © 2025 – Hamza Bendahmane. All rights reserved.
     </footer>
+
   </div>
 
   <!-- Sidebar -->
@@ -146,7 +163,6 @@ footer {
       <a class="current" href="#">Contact &amp; Legal Notices</a>
     </nav>
   </div>
-
 </div>
 
 <script>
