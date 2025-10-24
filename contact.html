@@ -42,50 +42,48 @@ body {
 .content.active { opacity:1; }
 
 /* Titles and sections */
-h1.page-title { font-size:2em; margin-bottom:6px; }
-h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:12px; color:#ffffff; }
-p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; }
+h1.page-title { font-size:2em; margin-bottom:6px; text-align:center; }
+h2.section-title { font-size:1.3em; margin-top:30px; margin-bottom:12px; color:#ffffff; text-align:center; }
+p.section-text { font-size:1em; line-height:1.6; margin-bottom:20px; color:#ffffff; text-align:center; }
 
-/* Contact icons */
+/* Contact icons centered */
 .contact-links {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin: 25px 0 40px 0;
+  justify-content: center;
+  gap: 25px;
+  margin: 30px 0 50px 0;
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.contact-item a.icon {
+.contact-links a {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #111;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   text-decoration: none;
   transition: background-color 0.3s;
 }
-.contact-item a.icon:hover {
+.contact-links a:hover {
   background-color: #2e5fff;
 }
-.contact-item img {
-  width: 24px;
-  height: 24px;
+.contact-links a::after {
+  content: "↗";
+  position: absolute;
+  right: -12px;
+  bottom: -6px;
+  font-size: 0.85em;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
-
-.contact-item a.text-link {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1em;
+.contact-links a:hover::after {
+  opacity: 1;
 }
-.contact-item a.text-link:hover {
-  text-decoration: underline;
+.contact-links img {
+  width: 26px;
+  height: 26px;
 }
 
 /* Footer */
@@ -105,23 +103,16 @@ footer {
     <!-- CONTACT SECTION -->
     <h1 class="page-title">Contact</h1>
     <p class="section-text">
-      I am open and enthusiastic about professional opportunities, research collaborations, or any exchange!
+      I am open and enthusiastic about professional opportunities, research collaborations, or any exchange.
     </p>
 
     <div class="contact-links">
-      <div class="contact-item">
-        <a href="mailto:hbendahmane.engineer@gmail.com" class="icon" title="Email">
-          <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Mail icon">
-        </a>
-        <a href="mailto:hbendahmane.engineer@gmail.com" class="text-link">hbendahmane.engineer@gmail.com</a>
-      </div>
-
-      <div class="contact-item">
-        <a href="https://www.linkedin.com/in/hamza-bendahmane-072a54316" target="_blank" class="icon" title="LinkedIn">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn icon" style="filter: invert(1);">
-        </a>
-        <a href="https://www.linkedin.com/in/hamza-bendahmane-072a54316" target="_blank" class="text-link"></a>
-      </div>
+      <a href="mailto:hbendahmane.engineer@gmail.com" title="Email">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Mail icon">
+      </a>
+      <a href="https://www.linkedin.com/in/hamza-bendahmane-072a54316" target="_blank" title="LinkedIn">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn icon" style="filter: invert(1);">
+      </a>
     </div>
 
     <!-- LEGAL NOTICES -->
