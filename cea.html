@@ -102,6 +102,10 @@ p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #
 .logo-row img:hover {
   transform: scale(1.05);
 }
+.cnrs-logo {
+  mix-blend-mode: multiply; /* Supprime le fond blanc */
+  background-color: transparent;
+}
 
 /* Styled external links (with arrow) */
 a.external-link {
@@ -138,7 +142,7 @@ footer {
       <!-- Logo Row -->
       <div class="logo-row">
         <img src="cea.jpg" alt="CEA">
-        <img src="cnrs.jpg" alt="CNRS"> 
+        <img src="cnrs.jpg" alt="CNRS" class="cnrs-logo"> 
       </div>
 
       <!-- Sections -->
