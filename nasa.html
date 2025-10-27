@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NASA Harvest - Hamza Bendahmane</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -28,7 +29,7 @@ body {
   background-size: cover;
   position: fixed;
   top: 0;
-  right: -25%;
+  right: 0;
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -92,9 +93,10 @@ p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #
   align-items: center;
   gap: 40px;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 .logo-row img {
-  width: 110px;
+  max-width: 110px;
   height: auto;
   filter: brightness(0) invert(1) contrast(100%) drop-shadow(0 0 6px rgba(255,255,255,0.3));
   transition: transform 0.3s ease;
@@ -108,6 +110,8 @@ a.external-link {
   color: #ffffff;
   text-decoration: none;
   font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
 }
 a.external-link::after {
   content: " ↗";
@@ -132,18 +136,15 @@ footer {
 
   <div class="content" id="content">
     <main>
-      <a href="projects.html" class="back-link">Back to Professional Experiences</a>
+      <a href="professional.html" class="back-link">Back to Professional Experiences</a>
       <h1 class="page-title">Collaborative Engineering Project</h1>
 
       <!-- Logo Row -->
       <div class="logo-row">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA Logo">
-        <img src="https://harvest.nasa.gov/images/harvest_logo.png" alt="NASA Harvest Logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Université_de_Strasbourg_%28logo%29.svg" alt="University of Strasbourg Logo">
+        <img src="nasa.png" alt="NASA Logo">
+        <img src="harvest.png" alt="NASA Harvest Logo">
+        <img src="icube.png" alt="University of Strasbourg Logo">
       </div>
-  
-</div>
-
 
       <!-- Sections -->
       <h2 class="section-title">Context</h2>
@@ -170,22 +171,23 @@ footer {
         <a href="https://www.nasaharvest.org/news/mapping-ukraines-fields-from-space-a-new-tool-for-food-security" target="_blank" rel="noopener" class="external-link">Featured collaboration on the NASA Harvest website</a>
         <a href="https://doi.org/10.1038/s41597-025-05190-7" target="_blank" rel="noopener" class="external-link">Co-author in <em>Nature</em></a>
       </p>
+      
       <footer>
-  © 2025 – Hamza Bendahmane. All rights reserved.
-      </footer>                                                           
+        © 2025 – Hamza Bendahmane. All rights reserved.
+      </footer>
     </main>
   </div>
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h1>Hamza Bendahmane</h1>
-    <h2>French state-accredited Engineer (CTI) – Diplôme d’Ingénieur, MSc</h2>
-    <blockquote>“Excellence, fighting spirit, and tenacity to tackle the world’s engineering challenges.”</blockquote>
+    <h2>French state-accredited Engineer (CTI) – Diplôme d'Ingénieur, MSc</h2>
+    <blockquote>"Excellence, fighting spirit, and tenacity to tackle the world's engineering challenges."</blockquote>
     <nav>
       <a href="about.html">About</a>
       <a href="education.html">Education</a>
       <a href="skills.html">Key Skills</a>
-      <a class="current" href="#">Professionnal Experiences</a>
+      <a class="current" href="#">Professional Experiences</a>
       <a href="code.html">Code &amp; Software Demo</a>
       <a href="publications.html">Publications</a>
       <a href="contact.html">Contact &amp; Legal Notices</a>
@@ -202,7 +204,9 @@ window.addEventListener('load', () => {
   if (!sessionStorage.getItem('visitedHome')) {
     sidebar.classList.add('active');
     sessionStorage.setItem('visitedHome', 'true');
-  } else { sidebar.style.right='0'; }
+  } else { 
+    sidebar.style.right = '0'; 
+  }
 });
 </script>
 
