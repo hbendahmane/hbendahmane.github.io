@@ -83,30 +83,25 @@ h2.subtitle { font-size: 1.1em; margin-bottom: 30px; color: #ffffff; font-weight
 
 /* Sections */
 h2.section-title { font-size: 1.3em; margin-top: 30px; margin-bottom: 10px; color: #ffffff; }
-p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #ffffff; }
+p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #ffffff; text-align: justify; }
 
-/* Circular logo styling (harmonized with contact icons) */
-.logo-circle {
-  width: 90px;
-  height: 90px;
-  background-color: #ffffff;     /* white background */
-  border-radius: 50%;
+/* Image line with logos (filtered for blue background) */
+.logo-row {
   display: flex;
-  align-items: center;
   justify-content: center;
-  box-shadow: 0 0 8px rgba(255,255,255,0.15);
-  transition: transform 0.25s ease;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
 }
-.logo-circle:hover { transform: scale(1.05); }
-
-.logo-circle img {
-  width: 55%;
-  height: 55%;
-  object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(17%) sepia(33%) saturate(6784%) hue-rotate(202deg) brightness(93%) contrast(94%);
-  /* converts the logo to blue tone close to #0a1f44 if it's dark, else keeps color */
+.logo-row img {
+  width: 110px;
+  height: auto;
+  filter: brightness(0) invert(1) contrast(100%) drop-shadow(0 0 6px rgba(255,255,255,0.3));
+  transition: transform 0.3s ease;
 }
-
+.logo-row img:hover {
+  transform: scale(1.05);
+}
 
 /* Styled external links (with arrow) */
 a.external-link {
@@ -122,6 +117,7 @@ a.external-link::after {
   margin-left: 4px;
 }
 a.external-link:hover { text-decoration: underline; }
+
 footer {
   margin-top: 60px;
   font-size: 0.8em;
@@ -139,27 +135,12 @@ footer {
       <a href="projects.html" class="back-link">Back to Professional Experiences</a>
       <h1 class="page-title">Collaborative Engineering Project</h1>
 
-      <!-- Image gallery -->
-      <!-- Logo section styled like contact icons -->
-<div class="image-gallery" style="display:flex; justify-content:center; gap:40px; margin:40px 0;">
-  
-      <!-- NASA -->
-  <div class="logo-circle">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" 
-         alt="NASA logo">
-  </div>
-  
-    <!-- NASA Harvest -->
-  <div class="logo-circle">
-    <img src="https://harvest.nasa.gov/sites/default/files/2021-02/harvest-logo.png"
-         alt="NASA Harvest logo">
-  </div>
-  
-  <!-- ICube Laboratory -->
-  <div class="logo-circle">
-    <img src="https://icube.unistra.fr/fileadmin/_processed_/1/6/csm_logo-icube_7ec7a4e2cd.png"
-         alt="ICube Laboratory logo">
-  </div>
+      <!-- Logo Row -->
+      <div class="logo-row">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA Logo">
+        <img src="https://harvest.nasa.gov/images/harvest_logo.png" alt="NASA Harvest Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Université_de_Strasbourg_%28logo%29.svg" alt="University of Strasbourg Logo">
+      </div>
   
 </div>
 
