@@ -103,6 +103,21 @@ p.section-text { font-size: 1em; line-height: 1.6; margin-bottom: 20px; color: #
 .logo-row img:hover {
   transform: scale(1.05);
 }
+/* NASA Harvest - uniquement en blanc */
+.harvest-logo {
+  filter: brightness(0) invert(1) contrast(100%) drop-shadow(0 0 6px rgba(255,255,255,0.3));
+}
+
+/* ICube - inversé avec fond bleu */
+.icube-logo {
+  filter: brightness(0) invert(1);
+  background-color: #0a1f44; /* même bleu que votre site */
+  padding: 15px;
+  border-radius: 8px;
+  width: 140px !important; /* plus grand */
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
 
 /* Styled external links (with arrow) */
 a.external-link {
@@ -141,8 +156,8 @@ footer {
       <!-- Logo Row -->
       <div class="logo-row">
         <img src="nasa.png" alt="NASA Logo">
-        <img src="harvest.png" alt="NASA Harvest Logo">
-        <img src="icube.png" alt="University of Strasbourg Logo">
+        <img src="harvest.png" alt="NASA Harvest Logo" class="harvest-logo">
+        <img src="icube.png" alt="Icube Logo" class="icube-logo">
       </div>
 
       <!-- Sections -->
